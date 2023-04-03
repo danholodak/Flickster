@@ -81,6 +81,4 @@ test:
 #
 production:
   <<: *default
-  database: Flickster_production
-  username: Flickster
-  password: <%= ENV["FLICKSTER_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
