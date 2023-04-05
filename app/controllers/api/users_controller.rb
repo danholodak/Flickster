@@ -1,6 +1,6 @@
 class Api::UsersController < ApplicationController
   def create
-    @user = User.create(user_params)
+    @user = User.create(strong_params)
     if @user.save
       login!(@user)
       render :show
@@ -28,6 +28,6 @@ class Api::UsersController < ApplicationController
   private 
 
   def strong_params
-    params.require(:user).permit(:email, :username, :password)
+    params.require(:user).permit(:email, :age, :first_name, :last_name, :password)
   end
 end
