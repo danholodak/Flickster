@@ -1,0 +1,121 @@
+.buttonlist{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 10px;
+    margin-bottom:10px;
+}
+.listbutton:hover{
+    background-color: rgb(238, 238, 238);
+    width: 100%;
+}
+
+.header-bar{
+    position: absolute;
+    background-color: rgb(33, 33, 36);
+    margin: 0;
+    height: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.header-bar.splash{
+    background-color: rgba(33, 33, 36, 0.592);
+    height: 64px;
+    justify-content: space-between;
+}
+.header-bar.logged-in{
+    justify-content: space-between;
+}
+.header-bar.logged-in a{
+    margin-left: 10%;
+}
+.header-bar.logged-in .right-header{
+    margin-right: 10%;
+    position: relative;
+}
+.header-bar.logged-in .right-header button.profile{
+ background-color: gray;
+ border-radius: 20px;
+ padding: 3px 6px;
+}
+
+.header-bar .left-header{
+    display: flex;
+    flex-direction: row;
+}
+
+.header-bar .left-header button{
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    color: white;
+    width: 60px;
+}
+.header-bar .left-header a{
+    display: flex;
+    align-items: center;
+}
+.header-bar .left-header a strong{
+    width: 30px;
+    top: 0;
+}
+.header-bar.logged-in .right-header button{
+ margin: 10px;
+ background-color: transparent;
+ border: none;
+ color: white;
+ font-size: 20px;
+}
+.header-bar button:hover, .header-bar a:hover{
+    cursor: pointer;
+    color: rgb(218, 218, 218);
+}
+.splash .right-header{
+ display: flex;
+ align-items: center;
+ font-weight: 300;
+ margin-right: 10%;
+}
+.right-header .magnifier{
+   font-size: 20px;
+   margin: 10px;
+}
+.splash .login-header{
+    font-size: 15px;
+    font-weight: bold;
+    width: 60px;
+    font-weight: 300;
+}
+.splash .signup-header{
+    font-size: 15px;
+    width: 80px;
+    font-weight:bold;
+    color: black;
+    background-color: white;
+    padding: 7px 15px;
+    border-radius: 3px;
+    text-align: center;
+
+}
+.header-bar a{
+    text-decoration: none;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 900;
+    font-size: x-large;
+    margin-left: 10%;
+}
+.header-bar.splash a{
+    margin-left: 5%;
+}
+.logo{
+    font-size: x-small;
+    position: relative;
+    top: -3px;
+}
+.button-dropdown{
+    display: flex;
+    height: 50px;
+}

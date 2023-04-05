@@ -1,9 +1,32 @@
 import { Link } from "react-router-dom"
 import { useState, useEffect } from "react"
 import ProfMenu from "./ProfMenu"
+import RightDropdown from "./RightDropdown";
+import './css/Header.css'
 
 export default function Header({state}){
     const [showProfMenu, setShowProfMenu] = useState(false);
+    const [showYou, setShowYou] = useState(false);
+    const [showExplore, setShowExplore] = useState(false);
+    const [showPrints, setShowPrints] = useState(false);
+    function youMouseEnter(){
+        if(!showYou){setShowYou(true)}
+    }
+    function youMouseLeave(){
+        if(showYou){setShowYou(false)}
+    }
+    function exploreMouseEnter(){
+        if(!showExplore){setShowExplore(true)}
+    }
+    function exploreMouseLeave(){
+        if(showExplore){setShowExplore(false)}
+    }
+    function printsMouseEnter(){
+        if(!showPrints){setShowPrints(true)}
+    }
+    function printsMouseLeave(){
+        if(showPrints){setShowPrints(false)}
+    }
     function profileDropdown(){
         if(!showProfMenu){
             setShowProfMenu(true);
@@ -11,7 +34,6 @@ export default function Header({state}){
     }
     useEffect(() => {
         if (!showProfMenu) return;
-    
         const closeMenu = () => {
           setShowProfMenu(false);
         };
@@ -19,7 +41,7 @@ export default function Header({state}){
         return () => document.removeEventListener("click", closeMenu);
       }, [showProfMenu]);
 
-    if(state==="loginSignup"){
+    if(state==="loginsignup"){
         return(
             <div className="header-bar">
                 <Link to='/'><strong className="logo">💙💖</strong> flickster</Link>
@@ -31,10 +53,21 @@ export default function Header({state}){
             <div className="header-bar logged-in">
                 <div className="left-header">
                 <Link to='/'> <strong className="logo">💙💖</strong>flickster</Link>
-                <button>You</button>
-                <button>Explore</button>
-                <button>Prints</button>
+                <div className="button-dropdown" onMouseEnter={youMouseEnter} onMouseLeave={youMouseLeave} >
+                <button className="you" >You</button>
+                {showYou && <RightDropdown kind="You" />}
+                </div>
+                <div className="button-dropdown" onMouseEnter={exploreMouseEnter} onMouseLeave={exploreMouseLeave}>
+                <button >Explore</button>
+                {showExplore && <RightDropdown kind="Explore" onMouseEnter={exploreMouseEnter} onMouseLeave={exploreMouseLeave}/>}
+                </div>
+                <div className="button-dropdown" onMouseEnter={printsMouseEnter} onMouseLeave={printsMouseLeave}>
+                <button >Prints</button>
+                {showPrints && <RightDropdown kind="Prints" onMouseEnter={printsMouseEnter} onMouseLeave={printsMouseLeave}/>}
+                </div>
+                <div className="button-dropdown">
                 <button>Get Pro</button>
+                </div>
                 </div>
                 <div className="right-header">
                     <button className="magnifier">

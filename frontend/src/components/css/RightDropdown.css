@@ -1,0 +1,48 @@
+.hidden{
+    display: none;
+}
+.header-bar .left-header nav{
+    position: absolute;
+    top: 45px;
+    width: 150px;
+}
+.point{
+    border-top: 0px solid transparent;
+    border-bottom: 12px solid white;
+    position: absolute;
+    top: -9px;
+    left: 5px;
+    border-left: 11px solid transparent;
+    border-right: 11px solid transparent;
+}
+.header-bar .left-header nav.You{
+    left: 170px;
+}
+.header-bar nav.Explore{
+    left: 220px;
+}
+.header-bar nav.Prints{
+    left: 280px;
+}
+.top-button-list{
+padding: 5px 0px 5px 0px;
+}
+.bottom-button-list{
+    padding: 5px 0px 5px 0px;
+    border-top: 1px solid lightgray;
+}
+.header-bar .left-header nav button{
+    font-size: 15px;
+    text-align: left;
+    color: black;
+    width: 100%;
+    padding: 5px 0 5px 10px;
+}
+.header-bar .left-header nav button:hover{
+    color: black;
+}
+.header-bar .left-header nav .list-button:hover{
+    width: 100%;
+    background-color: rgb(238, 238, 238);
+}
+

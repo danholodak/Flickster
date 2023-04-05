@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import Header from "./Header"
 import { useSelector } from "react-redux"
 import NewsFeed from "./NewsFeed"
+import './css/SplashPage.css'
 
 export default function SplashPage(){
     const sessionUser = useSelector(state => state.session.user)

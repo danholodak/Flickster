@@ -37,7 +37,7 @@ export default function SignUpFormPage(){
     }
     return (
         <>
-        <Header state="loginSignup"/>
+        <Header state="loginsignup"/>
             <div className="form-flex">
                 <form className="login-form" onSubmit={handleSubmit}>
                     <strong className="form-logo">💙💖</strong>
