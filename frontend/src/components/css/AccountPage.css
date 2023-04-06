@@ -1,0 +1,56 @@
+.acct-settings{
+    padding-left: 10%;
+    padding-top: 50px;
+    font-size: x-large;
+    color: black;
+    font-weight: light;
+    background-color: white;
+    height: 114px;
+    display: flex;
+    align-items: center;
+}
+.acct-settings h1{
+    font-size: x-large;
+    color: black;
+    font-weight: 100;
+}
+.acct-tabs{
+    height: 50px;
+    background-color: white;
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 10%;
+    position: sticky;
+    position: -webkit-sticky;
+    border-bottom: 1px solid lightgray;
+}
+.acct-tabs button{
+background-color: transparent;
+border: none;
+box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+height: 50px;
+padding: 0 20px;
+font-size: 15px;
+color: rgb(79, 79, 79);
+margin-right: 10px;
+font-weight: 100;
+}
+.acct-tabs button:hover, .acct-tabs button.active{
+    border-bottom: 3px solid rgb(18, 143, 220);
+    color: black;
+    padding-top:3px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+.left-column{
+ margin-right:10%
+}
+.right-column{
+    margin-left: 10%
+}
+body{
+    background-color: rgb(236, 237, 237);
+}

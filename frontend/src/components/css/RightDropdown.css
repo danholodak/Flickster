@@ -5,6 +5,7 @@
     position: absolute;
     top: 45px;
     width: 150px;
+    z-index: 1;
 }
 .point{
     border-top: 0px solid transparent;
