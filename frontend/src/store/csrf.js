@@ -10,9 +10,8 @@ export default async function csrfFetch(url, options={}){
             throw response;
         }
             return response;
-        
-    
 }
+
 export function storeCSRFToken(response){
     const csrfToken = response.headers.get("X-CSRF-Token");
     if (csrfToken) sessionStorage.setItem("X-CSRF-Token", csrfToken);

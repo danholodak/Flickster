@@ -9,7 +9,9 @@
     background-color: rgb(238, 238, 238);
     width: 100%;
 }
-
+.header-bar.loginsignup a{
+    margin-left: 5%;
+}
 .header-bar{
     position: absolute;
     background-color: rgb(33, 33, 36);
@@ -28,22 +30,21 @@
 .header-bar.logged-in{
     justify-content: space-between;
 }
-.header-bar.logged-in a{
-    margin-left: 10%;
-}
 .header-bar.logged-in .right-header{
     margin-right: 10%;
     position: relative;
 }
 .header-bar.logged-in .right-header button.profile{
- background-color: gray;
- border-radius: 20px;
- padding: 3px 6px;
+    background-color: gray;
+    border-radius: 20px;
+    padding: 3px 6px;
 }
 
 .header-bar .left-header{
     display: flex;
     flex-direction: row;
+    margin-left: 10%;
+    position: relative;
 }
 
 .header-bar .left-header button{
@@ -62,11 +63,11 @@
     top: 0;
 }
 .header-bar.logged-in .right-header button{
- margin: 10px;
- background-color: transparent;
- border: none;
- color: white;
- font-size: 20px;
+    margin: 10px;
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 20px;
 }
 .header-bar button:hover, .header-bar a:hover{
     cursor: pointer;
@@ -105,7 +106,6 @@
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 900;
     font-size: x-large;
-    margin-left: 10%;
 }
 .header-bar.splash a{
     margin-left: 5%;

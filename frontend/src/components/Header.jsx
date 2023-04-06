@@ -7,26 +7,12 @@ import './css/Header.css'
 export default function Header({state}){
     const [showProfMenu, setShowProfMenu] = useState(false);
     const [showYou, setShowYou] = useState(false);
+    const [showYou2, setShowYou2] = useState(false);
     const [showExplore, setShowExplore] = useState(false);
+    const [showExplore2, setShowExplore2] = useState(false);
     const [showPrints, setShowPrints] = useState(false);
-    function youMouseEnter(){
-        if(!showYou){setShowYou(true)}
-    }
-    function youMouseLeave(){
-        if(showYou){setShowYou(false)}
-    }
-    function exploreMouseEnter(){
-        if(!showExplore){setShowExplore(true)}
-    }
-    function exploreMouseLeave(){
-        if(showExplore){setShowExplore(false)}
-    }
-    function printsMouseEnter(){
-        if(!showPrints){setShowPrints(true)}
-    }
-    function printsMouseLeave(){
-        if(showPrints){setShowPrints(false)}
-    }
+    const [showPrints2, setShowPrints2] = useState(false);
+
     function profileDropdown(){
         if(!showProfMenu){
             setShowProfMenu(true);
@@ -43,7 +29,7 @@ export default function Header({state}){
 
     if(state==="loginsignup"){
         return(
-            <div className="header-bar">
+            <div className="loginsignup header-bar">
                 <Link to='/'><strong className="logo">💙💖</strong> flickster</Link>
             </div>
         )
@@ -53,17 +39,22 @@ export default function Header({state}){
             <div className="header-bar logged-in">
                 <div className="left-header">
                 <Link to='/'> <strong className="logo">💙💖</strong>flickster</Link>
-                <div className="button-dropdown" onMouseEnter={youMouseEnter} onMouseLeave={youMouseLeave} >
-                <button className="you" >You</button>
-                {showYou && <RightDropdown kind="You" />}
+                <div className="button-dropdown" onMouseEnter={()=>{if(!showYou){setShowYou(true)}}} 
+                onMouseLeave={()=>{if(showYou){setShowYou(false)}}} >
+                <button className="you" onMouseEnter={()=>{if(!showYou2){setShowYou2(true)}}} 
+                onMouseLeave={()=>{if(showYou2){setShowYou2(false)}}} >You</button>
+                {(showYou || showYou2) && <RightDropdown kind="You" />}
                 </div>
-                <div className="button-dropdown" onMouseEnter={exploreMouseEnter} onMouseLeave={exploreMouseLeave}>
-                <button >Explore</button>
-                {showExplore && <RightDropdown kind="Explore" onMouseEnter={exploreMouseEnter} onMouseLeave={exploreMouseLeave}/>}
+                <div className="button-dropdown" onMouseEnter={()=>{if(!showExplore){setShowExplore(true)}}} 
+                onMouseLeave={()=>{if(showExplore){setShowExplore(false)}}}>
+                <button onMouseEnter={()=>{if(!showExplore2){setShowExplore2(true)}}} 
+                onMouseLeave={()=>{if(showExplore2){setShowExplore2(false)}}}>Explore</button>
+                {(showExplore || showExplore2) && <RightDropdown kind="Explore"/>}
                 </div>
-                <div className="button-dropdown" onMouseEnter={printsMouseEnter} onMouseLeave={printsMouseLeave}>
-                <button >Prints</button>
-                {showPrints && <RightDropdown kind="Prints" onMouseEnter={printsMouseEnter} onMouseLeave={printsMouseLeave}/>}
+                <div className="button-dropdown" onMouseEnter={() => setShowPrints(true)} 
+                onMouseLeave={() => setShowPrints(false)}>
+                <button onMouseEnter={() => setShowPrints2(true)} onMouseLeave={() => setShowPrints2(false)}>Prints</button>
+                {(showPrints || showPrints2) && <RightDropdown kind="Prints"/>}
                 </div>
                 <div className="button-dropdown">
                 <button>Get Pro</button>
@@ -83,7 +74,6 @@ export default function Header({state}){
                         <i className="fa-solid fa-user"></i>
                     </button>
                     {showProfMenu&& <ProfMenu/>}
-                    {/* <button onClick={doLogout}>logout</button> */}
                 </div>
             </div>
         )

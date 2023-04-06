@@ -5,6 +5,7 @@ import { Link } from "react-router-dom"
 import Header from "./Header"
 import { useSelector } from "react-redux"
 import { Redirect } from "react-router-dom"
+import './css/LoginSignup.css'
 
 export default function SignUpFormPage(){
     const dispatch = useDispatch()
@@ -51,11 +52,11 @@ export default function SignUpFormPage(){
                         <input className="age-input" type="text" value={age} onChange={(e)=>setAge(e.target.value)} required/>
                     <label className="email-label"htmlFor="email-input">Email address</label>
                         <input className="email-input" type="text" value={email} onChange={(e)=>setEmail(e.target.value)} required/>
-                    <label className="hidden password-label" htmlFor="password-input">Password</label>
-                        <input className="hidden password-input" type="password" value={password} onChange={(e)=>setPassword(e.target.value)} required/>
+                    <label className="password-label" htmlFor="password-input">Password</label>
+                        <input className="password-input" type="password" value={password} onChange={(e)=>setPassword(e.target.value)} required/>
                     <button className="submit-button" type="submit">Sign up</button>
                     <p className="terms">By signing up, you agree with Flickr's <Link to='/'>Terms of Services</Link>  and <Link to='/'>Privacy Policy.</Link></p>
-                    <p>Already a Flickr member? <Link to='/login'>Log in here.</Link></p>
+                    <p className="member">Already a Flickr member? <Link to='/login'>Log in here.</Link></p>
                 </form>
                 <div className="below-form"><div><p>English ⌵</p></div><div><Link to='/'>Help</Link><Link to='/'>Privacy</Link><Link to='/'>Terms</Link></div></div>
             </div>
