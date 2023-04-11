@@ -13,7 +13,7 @@
     margin-left: 5%;
 }
 .header-bar{
-    position: absolute;
+    position: fixed;
     background-color: rgb(33, 33, 36);
     margin: 0;
     height: 50px;

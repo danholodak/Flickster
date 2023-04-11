@@ -1,11 +1,14 @@
 .hidden{
     display: none;
 }
+.header-bar {
+    z-index: 1; /* so that the dropdown shows in front of the sticky tabs bar on settings page */
+}
+
 .header-bar .left-header nav{
     position: absolute;
     top: 45px;
     width: 150px;
-    z-index: 1;
 }
 .point{
     border-top: 0px solid transparent;

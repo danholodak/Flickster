@@ -5,6 +5,7 @@ import { Redirect } from "react-router-dom";
 import { Link } from "react-router-dom";
 import './css/ProfMenu.css'
 
+
 export default function ProfMenu(){
     const dispatch= useDispatch()
     const sessionUser = useSelector(state => state.session.user)
@@ -19,7 +20,7 @@ export default function ProfMenu(){
     const [language, setLanguage] = useState(greetings[index][1])
     function doLogout(){
         dispatch(logout());
-        return (<Redirect to='/login'/>)
+        return(<Redirect to='/login'/>); // why doesn't this redirect?
     };
     function goToSettings(){
         return (<Redirect to='/account'/>)

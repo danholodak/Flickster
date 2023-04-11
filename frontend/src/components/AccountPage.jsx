@@ -1,11 +1,16 @@
 import { useState } from 'react'
 import './css/AccountPage.css'
 import Header from './Header'
+import AcctEmailsContent from './AcctEmailsContent'
+import AcctPersonalContent from './AcctPersonalContent'
+import AcctPrivacyContent from './AcctPrivacyContent'
+import AcctSharingContent from './AcctSharingContent'
 import { useSelector } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 
 export default function AccountPage(){
-    const sessionUser = useSelector(state => state.session.user)
-    const [personalActive, setPersonalActive] = useState(false)
+    
+    const [personalActive, setPersonalActive] = useState(true)
     const [privacyActive, setPrivacyActive] = useState(false)
     const [emailsActive, setEmailsActive] = useState(false)
     const [sharingActive, setSharingActive] = useState(false)
@@ -37,7 +42,10 @@ export default function AccountPage(){
         setEmailsActive(false)
         setSharingActive(true)
     }
-
+    const sessionUser = useSelector(state => state.session.user);
+    if(!sessionUser){
+        return(<Redirect to='/'/>)
+    }
     return(
         <>
         <Header state="loggedIn"/>
@@ -49,15 +57,11 @@ export default function AccountPage(){
             <button className={sharingActive? "active" : ""} onClick={sharingClick}>Sharing & Extending</button>
         </section>
         <section className="content">
-            <section className="left-column">
-
-
-            </section>
-            <section className="right-column">
-
-            </section>
+            {personalActive && <AcctPersonalContent/>}
+            {privacyActive && <AcctPrivacyContent/>}
+            {emailsActive && <AcctEmailsContent/>}
+            {sharingActive && <AcctSharingContent/>}
         </section>
-
         </>
     )
 

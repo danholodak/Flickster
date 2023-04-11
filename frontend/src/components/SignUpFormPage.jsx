@@ -39,6 +39,7 @@ export default function SignUpFormPage(){
     return (
         <>
         <Header state="loginsignup"/>
+        <div className="bg-image">
             <div className="form-flex">
                 <form className="login-form" onSubmit={handleSubmit}>
                     <strong className="form-logo">💙💖</strong>
@@ -59,6 +60,7 @@ export default function SignUpFormPage(){
                     <p className="member">Already a Flickr member? <Link to='/login'>Log in here.</Link></p>
                 </form>
                 <div className="below-form"><div><p>English ⌵</p></div><div><Link to='/'>Help</Link><Link to='/'>Privacy</Link><Link to='/'>Terms</Link></div></div>
+            </div>
             </div>
             </>
     )

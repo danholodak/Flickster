@@ -12,6 +12,7 @@ export default function LoginFormPage(){
     const[email, setEmail] = useState("")
     const[password, setPassword] = useState("")
     const[errors, setErrors] = useState([])
+    const[forgotClicked, setForgotClicked] = useState(false)
     function handleSubmit(e){
         e.preventDefault()
         const user = {email, password}
@@ -29,7 +30,10 @@ export default function LoginFormPage(){
           });
     }
     function forgotClick(){
-        setErrors((prevErrors)=>[...prevErrors, "Maybe try 'password12345' 🤷‍♂️"])
+        if(!forgotClicked){
+            setErrors((prevErrors)=>[...prevErrors, "Maybe try 'password12345' 🤷‍♂️"])
+            setForgotClicked(true)
+        }
     }
     const sessionUser = useSelector(state => state.session.user);
     if(sessionUser){

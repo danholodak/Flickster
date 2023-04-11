@@ -1,4 +1,26 @@
-.fname-label, .lname-label, .age-label, .email-label, .password-label{
+.back-arrow{
+    position: relative;
+    right: 150px;
+    color: gray;
+    border-radius: 15px;
+    padding: 6px 8px;
+    margin: 0;
+}
+.fa-arrow-left{
+    color:gray;
+}
+.back-arrow:hover{
+    background-color: lightgray;
+}
+.back-arrow a{
+    color: gray;
+    font-size: 15px;
+}
+
+.login-form.password-reset{
+    border: 1px solid lightgray
+}
+.fname-label, .lname-label, .age-label, .email-label, .password-label, .cp-label, .np-label{
     color: grey;
     font-size: 11px;
     position: relative;
@@ -6,6 +28,12 @@
     padding: 0;
     margin: 0;
     height: 8px;
+}
+.cp-label{
+    right: 96px;
+}
+.np-label{
+    right: 102px;
 }
 .email-label{
     right: 105px;
@@ -86,6 +114,9 @@
 
     color: rgb(11, 102, 159);
 }
+.forgot:hover{
+    cursor: pointer;
+}
 .terms{
     width: 250px;
     padding-bottom: 15px;
@@ -100,6 +131,15 @@ p.terms{
     position: relative;
     top: -3px;
     
+}
+.form-flex{
+    background-image: url(https://live.staticflickr.com/65535/11539513743_8539cd30bb_k.jpg
+    );
+    background-size: cover;
+}
+.form-flex.password-reset{
+    background-image: none;
+    background-color: rgb(229, 233, 237);
 }
 .error{
     background-color: rgb(248, 216, 222);
@@ -138,6 +178,12 @@ label.check-label{
     margin: 5px;
     color: white;
     text-decoration: none;
+}
+.below-form.password-reset{
+    color: rgb(153, 153, 153);
+}
+.below-form.password-reset a{
+    color: rgb(153, 153, 153);
 }
 .member{
     margin: 0;

@@ -6,6 +6,9 @@
     width: 100vw;
     height: 100vh;
 }
+.readable{
+    text-shadow: 1px 1px 1px black;
+}
 .splash-center{
     font-family: Proxima Nova, helvetica neue, helvetica, arial, sans-serif;
     color: white;
