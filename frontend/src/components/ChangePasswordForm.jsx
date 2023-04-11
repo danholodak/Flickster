@@ -4,9 +4,11 @@ import { Link, Redirect } from "react-router-dom"
 import Header from "./Header"
 import { useSelector } from "react-redux"
 import './css/LoginSignup.css'
+import { updateUser } from "../store/users"
 
 
 export default function ChangePasswordForm(){
+
     const dispatch = useDispatch()
     const[newPassword, setNewPassword] = useState("")
     const[password, setPassword] = useState("")
@@ -14,8 +16,8 @@ export default function ChangePasswordForm(){
     const[forgotClicked, setForgotClicked] = useState(false)
     function handleSubmit(e){
         e.preventDefault()
-        const user = {password, newPassword}
-        //update user
+        const user = {id: sessionUser.id, password, newPassword}
+        dispatch(updateUser(user))
         .catch(async (res) => {
             let data;
             try {
@@ -27,6 +29,7 @@ export default function ChangePasswordForm(){
             else if (data) setErrors([data]);
             else setErrors([res.statusText]);
           });
+        return(<Redirect to='/'></Redirect>)
     }
     function forgotClick(){
         if(!forgotClicked){
@@ -44,11 +47,11 @@ export default function ChangePasswordForm(){
             <div className="form-flex password-reset">
                 <form className="login-form password-reset" onSubmit={handleSubmit}>
                     <Link to='/account'className="back-arrow"><i className="fa-sharp fa-solid fa-arrow-left"></i></Link>
-                    <strong className="form-logo">🔒</strong>
+                    <strong className="form-logo"><i className="fa-solid fa-lock"></i></strong>
                     <h3>Set your new Flickster Password</h3>
                     {errors.map((error, i)=><div className="error" key={i}><p>{error}</p></div>)}
                     <label className="cp-label"htmlFor="current-password-input">Current Password</label>
-                        <input className="current-password-input" type="text" value={password} onChange={(e)=>setPassword(e.target.value)} required/>
+                        <input className="current-password-input" type="password" value={password} onChange={(e)=>setPassword(e.target.value)} required/>
                     <label className="np-label" htmlFor="password-input">New Password</label>
                         <input className="password-input" type="password" value={newPassword} onChange={(e)=>setNewPassword(e.target.value)} required/>
                     <button className="submit-button" type="submit">Change your Flickster password</button>

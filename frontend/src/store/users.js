@@ -33,6 +33,35 @@ export const fetchUsers = () => async (dispatch) => {
     }
 }
 
+export const createUser = (user) => async dispatch =>{
+    const res = await csrfFetch('/api/users', {
+        method: 'POST',
+        body: JSON.stringify(user),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    const data = await res.json();
+    dispatch(receiveUser(data));
+}
+export const updateUser = (user) => async dispatch =>{
+    const res = await csrfFetch(`/api/users/${user.id}`, {
+        method: 'PATCH',
+        body: JSON.stringify({user: user}),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    const data = await res.json();
+    dispatch(receiveUser(data));
+}
+export const deleteUser = (userId) => async dispatch =>{
+    const res = await csrfFetch(`/api/users/${userId}`,{
+        method: 'DELETE'
+    })
+    if (res.ok){dispatch(removeUser(userId));}   
+}
+
 
 export default function usersReducer(state ={}, action){
     const newState = {...state};

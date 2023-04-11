@@ -6,6 +6,7 @@ import SignUpFormPage from './components/SignUpFormPage';
 import AccountPage from './components/AccountPage';
 import ProfEditForm from './components/ProfEditForm';
 import ChangePasswordForm from './components/ChangePasswordForm';
+import DeleteAccountPage from './components/DeleteAccountPage';
 
 function App() {
   return (
@@ -25,6 +26,9 @@ function App() {
         </Route>
         <Route path='/profile_edit'>
           <ProfEditForm />
+        </Route>
+        <Route path='/delete_account'>
+          <DeleteAccountPage />
         </Route>
         <Route path='/'>
           <SplashPage />

@@ -5,6 +5,7 @@ import { Redirect } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
+import { updateUser } from '../store/users'
 
 export default function ProfEditForm(){
     const dispatch = useDispatch()
@@ -26,7 +27,9 @@ export default function ProfEditForm(){
     
     function saveIt(e){
         e.preventDefault() 
-        
+        const user = {id: sessionUser.id, firstName, lastName, displayName, description, website, websiteName, occupation, hometown, currentCity, country, airport }
+        debugger
+        dispatch(updateUser(user))
     }
     if (!sessionUser){
         return (<Redirect to='/'></Redirect>)
@@ -37,9 +40,8 @@ export default function ProfEditForm(){
                 <div className="whitebg">
                     <form className="edit-prof-form">
                         <header className="epf">
-                            <h1 className="epf"><Link>Your account</Link> / Edit your profile</h1>
-                            <p className="epf">(Looking to change your <Link to='/'>buddy icon</Link>
-                             or <Link to='/account'>profile privacy</Link>?)</p>
+                            <h1 className="epf"><Link to='/account'>Your account</Link> / Edit your profile</h1>
+                            <p className="epf">(Looking to change your <Link to='/'>buddy icon</Link> or <Link to='/account'>profile privacy</Link>?)</p>
                         </header>
                         <h3 className="epf">Basic bits</h3>
                         <table>
@@ -150,7 +152,7 @@ export default function ProfEditForm(){
                                     <option value="75">+13:00 Nuku'alofa</option>
                                         </select>
                                     <label className="epf">
-                                    <input type="checkbox" />
+                                    <input type="checkbox" value="yes" />
                                         Adjust for Daylight Savings
                                     </label></div>
                                     
@@ -205,7 +207,7 @@ export default function ProfEditForm(){
                                 <td className="table-label">Describe Yourself...</td>
                                 <td>
                                     <textarea className="description" 
-                                    onchange={e => setDescription(e.target.value)}>{description}</textarea>
+                                    onChange={e => setDescription(e.target.value)} value={description}></textarea>
                                 </td>
                             </tr>
 
