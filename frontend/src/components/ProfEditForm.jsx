@@ -28,7 +28,6 @@ export default function ProfEditForm(){
     function saveIt(e){
         e.preventDefault() 
         const user = {id: sessionUser.id, firstName, lastName, displayName, description, website, websiteName, occupation, hometown, currentCity, country, airport }
-        debugger
         dispatch(updateUser(user))
     }
     if (!sessionUser){

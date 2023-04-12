@@ -18,7 +18,6 @@ export default function DeleteAccountPage(){
     if(!sessionUser){
         return (<Redirect to='/'></Redirect>)
     }
-
     return(
         <>
             <Header state="loggedIn"/>

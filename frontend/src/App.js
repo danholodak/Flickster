@@ -7,11 +7,27 @@ import AccountPage from './components/AccountPage';
 import ProfEditForm from './components/ProfEditForm';
 import ChangePasswordForm from './components/ChangePasswordForm';
 import DeleteAccountPage from './components/DeleteAccountPage';
+import AlbumsPage from './components/AlbumsPage';
+import FavesPage from './components/FavesPage';
+import PhotostreamPage from './components/Photostream';
+import AboutPage from './components/AboutPage';
 
 function App() {
   return (
     <>
       <Switch>
+        <Route path='/photos/:userId/albums'>
+          <AlbumsPage />
+        </Route>
+        <Route path='/photos/:userId/favorites'>
+          <FavesPage />
+        </Route>
+        <Route path='/photos/:userId'>
+          <PhotostreamPage />
+        </Route>
+        <Route path='/people/:userId'>
+          <AboutPage />
+        </Route>
         <Route path='/account'>
           <AccountPage />
         </Route>

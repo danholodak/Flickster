@@ -150,7 +150,7 @@
     position: -webkit-sticky;
     border-bottom: 1px solid rgb(224, 224, 224);
 }
-.acct-tabs button{
+.acct-tabs button, .acct-tabs a{
     background-color: transparent;
     border: none;
     box-sizing: border-box;
@@ -162,14 +162,21 @@
     color: rgb(79, 79, 79);
     margin-right: 10px;
     font-weight: 100;
+    text-decoration: none;
 }
-.acct-tabs button:hover, .acct-tabs button.active{
+.acct-tabs button:hover, .acct-tabs button.active, .acct-tabs a:hover, .acct-tabs a.active{
     border-bottom: 3px solid rgb(18, 143, 220);
     color: black;
     padding-top:3px;
-    box-sizing: border-box;
+    /* box-sizing: border-box;
     -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
+    -webkit-box-sizing: border-box; */
+}
+.acct-tabs a:hover, .acct-tabs a.active{
+    padding-top: 15px
+}
+.acct-tabs a{
+    padding-top: 15px
 }
 .left-column{
     margin-left:6%;
@@ -185,6 +192,7 @@
     padding-top: 15px;
     padding-bottom: 30px;
     height: fit-content;
+    min-height: 1000px;
     background-color: rgb(243, 245, 246);
     display: flex;
     justify-content: center;

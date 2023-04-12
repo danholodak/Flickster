@@ -1,0 +1,60 @@
+.banner-pic{
+    width: 100%;
+    color: white;
+    display: flex;
+    padding: 50px 0 10px 0;
+    justify-content: space-between;
+    align-items:flex-end;
+    height: 250px;
+    background-position: center center;
+    background-size: cover;
+}
+.right-subheader{
+    display:flex;
+    flex-direction: row;
+    margin-right:10vw
+}
+.subheader-name{
+    margin: 10px;
+    font-size: 30px;
+    font-weight: 100;
+}
+
+.left-subheader{
+    margin-left: 10%;
+    display: flex;
+}
+.prof-pic{
+    height:100px;
+    border-radius: 100%;
+    width: 100px;
+    object-fit: cover;
+}
+.banner-pic p{
+    margin:10px
+}
+.l-sh-text{
+    display: flex;
+    flex-direction: column;
+}
+.l-sh-text-top{
+    display: flex;
+    align-items: center;
+}
+.l-sh-text-top button{ 
+    height: 35px;
+    width: 40px;
+    color:white;
+    background-color: transparent;
+    border: 2px solid white;
+    border-radius: 3px;
+    margin: 10px 10px 10px 20px;
+}
+.l-sh-text-top button:hover{ 
+    color: black;
+    background-color: white;
+
+}
+.l-sh-text-bottom{
+    display: flex;
+}

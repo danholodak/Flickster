@@ -17,19 +17,22 @@ const removeUser = (userId) => ({
     userId
 })
 
+export const getUser = (userId) => state => state.users?.[userId]? state.users[userId] : null
+export const getUsers = state => state.users? Object.values(state.users) : []
+
 //thunk action creators
 export const fetchUser = (userId) => async (dispatch) => {
     const response = await csrfFetch(`/api/users/${userId}`);
     if (response.ok){
         const data = await response.json()
-        dispatch(receiveUser(data))
+        dispatch(receiveUser(data.user))
     }
 }
 export const fetchUsers = () => async (dispatch) => {
     const response = await csrfFetch('/api/users');
     if (response.ok){
         const data = await response.json()
-        dispatch(receiveUsers(data))
+        dispatch(receiveUsers(data.users))
     }
 }
 
@@ -42,7 +45,7 @@ export const createUser = (user) => async dispatch =>{
         }
     })
     const data = await res.json();
-    dispatch(receiveUser(data));
+    dispatch(receiveUser(data.user));
 }
 export const updateUser = (user) => async dispatch =>{
     const res = await csrfFetch(`/api/users/${user.id}`, {
@@ -53,7 +56,7 @@ export const updateUser = (user) => async dispatch =>{
         }
     })
     const data = await res.json();
-    dispatch(receiveUser(data));
+    dispatch(receiveUser(data.user));
 }
 export const deleteUser = (userId) => async dispatch =>{
     const res = await csrfFetch(`/api/users/${userId}`,{

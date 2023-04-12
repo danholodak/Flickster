@@ -55,10 +55,12 @@ export default function AcctPersonalContent(){
                 <div className="content-box">
                     <header><h1>Profile</h1></header>
                     <div className="flex inner-content-box">
-                        {sessionUser.prof_pic && sessionUser.prof_pic.url? <img href={sessionUser.prof_pic.url} onClick={profilePicEdit} alt="user's profile pic"/> 
+                        {sessionUser.profilePicUrl 
+                        ? <img href={sessionUser.profilePicUrl} onClick={profilePicEdit} alt="user's profile pic"/> 
                         : <button className="profile" onClick={profilePicEdit}>
                             <i className="fa-solid fa-user"></i>
-                        </button>}
+                        </button>
+                        }
                         <div>
                             <p>Your real name is <strong className="inline-strong">{sessionUser.firstName} {sessionUser.lastName}.</strong> <Link to='/profile_edit'>Change</Link></p>
                             <p>Your display name is <strong className="inline-strong">{sessionUser.displayName}.</strong> <Link to='/profile_edit'>Change</Link></p>

@@ -18,21 +18,23 @@ class Api::UsersController < ApplicationController
 
   def update
     @user = User.find_by(id: params[:id])
-    if params[:password]
-      if @user.authenticate(params[:password])
-        @user.password=params[:new_password]
+    if @user
+      if params[:password]
+        if @user.authenticate(params[:password])
+          @user.password=params[:new_password]
+          if @user.save
+            render :show
+          else
+            render json: {errors: @user.errors.full_messages}, status: :unprocessable_entity
+          end
+        end
+      else
+        @user.update(strong_params)
         if @user.save
           render :show
         else
           render json: {errors: @user.errors.full_messages}, status: :unprocessable_entity
         end
-      end
-    else
-      @user.update(strong_params)
-      if @user.save
-        render :show
-      else
-        render json: {errors: @user.errors.full_messages}, status: :unprocessable_entity
       end
     end
   end
@@ -46,7 +48,8 @@ class Api::UsersController < ApplicationController
 
   def index
     @users = User.all
-    # render :index
+
+    render :index
   end
 
   private 
