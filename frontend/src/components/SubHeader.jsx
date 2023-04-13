@@ -17,7 +17,7 @@ export default function SubHeader({selection}){
     const user = useSelector(getUser(userId));
     const sessionUser = useSelector(state => state.session.user)
     const [dotsClicked, setDotsClicked] = useState(false)
-    const isCurrentUser = (userId === sessionUser.id.toString())
+    const isCurrentUser = (userId === sessionUser?.id.toString())
     const aboutActive = (selection==="about")
     const photostreamActive = (selection==="photostream")
     const albumsActive = (selection==="albums")
@@ -45,11 +45,13 @@ export default function SubHeader({selection}){
                         <h1 className="subheader-name">{user?.firstName} {user?.lastName}</h1>
                         {isCurrentUser && <button className="dots-button" onClick={dotsDropdown}>•••</button>}
                         {dotsClicked && isCurrentUser&& 
+                        <nav className="triple-dots">
+                            <div className="point"></div>
                             <div className="top-button-list">
                                 <div className="list-button"><Link to='/'>Change cover photo</Link></div>
                                 <div className="list-button"><Link to='/account'>Edit username</Link></div>
                                 <div className="list-button"><Link to='/account'>Edit real name</Link></div>
-                            </div>}
+                            </div></nav>}
                     </div>
                     <div className="l-sh-text-bottom">
                             <p>{user?.displayName}</p>
@@ -58,7 +60,7 @@ export default function SubHeader({selection}){
                 </section>
             </section>
             <section className="right-subheader">
-                <p>{user?.photos? user?.photos.length : 0} Photos</p>
+                <p>{user?.photoIds? user?.photoIds.length : 0} {user?.photoIds?.length===1? "Photo" : "Photos"}</p>
                 <p>{user?.currentCity}, {user?.country}</p>
                 <p>Joined {user?.createdAt.split('-')[0]}</p>
             </section>

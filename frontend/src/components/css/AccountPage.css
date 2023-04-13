@@ -1,3 +1,9 @@
+.inner-content-box img.acct-prof-pic{
+    height:70px;
+    width:70px;
+    border-radius: 100%;
+    object-fit: cover;
+}
 .inner-content-box p.email{
     margin-top: 20px;
 }

@@ -3,8 +3,11 @@ import { useState, useEffect } from "react"
 import ProfMenu from "./ProfMenu"
 import RightDropdown from "./RightDropdown";
 import './css/Header.css'
+import { fetchUser, getUser } from "../store/users";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Header({state}){
+    const dispatch = useDispatch()
     const [showProfMenu, setShowProfMenu] = useState(false);
     const [showYou, setShowYou] = useState(false);
     const [showYou2, setShowYou2] = useState(false);
@@ -12,6 +15,11 @@ export default function Header({state}){
     const [showExplore2, setShowExplore2] = useState(false);
     const [showPrints, setShowPrints] = useState(false);
     const [showPrints2, setShowPrints2] = useState(false);
+    const sessionUser = useSelector(state => state.session.user)
+    useEffect(()=>{
+        dispatch(fetchUser(sessionUser?.id))
+    }, [sessionUser, dispatch])
+    const user = useSelector(getUser(sessionUser?.id))
 
     function profileDropdown(){
         if(!showProfMenu){
@@ -61,18 +69,18 @@ export default function Header({state}){
                 </div>
                 </div>
                 <div className="right-header">
-                    <button className="magnifier">
+                    <button className="magnifier rh-button disabled">
                         <i className="fa-sharp fa-solid fa-magnifying-glass"></i>
                     </button>
-                    <button className="upload">
+                    <button className="upload rh-button">
                         <i className="fa-solid fa-cloud-arrow-up"></i>
                     </button>
-                    <button className="notification">
+                    <button className="notification rh-button disabled">
                         <i className="fa-solid fa-bell"></i>
                     </button>
-                    <button className="profile" onClick={profileDropdown}>
-                        <i className="fa-solid fa-user"></i>
-                    </button>
+                    
+                    {(user?.profilePicUrl) ?  <button className="profile rh-button with-image" onClick={profileDropdown}><img className="header-profile-image" src={`${user?.profilePicUrl}`} alt="user profile pic" /></button> : <button className="profile rh-button" onClick={profileDropdown}><i className="fa-solid fa-user"></i></button>}
+                    
                     {showProfMenu&& <ProfMenu/>}
                 </div>
             </div>

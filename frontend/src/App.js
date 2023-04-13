@@ -11,6 +11,7 @@ import AlbumsPage from './components/AlbumsPage';
 import FavesPage from './components/FavesPage';
 import PhotostreamPage from './components/Photostream';
 import AboutPage from './components/AboutPage';
+import PhotoShowPage from './components/PhotoShowPage';
 
 function App() {
   return (
@@ -21,6 +22,9 @@ function App() {
         </Route>
         <Route path='/photos/:userId/favorites'>
           <FavesPage />
+        </Route>
+        <Route path='/photos/:userId/:photoId'>
+          <PhotoShowPage />
         </Route>
         <Route path='/photos/:userId'>
           <PhotostreamPage />

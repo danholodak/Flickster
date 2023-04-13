@@ -23,6 +23,9 @@ json.user do
     :tumblr,
     :created_at,
     :updated_at
-  json.profilePicUrl @user.prof_pic.attached? ? @user.prof_pic.url : nil
-  json.headerPhotoUrl @user.header.attached? ? @user.header.url : nil
-end
+
+    json.profilePicUrl @user.prof_pic.attached? ? @user.prof_pic.url : nil
+    json.headerPhotoUrl @user.header.attached? ? @user.header.url : nil
+    json.photo_ids @user.photo_ids
+  end
+

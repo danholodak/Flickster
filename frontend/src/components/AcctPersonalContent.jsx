@@ -1,9 +1,17 @@
 import { Link } from "react-router-dom"
 import  perks from '../data/flickr-pro-perks' 
 import { useSelector } from "react-redux"
+import { useEffect } from "react"
+import { useDispatch } from "react-redux"
+import { getUser, fetchUser } from "../store/users"
 
 export default function AcctPersonalContent(){
+    const dispatch = useDispatch()
     const sessionUser = useSelector(state => state.session.user)
+    useEffect(()=>{
+        dispatch(fetchUser(sessionUser?.id))
+    }, [sessionUser, dispatch])
+    const user = useSelector(getUser(sessionUser?.id))
     function profilePicEdit(){
 
     }
@@ -56,7 +64,7 @@ export default function AcctPersonalContent(){
                     <header><h1>Profile</h1></header>
                     <div className="flex inner-content-box">
                         {sessionUser.profilePicUrl 
-                        ? <img href={sessionUser.profilePicUrl} onClick={profilePicEdit} alt="user's profile pic"/> 
+                        ? <img className="acct-prof-pic"src={sessionUser.profilePicUrl} onClick={profilePicEdit} alt="user's profile pic"/> 
                         : <button className="profile" onClick={profilePicEdit}>
                             <i className="fa-solid fa-user"></i>
                         </button>

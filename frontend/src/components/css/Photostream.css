@@ -1,0 +1,15 @@
+.photo-column{
+    display:flex;
+    width: 1050px;
+    flex-wrap: wrap;
+}
+.photo-column img{
+    max-width: 520px;
+    min-width: 200px;
+    min-height: 200px;
+    max-height: 390px;
+    margin: 2px;
+}
+.photo-column img:hover{
+    cursor: pointer;
+}

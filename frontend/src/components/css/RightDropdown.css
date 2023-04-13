@@ -4,7 +4,9 @@
 .header-bar {
     z-index: 1; /* so that the dropdown shows in front of the sticky tabs bar on settings page */
 }
-
+.header-bar .left-header nav button.disabled:hover{
+    cursor: not-allowed;
+}
 .header-bar .left-header nav{
     position: absolute;
     top: 45px;

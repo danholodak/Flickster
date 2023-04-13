@@ -1,0 +1,111 @@
+div.user-info{
+    display:flex;
+    flex-direction:row;
+}
+div.info-text{
+    margin-left:10px;
+}
+.ps-title{
+    font-size: 15px;
+    color:black;
+    font-weight:200;
+    margin: 0;
+    padding: 5px 0 5px 5px;
+}
+.ps-title:hover{
+    background-color: lightgray;
+}
+.ps-user-name{
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 25px;
+    text-decoration: none;
+    color: black;
+    font-weight: 300;
+}
+.ps-user-name:hover{
+    color: rgb(64, 160, 224);
+    text-decoration: underline;
+}
+
+section.photo-show-bottom{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+}
+section.ps-left-column, section.ps-right-column{
+    width: 500px;
+    margin: 10px 20px 0 0;
+}
+.photo-background{
+    position: relative;
+    top:0px;
+    background-color: rgb(43, 43, 46);
+    padding-top: 0px;
+    height: 800px;
+    width: 100%;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.hero-image{
+    height: 700px;
+    max-width: 1000px;
+}
+.contents.photo-show{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 50px;
+    background-color: aliceblue;
+}
+.previous-button, .next-button{
+    height: 800px;
+    background: none;
+    border: none;
+    color: rgb(211, 209, 209);
+    width: 50px;
+    font-size: 20px;
+
+}
+.previous-button{
+    padding-left: 30px;
+}
+.next-button{
+    padding-right: 30px;    
+}
+.previous-button:hover, .next-button:hover{
+    cursor: pointer;
+    color:white;
+
+}
+div.arrow-back{
+    position: absolute;
+    top: 10px;
+    left: 40px;
+    color:white;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+}
+div.arrow-back .fa-arrow-left{
+    color: white;
+}
+div.arrow-back p:hover{
+    text-decoration: underline;
+}
+div.arrow-back:hover{
+    cursor: pointer;
+}
+div.arrow-back p{
+    padding: 0 10px;
+}
+img.prof-pic-60-circle{
+    margin-top: 10px;
+    height:60px;
+    
+    width:60px;
+    border-radius: 100%;
+    object-fit: cover;
+}

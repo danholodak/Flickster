@@ -18,7 +18,7 @@ const removeUser = (userId) => ({
 })
 
 export const getUser = (userId) => state => state.users?.[userId]? state.users[userId] : null
-export const getUsers = state => state.users? Object.values(state.users) : []
+export const getUsers = state => state.users? state.users : {}
 
 //thunk action creators
 export const fetchUser = (userId) => async (dispatch) => {
@@ -32,7 +32,7 @@ export const fetchUsers = () => async (dispatch) => {
     const response = await csrfFetch('/api/users');
     if (response.ok){
         const data = await response.json()
-        dispatch(receiveUsers(data.users))
+        dispatch(receiveUsers(data))
     }
 }
 

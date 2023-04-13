@@ -13,6 +13,7 @@ export default function AboutPage(){
         dispatch(fetchUser(userId))
     }, [userId, dispatch])
     const user = useSelector(getUser(userId));
+    if(!user){
     return(
         <>
             <Header state="loggedIn"/>
@@ -23,6 +24,19 @@ export default function AboutPage(){
                 </h1>}
             </section>
         </>
-    )
+    )}else{
+        return(
+            <>
+                <Header state="loggedIn"/>
+                <SubHeader selection="about"/>
+                <section className="content">
+                    {user && <h1>
+                        {user.displayName} doesn't have any personality yet. 😢
+                    </h1>}
+                </section>
+            </>
+        )
+    }
+    
 
 }

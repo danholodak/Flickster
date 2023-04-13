@@ -1,3 +1,34 @@
+nav.triple-dots{
+    position: absolute;
+    left: 58%;
+    top: 78%;
+    transform: translate(-50%, 0.75rem);
+    z-index: 1;
+    background-color: white;
+    border: 1px solid lightgray;
+    border-radius: 3px;
+    
+}
+nav.triple-dots a{
+    font-size: 15px;
+    text-align: left;
+    color: black;
+    width: 100%;
+    padding: 5px 10px 5px 10px;
+    text-decoration: none;
+}
+nav.triple-dots .list-button{
+    padding: 4px 0px 4px 0
+}
+nav.triple-dots .list-button:hover{
+    width: 100%;
+    background-color: rgb(238, 238, 238);
+}
+
+
+
+
+
 .banner-pic{
     width: 100%;
     color: white;
@@ -38,6 +69,8 @@
     flex-direction: column;
 }
 .l-sh-text-top{
+    position: relative;
+    width: 450px;
     display: flex;
     align-items: center;
 }

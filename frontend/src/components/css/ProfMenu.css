@@ -1,3 +1,8 @@
+.header-bar.logged-in .right-header nav a.nostyle{
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
 .header-bar.logged-in .right-header nav a{
     font-size: 15px;
     color: black;

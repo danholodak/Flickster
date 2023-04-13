@@ -4,9 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { Link } from "react-router-dom";
 import './css/ProfMenu.css'
+import { useHistory } from "react-router-dom";
 
 
 export default function ProfMenu(){
+    const history=useHistory()
     const dispatch= useDispatch()
     const sessionUser = useSelector(state => state.session.user)
     const greetings = [["Aloha", "Hawaiian"],["Labdien","Latvian"],["Szia","Hungarian"],
@@ -20,10 +22,10 @@ export default function ProfMenu(){
     const [language, setLanguage] = useState(greetings[index][1])
     function doLogout(){
         dispatch(logout());
-        return(<Redirect to='/login'/>); // why doesn't this redirect?
+        history.push('/login'); // why doesn't this redirect?
     };
     function goToSettings(){
-        return (<Redirect to='/account'/>)
+        history.push('/account')
     }
     useEffect(()=>{
         return () =>{ setIndex(Math.floor(Math.random() * (greetings.length - 1)))
@@ -40,7 +42,7 @@ export default function ProfMenu(){
             </div>
             <div className="buttonlist">
                 <div className="listbutton" onClick={goToSettings}><Link to='/account'>Settings</Link></div>
-                <div className="listbutton"><button>Help</button></div>
+                <a className="nostyle" href="https://www.youtube.com/watch?v=2Q_ZzBGPdqE"><div className="listbutton"><button>Help</button></div></a>
                 <div className="listbutton" onClick={doLogout}>
                     <button className="logout">Log out</button>
                 </div>

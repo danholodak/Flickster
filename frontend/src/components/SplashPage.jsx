@@ -13,7 +13,7 @@ export default function SplashPage(){
     useEffect(()=>{
        const interval = setInterval(()=>{
         setImageurl(splashBGs[(Math.floor(Math.random() * (splashBGs.length - 1)))])
-        }, 10000)
+        }, 8000)
         return () =>{clearInterval(interval)}
     },[])
     
@@ -25,7 +25,7 @@ export default function SplashPage(){
         <Header state="splash"/>
         <div className="splash-center" style={{ backgroundImage:`url(${imageurl})`, backgroundSize:'cover'}}>
             <h1 className="readable">Find your inspiration.</h1>
-            <h2 className="readable">Join the Flickr community, home to tens of billions of photos and 2 million groups.</h2>
+            <h2 className="readable">Join the Flickster community, home to tens of billions of photos and 2 million groups (potentially).</h2>
             <Link to='/sign-up'>Start for free</Link>
         </div>
         </>

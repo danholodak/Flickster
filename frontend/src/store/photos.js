@@ -17,7 +17,7 @@ const removePhoto = (photoId) => ({
     photoId
 })
 export const getPhoto = (photoId) => state => state.photos?.[photoId]? state.photos[photoId] : null
-export const getPhotos = state => state.photos? Object.values(state.photos) : []
+export const getPhotos = state => state.photos? state.photos : {}
 
 //thunk action creators
 export const fetchPhoto = (photoId) => async (dispatch) => {
@@ -31,7 +31,7 @@ export const fetchPhotos = () => async (dispatch) => {
     const response = await csrfFetch('/api/photos');
     if (response.ok){
         const data = await response.json()
-        dispatch(receivePhotos(data.photos))
+        dispatch(receivePhotos(data))
     }
 }
 

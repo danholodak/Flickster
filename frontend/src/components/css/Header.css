@@ -1,3 +1,17 @@
+img.header-profile-image{
+    height:35px;
+    width:35px;
+    border-radius: 100%;
+    object-fit: cover;
+}
+img.header-profile-image:hover{
+    box-shadow: inset 1px 1px 10px rgba(0,0,0,0.5);
+}
+
+.header-bar.logged-in .right-header button.profile.rh-button.with-image{
+    padding: 0;
+    background-color: transparent;
+}
 .buttonlist{
     display: flex;
     flex-direction: column;
@@ -33,6 +47,7 @@
 .header-bar.logged-in .right-header{
     margin-right: 10%;
     position: relative;
+    display: flex;
 }
 .header-bar.logged-in .right-header button.profile{
     background-color: gray;
@@ -69,9 +84,12 @@
     color: white;
     font-size: 20px;
 }
-.header-bar button:hover, .header-bar a:hover{
+.header-bar button:hover, .header-bar a:hover, button.rh-button i:hover{
     cursor: pointer;
     color: rgb(218, 218, 218);
+}
+button.rh-button.disabled i:hover{
+    cursor: not-allowed;
 }
 .splash .right-header{
  display: flex;
