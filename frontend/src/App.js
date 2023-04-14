@@ -12,6 +12,7 @@ import FavesPage from './components/FavesPage';
 import PhotostreamPage from './components/Photostream';
 import AboutPage from './components/AboutPage';
 import PhotoShowPage from './components/PhotoShowPage';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -54,6 +55,7 @@ function App() {
           <SplashPage />
         </Route>
       </Switch>
+      <Footer></Footer>
     </>
   );
 }
