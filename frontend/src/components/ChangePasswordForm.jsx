@@ -5,10 +5,11 @@ import Header from "./Header"
 import { useSelector } from "react-redux"
 import './css/LoginSignup.css'
 import { updateUser } from "../store/users"
+import { useHistory } from "react-router-dom"
 
 
 export default function ChangePasswordForm(){
-
+    const history = useHistory()
     const dispatch = useDispatch()
     const[newPassword, setNewPassword] = useState("")
     const[password, setPassword] = useState("")
@@ -29,7 +30,7 @@ export default function ChangePasswordForm(){
             else if (data) setErrors([data]);
             else setErrors([res.statusText]);
           });
-        return(<Redirect to='/'></Redirect>)
+        history.push('/')
     }
     function forgotClick(){
         if(!forgotClicked){
@@ -57,7 +58,7 @@ export default function ChangePasswordForm(){
                     <button className="submit-button" type="submit">Change your Flickster password</button>
                     <p className="forgot" onClick={forgotClick}>Forgot password?</p>
                 </form>
-                <div className="below-form password-reset"><div><p>English ⌵</p></div><div><Link to='/'>Help</Link><Link to='/'>Privacy</Link><Link to='/'>Terms</Link></div></div>
+                <div className="below-form password-reset disabled"><div><p>English ⌵</p></div><div><Link to='/'>Help</Link><Link to='/'>Privacy</Link><Link to='/'>Terms</Link></div></div>
             </div>
             </>
     )

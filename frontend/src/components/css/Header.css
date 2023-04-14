@@ -91,6 +91,9 @@ img.header-profile-image:hover{
 button.rh-button.disabled i:hover{
     cursor: not-allowed;
 }
+button.disabled:hover{
+    cursor: not-allowed;
+}
 .splash .right-header{
  display: flex;
  align-items: center;

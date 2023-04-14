@@ -21,9 +21,6 @@ export default function ProfEditForm(){
     const [firstName, setFirstName] = useState(user?.firstName)
     const [lastName, setLastName] = useState(user?.lastName)
     const [displayName, setDisplayName] = useState(user?.displayName)
-    // const [timeZone, setTimeZone] = useState(sessionUser.timeZone)
-    // const [gender, setGender] = useState(sessionUser.gender)
-    // const [singleness, setSingleness] = useState(sessionUser.singleness)
     const [description, setDescription] = useState(user?.description)
     const [website, setWebsite] = useState(user?.website)
     const [websiteName, setWebsiteName] = useState(user?.websiteName)
@@ -32,8 +29,6 @@ export default function ProfEditForm(){
     const [currentCity, setCurrentCity] = useState(user?.currentCity)
     const [country, setCountry] = useState(user?.country)
     const [airport, setAirport] = useState(user?.airport)
-    
-    
     function saveIt(e){
         e.preventDefault() 
         const user = {id: sessionUser.id, firstName, lastName, displayName, description, website, websiteName, occupation, hometown, currentCity, country, airport }
@@ -243,7 +238,6 @@ export default function ProfEditForm(){
                                 <td></td>
                         </tr>
                         </table>
-                        
                         <h3 className="epf">Offline bits</h3>
                         <table>
                             <tr>

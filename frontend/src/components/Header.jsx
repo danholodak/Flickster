@@ -65,7 +65,7 @@ export default function Header({state}){
                 {(showPrints || showPrints2) && <RightDropdown kind="Prints"/>}
                 </div>
                 <div className="button-dropdown">
-                <button>Get Pro</button>
+                <button className="disabled">Get Pro</button>
                 </div>
                 </div>
                 <div className="right-header">

@@ -16,9 +16,6 @@ export default function SplashPage(){
         }, 8000)
         return () =>{clearInterval(interval)}
     },[])
-    
-
-
     if (!sessionUser){
     return(
         <>
@@ -34,5 +31,4 @@ export default function SplashPage(){
             <NewsFeed />
         )
     }
-
 }
