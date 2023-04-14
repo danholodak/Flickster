@@ -94,7 +94,7 @@ export default function ChangePasswordForm(){
     )
 }
 ```
-On a user's Photostream page, we are able to view any photo they've uploaded and each links to a single photo show page.
+On a user's Photostream page, we are able to view any photo they've uploaded and each links to a single photo show page. On the show page, options to edit or deelete the photo are visible only if the photo belongs to the current user.
 
 <img width="1554" alt="Screen Shot 2023-04-14 at 2 11 44 PM" src="https://user-images.githubusercontent.com/47993465/232129407-787af8b4-1b81-462e-810c-9155cf650560.png">
 
