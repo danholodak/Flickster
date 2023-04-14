@@ -1,19 +1,138 @@
+.delete-form{
+    height:185px;
+    width: 600px;
+    border-radius: 3px;
+    border: 1px solid lightgrey;
+    background-color: white;
+    padding: 20px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.cover-screen{
+    height: 110vh;
+    width: 100%;
+    background-color: rgba(73, 73, 73, 0.691);
+    position: absolute;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.delete-form-mid{
+    height: 120px;
+}
+.delete-form-top{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+button.x-out{
+    background-color: transparent;
+    color: gray;
+    font-size: 20px;
+    border:none;
+}
+.x-out:hover{
+    cursor: pointer;
+    color: rgb(97, 97, 97);
+}
+.delete-form-top h3{
+    margin-top: 0;
+    font-weight: 100;
+    font-size: 20px;
+}
+.cancel, .delete{
+    border:none;
+    color: white;
+    font-weight: 700;
+    padding: 5px 20px;
+    margin-left: 10px;
+    border-radius: 3px;
+}
+.delete{
+    background-color: rgb(224, 34, 34);
+}
+.delete:hover{
+    background-color: rgb(228, 57, 57);
+}
+.cancel{
+    background-color: rgb(95, 95, 95)
+}
+.cancel:hover{
+    background-color: rgb(142, 142, 142)
+}
+
+.delete-form-bottom{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+.point-down{
+    border-bottom: 0px solid transparent;
+    border-top: 12px solid white;
+    position: absolute;
+    bottom: -11px;
+    right: 5px;
+    border-left: 11px solid transparent;
+    border-right: 11px solid transparent;
+}
+
+
+nav.edit-popup{
+    right: 9%;
+    bottom: 55px;
+    position:absolute;
+    height:fit-content;
+    background-color: white;
+    border-radius: 3px;
+    border: 1px solid lightgrey;
+    width: 150px;
+}
+.list-button:hover{
+    width: 100%;
+    background-color: rgb(238, 238, 238);
+}
+.delete-button{
+    color:rgb(203, 13, 13);
+    background-color: transparent;
+    border: none;
+}
 div.user-info{
     display:flex;
     flex-direction:row;
+}
+.edit-button{
+    position:absolute;
+    bottom: 15px;
+    right: 9%;
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 18px;
+}
+.edit-button:hover{
+    cursor: pointer;
 }
 div.info-text{
     margin-left:10px;
 }
 .ps-title{
-    font-size: 15px;
+    display: block;
+    font-size: 16px;
     color:black;
-    font-weight:200;
+    font-weight:400;
     margin: 0;
-    padding: 5px 0 5px 5px;
+    padding: 5px 5px 5px 5px;
 }
 .ps-title:hover{
+    display: block;
     background-color: lightgray;
+
+}
+.ps-title:hover::after{
+    content:" ✎"
 }
 .ps-user-name{
     margin-top: 0;

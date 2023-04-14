@@ -17,7 +17,7 @@ export default function NewsFeed(){
     const users = useSelector(getUsers)
     const history = useHistory()
     function handlePhotoClick(photoId, userId){
-        history.push(`photos/${userId}/${photoId}`)
+        history.push(`/photos/${userId}/${photoId}`)
     }
     return(
         <>
@@ -32,10 +32,10 @@ export default function NewsFeed(){
                             <img  src={photo.img} alt={photo.title} 
                             onClick={()=>handlePhotoClick(photo.id, photo.userId)}/>
                             <div className="user-info">
-                            <img className="prof-pic-small"  src={users[photo.userId]?.profilePicUrl ? users[photo.userId].profilePicUrl : "https://live.staticflickr.com/65535/52405649690_9f0a22c374_b.jpg"} alt="Profile pic" onClick={()=>history.push(`photos/${photo.userId}`)}/>
+                            <img className="prof-pic-small"  src={users[photo.userId]?.profilePicUrl ? users[photo.userId].profilePicUrl : "https://live.staticflickr.com/65535/52405649690_9f0a22c374_b.jpg"} alt="Profile pic" onClick={()=>history.push(`/photos/${photo.userId}`)}/>
                             <div className="user-info-text">
-                                <h2 className="newsfeed-title" onClick={()=>history.push(`photos/${photo.userId}/${photo.id}`)}>{photo.title}</h2>
-                                <p className="newsfeed-credit" onClick={()=>history.push(`photos/${photo.userId}`)}>by {users[photo.userId]?.displayName}</p>
+                                <h2 className="newsfeed-title" onClick={()=>history.push(`/photos/${photo.userId}/${photo.id}`)}>{photo.title}</h2>
+                                <p className="newsfeed-credit" onClick={()=>history.push(`/photos/${photo.userId}`)}>by {users[photo.userId]?.displayName}</p>
                             </div>
                             </div>
                         </div>)}

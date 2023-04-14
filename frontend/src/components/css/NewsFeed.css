@@ -17,9 +17,12 @@ h1.new-photos{
     margin: 0;
     padding: 0;
 }
-p.newsfeed-credit:hover, .newsfeed-title:hover{
+p.newsfeed-credit:hover{
     text-decoration: underline;
     cursor: pointer
+}
+.newsfeed-title:hover{
+    color: rgb(73, 71, 71);
 }
 .user-info:hover{
     cursor: pointer;

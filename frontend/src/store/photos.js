@@ -74,7 +74,7 @@ export default function photosReducer(state ={}, action){
         case RECEIVE_PHOTOS:
             return {...newState, ...action.photos};
         case REMOVE_PHOTO:
-            delete newState[action.photo.id];
+            delete newState[action.photoId];
             return newState;
         default:
             return state;

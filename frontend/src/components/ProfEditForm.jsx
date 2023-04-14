@@ -6,29 +6,39 @@ import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { updateUser } from '../store/users'
+import { useHistory } from 'react-router-dom'
+import { useEffect } from 'react'
+import { fetchUser, getUser } from '../store/users'
 
 export default function ProfEditForm(){
     const dispatch = useDispatch()
+    const history = useHistory()
     const sessionUser = useSelector(state => state.session.user)
-    const [firstName, setFirstName] = useState(sessionUser.firstName)
-    const [lastName, setLastName] = useState(sessionUser.lastName)
-    const [displayName, setDisplayName] = useState(sessionUser.displayName)
+    useEffect(()=>{
+        dispatch(fetchUser(sessionUser?.id))
+    }, [sessionUser, dispatch])
+    const user = useSelector(getUser(sessionUser?.id))
+    const [firstName, setFirstName] = useState(user?.firstName)
+    const [lastName, setLastName] = useState(user?.lastName)
+    const [displayName, setDisplayName] = useState(user?.displayName)
     // const [timeZone, setTimeZone] = useState(sessionUser.timeZone)
     // const [gender, setGender] = useState(sessionUser.gender)
     // const [singleness, setSingleness] = useState(sessionUser.singleness)
-    const [description, setDescription] = useState(sessionUser.description)
-    const [website, setWebsite] = useState(sessionUser.website)
-    const [websiteName, setWebsiteName] = useState(sessionUser.websiteName)
-    const [occupation, setOccupation] = useState(sessionUser.occupation)
-    const [hometown, setHometown] = useState(sessionUser.hometown)
-    const [currentCity, setCurrentCity] = useState(sessionUser.currentCity)
-    const [country, setCountry] = useState(sessionUser.country)
-    const [airport, setAirport] = useState(sessionUser.airport)
+    const [description, setDescription] = useState(user?.description)
+    const [website, setWebsite] = useState(user?.website)
+    const [websiteName, setWebsiteName] = useState(user?.websiteName)
+    const [occupation, setOccupation] = useState(user?.occupation)
+    const [hometown, setHometown] = useState(user?.hometown)
+    const [currentCity, setCurrentCity] = useState(user?.currentCity)
+    const [country, setCountry] = useState(user?.country)
+    const [airport, setAirport] = useState(user?.airport)
+    
     
     function saveIt(e){
         e.preventDefault() 
         const user = {id: sessionUser.id, firstName, lastName, displayName, description, website, websiteName, occupation, hometown, currentCity, country, airport }
         dispatch(updateUser(user))
+        history.push('/account')
     }
     if (!sessionUser){
         return (<Redirect to='/'></Redirect>)

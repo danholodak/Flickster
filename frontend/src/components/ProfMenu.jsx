@@ -1,8 +1,6 @@
 import { logout } from "../store/session"
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
-import { Link } from "react-router-dom";
 import './css/ProfMenu.css'
 import { useHistory } from "react-router-dom";
 
@@ -41,7 +39,7 @@ export default function ProfMenu(){
             <h3>Now you know how to greet people in {language}</h3>
             </div>
             <div className="buttonlist">
-                <div className="listbutton" onClick={goToSettings}><Link to='/account'>Settings</Link></div>
+                <div className="listbutton" onClick={goToSettings}><button>Settings</button></div>
                 <a className="nostyle" href="https://www.youtube.com/watch?v=2Q_ZzBGPdqE"><div className="listbutton"><button>Help</button></div></a>
                 <div className="listbutton" onClick={doLogout}>
                     <button className="logout">Log out</button>

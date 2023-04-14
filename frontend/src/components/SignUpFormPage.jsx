@@ -56,10 +56,10 @@ export default function SignUpFormPage(){
                     <label className="password-label" htmlFor="password-input">Password</label>
                         <input className="password-input" type="password" value={password} onChange={(e)=>setPassword(e.target.value)} required/>
                     <button className="submit-button" type="submit">Sign up</button>
-                    <p className="terms">By signing up, you agree with Flickr's <Link to='/'>Terms of Services</Link>  and <Link to='/'>Privacy Policy.</Link></p>
+                    <p className="terms">By signing up, you agree with Flickr's <Link to='/'className="disabled">Terms of Services</Link>  and <Link to='/'className="disabled">Privacy Policy.</Link></p>
                     <p className="member">Already a Flickr member? <Link to='/login'>Log in here.</Link></p>
                 </form>
-                <div className="below-form"><div><p>English ⌵</p></div><div><Link to='/'>Help</Link><Link to='/'>Privacy</Link><Link to='/'>Terms</Link></div></div>
+                <div className="below-form"><div><p>English ⌵</p></div><div><Link to='/'className="disabled">Help</Link><Link to='/'className="disabled">Privacy</Link><Link to='/'className="disabled">Terms</Link></div></div>
             </div>
             </div>
             </>

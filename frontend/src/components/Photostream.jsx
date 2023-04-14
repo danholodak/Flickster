@@ -19,12 +19,9 @@ export default function PhotostreamPage(){
     }, [userId, dispatch])
     const user = useSelector(getUser(userId));
     const photos = useSelector(getPhotos)
-    function handlePhotoClick(photoId, userId){
-        history.push(`photos/${userId}/${photoId}`)
-    }
     if (!user){
         return null
-    }else if((!photos||!user.photoIds)){
+    }else if((!photos||user.photoIds==={})){
         return (
             <>
             <Header state="loggedIn"/>
@@ -43,7 +40,7 @@ export default function PhotostreamPage(){
                 <SubHeader selection="photostream"/>
                 <section className="content photostream">
                     <section className="photo-column">
-                        {user.photoIds.map((id, i)=><Link to={`/photos/${photos[id]?.userId}/${photos[id].id}`}><img key={i} src={photos[id].img} alt={photos[id].title} onClick={()=>handlePhotoClick(photos[id].id, photos[id].userId)}/></Link>)}
+                        {user.photoIds.map((id, i)=><Link to={`/photos/${photos[id]?.userId}/${id}`}><img key={i} src={photos[id]?.img} alt={photos[id]?.title}  /></Link>)}
                     </section>
                 </section>
             </>
