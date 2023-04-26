@@ -8,8 +8,6 @@ import { getUser, fetchUser } from '../store/users'
 import { useHistory } from 'react-router-dom'
 import { Redirect } from 'react-router-dom'
 
-
-
 export default function PhotoShowPage(){
     const history = useHistory();
     const dispatch = useDispatch();
@@ -44,7 +42,6 @@ export default function PhotoShowPage(){
         if (!editClicked) return;
         const closeMenuEdit = (e) => {
             setEditClicked(false);
-            // console.log("editfalse")
         };
         document.addEventListener('click', closeMenuEdit);
         return () => document.removeEventListener("click", closeMenuEdit);
@@ -61,11 +58,19 @@ export default function PhotoShowPage(){
         document.addEventListener('click', closeMenu);
         return () => document.removeEventListener("click", closeMenu);
     }, [titleClicked]);
+    function forwardClick(){
+        //find id in user's photoIds array, history.push
+    }
+    function backClick(){
+        //find id in user's photoIds array, history.push
+    }
     const photo = useSelector(getPhoto(photoId));
     const [title, setTitle] = useState(photo?.title);
     const user = useSelector(getUser(userId));
     const sessionUser = useSelector(state => state.session?.user);
     const isCurrentUser = (user?.id === sessionUser?.id);
+    //set a boolean that is true if there is a previous photo - array.find current photoId and check if the index is 0  (conditionally display arrow based on this)
+    //set a boolean that's true if there is a next photo - array.find current photoId and check if index less than length-1 (conditionally display arrow based on this)
     if(!sessionUser){
         return(<Redirect to="/"></Redirect>);
     };
