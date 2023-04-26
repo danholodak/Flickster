@@ -12,7 +12,7 @@ class ApplicationController < ActionController::API
     end
 
     def logged_in? 
-        !!current_user
+        !!self.current_user
     end
 
     def login!(user)
@@ -20,7 +20,7 @@ class ApplicationController < ActionController::API
     end
 
     def logout!
-        if @current_user
+        if self.current_user
             current_user.reset_session_token!
         end
         @current_user = nil
@@ -28,11 +28,10 @@ class ApplicationController < ActionController::API
     end
 
     def require_logged_in
-        unless current_user
+        unless self.current_user
           render json: { message: 'Unauthorized' }, status: :unauthorized 
         end
     end
-
 
     private
     def invalid_authenticity_token

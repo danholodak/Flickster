@@ -1,7 +1,7 @@
 class Api::SessionsController < ApplicationController
   def show
     if self.current_user
-      @user = current_user
+      @user = @current_user
       render 'api/users/show'
     else
       render json: {user: nil}
@@ -19,7 +19,9 @@ class Api::SessionsController < ApplicationController
   end
 
   def destroy
-    if @current_user
+    # theoretically @current_user should work here - it gets set by the show() call
+    # but it's nil here :shrug:
+    if self.current_user
       logout!
     end
   end
