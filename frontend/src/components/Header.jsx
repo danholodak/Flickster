@@ -17,7 +17,9 @@ export default function Header({state}){
     const [showPrints2, setShowPrints2] = useState(false);
     const sessionUser = useSelector(state => state.session.user)
     useEffect(()=>{
-        dispatch(fetchUser(sessionUser?.id))
+        if (sessionUser?.id) {
+            dispatch(fetchUser(sessionUser?.id))
+        }
     }, [sessionUser, dispatch])
     const user = useSelector(getUser(sessionUser?.id))
 
