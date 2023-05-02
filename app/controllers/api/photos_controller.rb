@@ -1,11 +1,11 @@
 class Api::PhotosController < ApplicationController
 
     def create
-        @photo = Photo.create(strong_params)
+        @photo = Photo.new(strong_params)
         if @photo.save
-            render :show
+        render json: "success"
         else
-            render json: {errors: @photo.errors.full_messages}, status: :unprocessable_entity
+        render json: @photo.errors.full_messages, status: 422
         end
     end
 
@@ -45,7 +45,7 @@ class Api::PhotosController < ApplicationController
     private
 
     def strong_params
-        params.require(:photo).permit(:id, :title, :user_id)
+        params.require(:photo).permit(:id, :title, :user_id, :img, :description)
     end
 
 end

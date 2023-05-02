@@ -13,6 +13,7 @@ import PhotostreamPage from './components/Photostream';
 import AboutPage from './components/AboutPage';
 import PhotoShowPage from './components/PhotoShowPage';
 import Footer from './components/Footer';
+import UploadPage from './components/UploadPage';
 
 function App() {
   return (
@@ -26,6 +27,9 @@ function App() {
         </Route>
         <Route path='/photos/:userId/:photoId'>
           <PhotoShowPage />
+        </Route>
+        <Route exact path='/photos/upload'>
+          <UploadPage />
         </Route>
         <Route path='/photos/:userId'>
           <PhotostreamPage />

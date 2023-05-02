@@ -3,7 +3,9 @@ export default async function csrfFetch(url, options={}){
     options.method ||= 'GET'
     if (options.method.toUpperCase() !== 'GET'){
         options.headers['X-CSRF-Token'] = sessionStorage.getItem("X-CSRF-Token");
-        options.headers['Content-Type'] ||= 'application/json';
+        if (!options.headers["Content-Type"] && !(options.body instanceof FormData)) {
+            options.headers["Content-Type"] = "application/json";
+          }
         }
         const response = await fetch(url, options);
         if (response.status >= 400){

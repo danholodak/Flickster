@@ -5,9 +5,11 @@ import RightDropdown from "./RightDropdown";
 import './css/Header.css'
 import { fetchUser, getUser } from "../store/users";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 export default function Header({state}){
     const dispatch = useDispatch()
+    const history = useHistory()
     const [showProfMenu, setShowProfMenu] = useState(false);
     const [showYou, setShowYou] = useState(false);
     const [showYou2, setShowYou2] = useState(false);
@@ -74,7 +76,7 @@ export default function Header({state}){
                     <button className="magnifier rh-button disabled">
                         <i className="fa-sharp fa-solid fa-magnifying-glass"></i>
                     </button>
-                    <button className="upload rh-button">
+                    <button onClick={()=>history.replace('/photos/upload')} className="upload rh-button">
                         <i className="fa-solid fa-cloud-arrow-up"></i>
                     </button>
                     <button className="notification rh-button disabled">

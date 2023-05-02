@@ -1,0 +1,233 @@
+div.screencover{
+    position: absolute;
+    height: 100vh;
+    width: 100%;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top:0
+}
+div.uploading-modal-box{
+    background-color: white;
+    border: 1px solid lightgray;
+    border-radius: 3px;
+    height: 200px;
+    width: 400px;
+    padding: 15px;
+}
+.photos-to-upload{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    height: calc(100vh - 111px);
+}
+input.title{
+    margin: 13px 0px;
+}
+p.title{
+    font-size: 15px;
+    font-weight: 600;
+    width: fit-content;
+}
+.sidebar-text-area{
+    max-width: 180px;
+    margin-top: 10px;
+}
+input.sidebar-title{
+    margin: 5px 0px 0px
+}
+textarea.description.pib{
+    max-width: 160px;
+    max-height: 100px;
+}
+.photo-info-box p.description{
+    margin-top: 0;
+}
+p.description{
+    font-size: 13px;
+    color: rgb(167, 167, 167);
+    width: fit-content;
+    height: fit-content;
+}
+div.photo-info-box{
+    width: fit-content;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}
+div.photo-info-box:hover{
+    background-color: rgb(48, 48, 48);
+}
+
+img.photo-to-upload{
+    height: 110px;
+    width: 160px;
+    object-fit: cover;
+    border: 3px solid rgb(89, 89, 89);
+}
+img.photo-to-upload.active{
+    border: 3px solid #ff0084;
+}
+.sidebar-div{
+    padding: 5px 15px;
+    border-top: 1px solid rgb(67, 67, 67);
+}
+.sidebar-div:hover{
+    background-color: rgb(31, 31, 31);
+}
+.sidebar-div p{
+    font-size: 14px;
+}
+.sidebar-div h2{
+    margin: 0;
+    margin-top: 5px;
+    font-size: 18px;
+}
+.sidebar-div h2:hover, .sidebar-div p:hover{
+    cursor: pointer;
+}
+.upload-main.flex-row{
+    flex-direction: row;
+    justify-content: flex-start;
+}
+.upload.ready-to-upload{
+    background-color: #0058c4;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: white;
+    border: none;
+    font-weight: bold;
+    margin-right: 15px;
+}
+.sidebar{
+    background-color: rgb(48, 48, 48);
+    border: 1px solid rgb(67, 67, 67);
+    border-radius: 2px;
+    height: calc(100vh - 111px);
+    width: 216px;
+    margin: 15px;
+
+}
+.select-photos{
+    font-weight: 100;
+    color: rgb(140, 140, 140);
+    margin: 15px;
+}
+.pink-rectangle{
+    border: 2px solid #ff0084;
+    padding: 15px 30px;
+    margin-bottom: 80px;
+    width: 540px;
+    display: flex;
+    justify-content: center;
+}
+.add-button, .upload{
+    margin: 0 20px;
+    padding: 6px 15px;
+}
+.white-header-link{
+    text-decoration: none;
+    color: rgb(126, 126, 126);
+}
+.white-header-link:hover{
+    color:rgb(0, 111, 229)
+}
+.bold{
+    font-weight: 600;
+}
+.add-button:hover{
+    cursor: pointer;
+    border: 1px solid lightgrey;
+    padding: 5px 14px;
+    border-radius: 4px;
+    background: rgb(2,0,36);
+    background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(0,0,0,0.2) 0%, rgba(85,85,85,0.12) 59%, rgba(153,153,153,0.02) 100%);
+}
+.add-button:active{
+    background: rgb(2,0,36);
+    background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(0,0,0,0.2) 0%, rgba(85,85,85,0.2) 59%, rgba(153,153,153,0.2) 100%);
+}
+.greyed-out{
+    font-weight: 600;
+    color: rgb(162, 162, 162);
+}
+.choose-upload{
+    padding: 10px;
+    color: white;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.824);
+    background-color: rgb(18, 113, 254);
+    border-radius: 5px;
+    border: none;
+    font-size: 20px;
+}
+.choose-upload:hover{
+    background-color: rgb(9, 101, 239);
+    cursor: pointer;
+}
+.choose-upload:active{
+    background-color: rgb(6, 93, 222);
+}
+.pink-rectangle p, .pink-rectangle a{
+    font-size: 14px;
+    color: rgb(239, 239, 239);;
+}
+.mini-header-left, .mini-header-right{
+    display: flex;
+    align-items: center;
+}
+
+.blueh1{
+    color: rgb(0, 111, 229);
+    margin: 0 40px 0 10px;
+    font-weight: 900;
+}
+.pinkh1{
+    color: #ff0084;
+}
+.pinkh1 span{
+    position: relative;
+    bottom: 12px;
+    font-size: 7px;
+    margin-left: 1px;
+    
+}
+
+.mini-header,.bottom-mini-header{
+    height: 43px;
+    position: static;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(244, 244, 244);
+    border-bottom: 1px solid lightgrey;
+}
+.bottom-mini-header{
+    background-color: rgb(234, 234, 234);
+}
+.upload-main{
+    height: calc(100vh - 86px);
+    background-color: rgb(59, 59, 59);
+    color: rgb(239, 239, 239);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+.mini-header-profile-pic{
+    height: 27px;
+    width: 27px;
+    object-fit: cover;
+    border-radius: 3px;
+    margin-left: 80px;
+    margin-right: 10px;
+    border: 2px solid grey;
+}
+.mini-header-profile-pic:hover{
+    border: 2px solid rgb(0, 111, 229)
+}
+.fileupload{
+    display: none;
+}
