@@ -101,6 +101,13 @@ img.photo-to-upload.active{
     font-weight: bold;
     margin-right: 15px;
 }
+.upload.ready-to-upload:hover{
+    background-color: #0065e1;
+    cursor: pointer;
+}
+.upload.ready-to-upload:active{
+    background-color: #004aa5;
+}
 .sidebar{
     background-color: rgb(48, 48, 48);
     border: 1px solid rgb(67, 67, 67);
@@ -161,6 +168,7 @@ img.photo-to-upload.active{
     border-radius: 5px;
     border: none;
     font-size: 20px;
+    text-decoration: none;
 }
 .choose-upload:hover{
     background-color: rgb(9, 101, 239);
