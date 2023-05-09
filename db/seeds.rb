@@ -13,7 +13,7 @@
 #     puts "Resetting primary keys..."
 #     ApplicationRecord.connection.reset_pk_sequence!('users')
 
-#     # demo = User.create([{email: 'demo@user.com', password: 'password12345', first_name: 'Demo', last_name: 'User', age: 25, occupation: 'model', hometown: 'Hometown, NY', website: "demousersrule.com", website_name: "My Awesome Site", current_city: "Big Apple, NY", airport: "OMG", description:"I'm not a real person, but I hope you enjoy my photos!"}] )
+#     
 # end
 
 users = User.create([
@@ -135,24 +135,34 @@ users = User.create([
             ["Pontoon Boat", "A small study of a pontoon boat tied of in a calm bay"]
         ],
         Flora:[
-            ["Mandarin Duck of Vienna", "A beautiful little educk caught roaming the grounds of he palace of Vienna"],
-            [],
-            [],
-            [],
-            [],
-            [],
-            [],
-            [],
-            [],
-            [],
-            []
+            ["Mandarin Duck", "A beautiful little duck caught roaming the grounds of Schönbrunn Palace of Vienna"],
+            ["Fusilier Fish", "Captured on a waterproof disposable at the Great Barrier Reef"],
+            ["Felis Catus", "A housecat in her plush carpeted natural habitat"],
+            ["Parisian Blossoms", "Pink cherry blossoms in the sun at Paris's Jardin des Plantes"],
+            ["Calliope Hummingbird", "Saw this little friend near the conservatory in San Francisco's Golden Gate Park"],
+            ["Ostrich Ferns", "These ones were past the fiddlehead harvesting time but others nearby were not!"],
+            ["Fan-leaf Cinquefoil", "Yellow wildflowers seen on Hurricane Ridge of Olympic National Park"],
+            ["Mercutio Orchid", "Seen here in a conservatory of Atlanta's botanical gardens"],
+            ["African Buffalo", "Young buffalo play while an adult keeps watch"],
+            ["Black Rhino", "Two rhinos in early morning in South Africa"],
+            ["Bo-Kaap Stray", "A beautiful stray on the colorful streets of Cape Town"]
         ]
     }
-
+    all_photos = []
     users.each do |user|
         #set 0.jpg as profile picture and set 1.jpg as header image
+        profile_picture = File.open("app/assets/images/#{user.first_name}/0.jpg")
+        user.prof_pic.attach(io: profile_picture, filename: "0.jpg")
+        header_img = File.open("app/assets/images/#{user.first_name}/1.jpg")
+        user.header.attach(io: header_img, filename: "1.jpg" )
 
         #create photos with 0-10.jpg and info from photo_info
+        (0..10).each do |i|
+            photo = Photo.create(title: photo_info[user.first_name][i][0], description: photo_info[user.first_name][i][1], user_id: user.id)
+            photo_file = File.open("app/assets/images/#{user.first_name}/#{i}.jpg")
+            photo.img.attach(io: photo_file, filename: "#{i}.jpg")
+            all_photos << photo
+        end
 
     end 
 
