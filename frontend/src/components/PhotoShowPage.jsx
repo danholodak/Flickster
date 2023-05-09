@@ -60,15 +60,32 @@ export default function PhotoShowPage(){
     }, [titleClicked]);
     function forwardClick(){
         //find id in user's photoIds array, history.push
+        if (nextPhoto){
+            const nextIndex = user.photoIds.findIndex(photo.id)+1
+            const nextPhotoId = user.photoIds[nextIndex]
+            history.push(`/photos/${user.id}/${nextPhotoId}`)
+        }
     }
     function backClick(){
         //find id in user's photoIds array, history.push
+        if (previousPhoto){
+            const prevIndex = user.photoIds.findIndex(photo.id)-1
+            const prevPhotoId = user.photoIds[prevIndex]
+            history.push(`/photos/${user.id}/${prevPhotoId}`)
+        }
     }
     const photo = useSelector(getPhoto(photoId));
     const [title, setTitle] = useState(photo?.title);
     const user = useSelector(getUser(userId));
     const sessionUser = useSelector(state => state.session?.user);
     const isCurrentUser = (user?.id === sessionUser?.id);
+    let previousPhoto
+    let nextPhoto
+    if (user && photo){
+        previousPhoto = (user.photoIds.findIndex(photo.id) > 0)
+        nextPhoto = (user.photoIds.findIndex(photo.id) < user.photoIds.length -1)
+    }
+    
     //set a boolean that is true if there is a previous photo - array.find current photoId and check if the index is 0  (conditionally display arrow based on this)
     //set a boolean that's true if there is a next photo - array.find current photoId and check if index less than length-1 (conditionally display arrow based on this)
     if(!sessionUser){
@@ -87,9 +104,9 @@ export default function PhotoShowPage(){
         <section className="contents photo-show">
             <section className="photo-background">
                 <div className="arrow-back" onClick={()=>history.goBack()}><i className="fa-sharp fa-solid fa-arrow-left"></i><p>Back</p></div>
-                <button className="previous-button"><i className="fa-sharp fa-solid fa-chevron-left"></i></button>
+                <button className={previousPhoto?"previous-button":"previous-button disabled"}><i className="fa-sharp fa-solid fa-chevron-left"></i></button>
                 <img className="hero-image" src={`${photo?.img}`} alt={`${photo?.title}`} />
-                <button className="next-button"><i className="fa-sharp fa-solid fa-chevron-right"></i></button>
+                <button className={nextPhoto?"next-button":"next-button disabled"} onClick={forwardClick}><i className="fa-sharp fa-solid fa-chevron-right"></i></button>
                 {isCurrentUser && 
                 <button className="edit-button" onClick={handleEditClick}>
                     <i className="fa-solid fa-pen-to-square"></i>

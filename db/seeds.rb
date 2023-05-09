@@ -82,7 +82,7 @@ users = User.create([
     water = User.find_by(email: 'waterc@email.com')
     flora = User.find_by(email: 'flora@email.com')
     photo_info = {
-        Demo:[
+        "Demo":[
             ["Concerned Hawk", "Taken right after the hawk was asked 'Why did the chicken cross the road?'"],
             ["House in the Hills", " A solitary house in the scottish highlands"],
             ["Sunlit Shopping Mall", "A train-station-turned-shopping-mall in Dublin"],
@@ -95,7 +95,7 @@ users = User.create([
             ["Breakfast in the Garden", "A peaceful garden breakfast in Paris"],
             ["Circles over Circles", "An interesting architectural detail in La Rochelle"]
         ],
-        Beth:[
+        "Beth":[
             ["Sculpture Student", "A sculpture in storage"],
             ["Sunset Drive", "A lens flare as the sun touches the crest of a hill on the road at sunset"],
             ["The View Up", "Looking straight up in an alleyway in Marrakesh"],
@@ -108,7 +108,7 @@ users = User.create([
             ["Cresting Cloud Wave", "A wave of cotton candy clouds drifts ovr the mountain ridge in Cape Town"],
             ["Flyers at Sunset", "Birds and a plane take off simultaneously in front of a vibrant sunset sky"]
         ],
-        Dan:[
+        "Dan":[
             ["castle window self portrait", "my reflection in a window of Himeji"],
             ["sheep on the hillside", "local residents on the road to the fairy pools of Skye"],
             ["dancers suspended", "a dance routine horizontally against a wall, high in the air in Berlin"],
@@ -121,7 +121,7 @@ users = User.create([
             ["swingin sailors", "three musicians upon a boat in Amsterdam"],
             ["floating blue mountain", "storm clouds roll in over a gigantic iceburg in Alaska"]
         ],
-        Water:[
+        "Water":[
             ["Pink Roses", "A quick study of a rose bush"],
             ["Cowch", "A cow rests at home among her art collection"],
             ["Amsterdam Moment", "A study of a section of canal in Amsterdam"],
@@ -134,7 +134,7 @@ users = User.create([
             ["Green Courtyard", "A watercolor and pen ink study of a grassy courtyard"],
             ["Pontoon Boat", "A small study of a pontoon boat tied of in a calm bay"]
         ],
-        Flora:[
+        "Flora":[
             ["Mandarin Duck", "A beautiful little duck caught roaming the grounds of Schönbrunn Palace of Vienna"],
             ["Fusilier Fish", "Captured on a waterproof disposable at the Great Barrier Reef"],
             ["Felis Catus", "A housecat in her plush carpeted natural habitat"],
@@ -158,7 +158,10 @@ users = User.create([
 
         #create photos with 0-10.jpg and info from photo_info
         (0..10).each do |i|
-            photo = Photo.create(title: photo_info[user.first_name][i][0], description: photo_info[user.first_name][i][1], user_id: user.id)
+            #debugger
+            photo_title = photo_info[user.first_name.to_sym][i][0]
+            photo_description = photo_info[user.first_name.to_sym][i][1]
+            photo = Photo.create(title: photo_title, description: photo_description, user_id: user.id)
             photo_file = File.open("app/assets/images/#{user.first_name}/#{i}.jpg")
             photo.img.attach(io: photo_file, filename: "#{i}.jpg")
             all_photos << photo
