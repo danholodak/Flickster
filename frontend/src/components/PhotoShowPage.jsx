@@ -2,7 +2,7 @@ import './css/PhotoShowPage.css'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
 import Header from './Header'
-import { useParams, Link } from 'react-router-dom'
+import { useParams} from 'react-router-dom'
 import { fetchPhoto, getPhoto, updatePhoto, deletePhoto } from '../store/photos'
 import { getUser, fetchUser } from '../store/users'
 import { useHistory } from 'react-router-dom'
@@ -61,7 +61,7 @@ export default function PhotoShowPage(){
     function forwardClick(){
         //find id in user's photoIds array, history.push
         if (nextPhoto){
-            const nextIndex = user.photoIds.findIndex(photo.id)+1
+            const nextIndex = user.photoIds.indexOf(photo.id)+1
             const nextPhotoId = user.photoIds[nextIndex]
             history.push(`/photos/${user.id}/${nextPhotoId}`)
         }
@@ -69,7 +69,7 @@ export default function PhotoShowPage(){
     function backClick(){
         //find id in user's photoIds array, history.push
         if (previousPhoto){
-            const prevIndex = user.photoIds.findIndex(photo.id)-1
+            const prevIndex = user.photoIds.indexOf(photo.id)-1
             const prevPhotoId = user.photoIds[prevIndex]
             history.push(`/photos/${user.id}/${prevPhotoId}`)
         }
@@ -82,12 +82,11 @@ export default function PhotoShowPage(){
     let previousPhoto
     let nextPhoto
     if (user && photo){
-        previousPhoto = (user.photoIds.findIndex(photo.id) > 0)
-        nextPhoto = (user.photoIds.findIndex(photo.id) < user.photoIds.length -1)
+        let currentIndex = user.photoIds.indexOf(photo.id)
+        if (currentIndex)
+        previousPhoto = (currentIndex > 0)
+        nextPhoto = (currentIndex < (user.photoIds.length -1))
     }
-    
-    //set a boolean that is true if there is a previous photo - array.find current photoId and check if the index is 0  (conditionally display arrow based on this)
-    //set a boolean that's true if there is a next photo - array.find current photoId and check if index less than length-1 (conditionally display arrow based on this)
     if(!sessionUser){
         return(<Redirect to="/"></Redirect>);
     };
@@ -104,7 +103,7 @@ export default function PhotoShowPage(){
         <section className="contents photo-show">
             <section className="photo-background">
                 <div className="arrow-back" onClick={()=>history.goBack()}><i className="fa-sharp fa-solid fa-arrow-left"></i><p>Back</p></div>
-                <button className={previousPhoto?"previous-button":"previous-button disabled"}><i className="fa-sharp fa-solid fa-chevron-left"></i></button>
+                <button className={previousPhoto?"previous-button":"previous-button disabled"} onClick={backClick}><i className="fa-sharp fa-solid fa-chevron-left"></i></button>
                 <img className="hero-image" src={`${photo?.img}`} alt={`${photo?.title}`} />
                 <button className={nextPhoto?"next-button":"next-button disabled"} onClick={forwardClick}><i className="fa-sharp fa-solid fa-chevron-right"></i></button>
                 {isCurrentUser && 
