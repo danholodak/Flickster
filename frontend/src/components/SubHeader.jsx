@@ -61,7 +61,7 @@ export default function SubHeader({selection}){
             </section>
             <section className="right-subheader">
                 <p>{user?.photoIds? user?.photoIds.length : 0} {user?.photoIds?.length===1? "Photo" : "Photos"}</p>
-                <p>{user?.currentCity}, {user?.country}</p>
+                {user&&user.currentCity&&user.country&&<p>{user?.currentCity}, {user?.country}</p>}
                 <p>Joined {user?.createdAt.split('-')[0]}</p>
             </section>
         </div>

@@ -26,7 +26,25 @@ class User < ApplicationRecord
 
     after_validation :ensure_display_name
 
-    has_many :photos
+    has_many :photos,
+    dependent: :destroy
+
+    has_many :comments,
+    primary_key: :id,
+    foreign_key: :author_id,
+    dependent: :destroy
+
+    has_many :testimonials,
+    primary_key: :id,
+    foreign_key: :subject_id,
+    dependent: :destroy
+
+    has_many :written_testimonials,
+    primary_key: :id,
+    foreign_key: :author_id,
+    dependent: :destroy
+    
+
     has_one_attached :prof_pic
     has_one_attached :header
 

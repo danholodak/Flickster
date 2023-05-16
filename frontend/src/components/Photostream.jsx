@@ -21,7 +21,7 @@ export default function PhotostreamPage(){
     const photos = useSelector(getPhotos)
     if (!user){
         return null
-    }else if((!photos||user.photoIds==={})){
+    }else if((!photos||user.photoIds.length == 0)){
         return (
             <>
             <Header state="loggedIn"/>
