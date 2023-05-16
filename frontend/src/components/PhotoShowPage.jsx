@@ -7,6 +7,7 @@ import { fetchPhoto, getPhoto, updatePhoto, deletePhoto } from '../store/photos'
 import { getUser, fetchUser } from '../store/users'
 import { useHistory } from 'react-router-dom'
 import { Redirect } from 'react-router-dom'
+import {fetchComments, getComment, getComments, deleteComment } from '../store/comments'
 
 export default function PhotoShowPage(){
     const history = useHistory();
@@ -27,6 +28,7 @@ export default function PhotoShowPage(){
     useEffect(()=>{
         dispatch(fetchUser(userId));
         dispatch(fetchPhoto(photoId));
+        dispatch(fetchComments(photoId))
     }, [userId, photoId, dispatch])
     function handleTitleClick(){
         if(!titleClicked){
@@ -75,6 +77,7 @@ export default function PhotoShowPage(){
         }
     }
     const photo = useSelector(getPhoto(photoId));
+    const comments = useSelector(getComments)
     const [title, setTitle] = useState(photo?.title);
     const user = useSelector(getUser(userId));
     const sessionUser = useSelector(state => state.session?.user);
@@ -130,13 +133,21 @@ export default function PhotoShowPage(){
                     <div className="info-text">
                     <h1 className="ps-user-name" onClick={()=>history.replace(`/photos/${user.id}`)}>{user?.firstName} {user?.lastName}</h1>
                     {(isCurrentUser && titleClicked)? <input className="titleinput" type="text" value={`${title}`} onChange={(e)=>setTitle(e.target.value)} /> : <h3 className="ps-title" onClick={handleTitleClick}>{title}</h3> }
-                    {/* <i className="fa-solid fa-pen-to-square"></i> */}
+                    {/* description under the title */}
                     </div>
                     </div>
                     
-                    <div>comments go here</div>
+                    {(photo?.comments.length>0)&&
+                    <div>
+                        {photo.comments.map((id, i)=>
+                        //the comment author's photo to the left of comment body
+                        )}
+                    </div>}
+                    {/* input zone for a comment */}
                 </section>
                 <section className="ps-right-column">
+                    {/* stats: views faves comments */}
+                    {/* © all rights reserved */}
                     
                 </section>
             </section>
