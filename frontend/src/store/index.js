@@ -3,11 +3,15 @@ import thunk from 'redux-thunk'
 import photosReducer from './photos';
 import sessionReducer from './session';
 import usersReducer from './users';
+import commentsReducer from './comments';
+import testimonialsReducer from './testimonials';
 
 export const rootReducer = combineReducers({
   session: sessionReducer,
   users: usersReducer, 
-  photos: photosReducer
+  photos: photosReducer,
+  comments: commentsReducer,
+  testimonials: testimonialsReducer
 })
 
 let enhancer;

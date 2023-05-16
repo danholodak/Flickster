@@ -37,11 +37,13 @@ class User < ApplicationRecord
     has_many :testimonials,
     primary_key: :id,
     foreign_key: :subject_id,
+    class_name: :Testimonial,
     dependent: :destroy
 
     has_many :written_testimonials,
     primary_key: :id,
     foreign_key: :author_id,
+    class_name: :Testimonial,
     dependent: :destroy
     
 
