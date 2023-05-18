@@ -12,6 +12,12 @@ class Api::PhotosController < ApplicationController
     def show
         @photo = Photo.find_by(id: params[:id])
         if @photo
+            if @photo.views
+                @photo.views +=1
+            else
+                @photo.views = 1
+            end
+            @photo.save
             render :show
         end
     end

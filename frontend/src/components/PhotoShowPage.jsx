@@ -4,10 +4,11 @@ import { useEffect, useState } from 'react'
 import Header from './Header'
 import { useParams} from 'react-router-dom'
 import { fetchPhoto, getPhoto, updatePhoto, deletePhoto } from '../store/photos'
-import { getUser, fetchUser } from '../store/users'
+import { getUser, fetchUser, getUsers } from '../store/users'
 import { useHistory } from 'react-router-dom'
 import { Redirect } from 'react-router-dom'
 import {fetchComments, getComment, getComments, deleteComment } from '../store/comments'
+import { Link } from 'react-router-dom/cjs/react-router-dom.min'
 
 export default function PhotoShowPage(){
     const history = useHistory();
@@ -76,12 +77,19 @@ export default function PhotoShowPage(){
             history.push(`/photos/${user.id}/${prevPhotoId}`)
         }
     }
+    
     const photo = useSelector(getPhoto(photoId));
     const comments = useSelector(getComments)
     const [title, setTitle] = useState(photo?.title);
     const user = useSelector(getUser(userId));
     const sessionUser = useSelector(state => state.session?.user);
     const isCurrentUser = (user?.id === sessionUser?.id);
+    const commentUsers = useSelector(getUsers)
+    useEffect(()=>{
+        comments.forEach((comment)=>{
+            dispatch(fetchUser(comment.author_id))
+        })
+    }, [comments])
     let previousPhoto
     let nextPhoto
     if (user && photo){
@@ -140,6 +148,14 @@ export default function PhotoShowPage(){
                     {(photo?.comments.length>0)&&
                     <div>
                         {photo.comments.map((id, i)=>
+                        <div classname="comment">
+                            <img src={commentUsers[comments.id.author_id]?.profilePicUrl} alt="commenter profile picture" />
+                            <div>
+                                <Link to={`/photos/${commentUsers[comments.id.author_id]?.id}`}></Link>
+                                <p>{comments.id.body}</p>
+                                
+                            </div>
+                        </div>
                         //the comment author's photo to the left of comment body
                         )}
                     </div>}
