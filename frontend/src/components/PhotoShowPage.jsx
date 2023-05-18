@@ -62,7 +62,6 @@ export default function PhotoShowPage(){
         return () => document.removeEventListener("click", closeMenu);
     }, [titleClicked]);
     function forwardClick(){
-        //find id in user's photoIds array, history.push
         if (nextPhoto){
             const nextIndex = user.photoIds.indexOf(photo.id)+1
             const nextPhotoId = user.photoIds[nextIndex]
@@ -70,7 +69,6 @@ export default function PhotoShowPage(){
         }
     }
     function backClick(){
-        //find id in user's photoIds array, history.push
         if (previousPhoto){
             const prevIndex = user.photoIds.indexOf(photo.id)-1
             const prevPhotoId = user.photoIds[prevIndex]
@@ -101,6 +99,10 @@ export default function PhotoShowPage(){
     if(!sessionUser){
         return(<Redirect to="/"></Redirect>);
     };
+    if (photo&&user)
+    {
+
+    
     return(
         <>
         <Header state="loggedIn"/>
@@ -149,9 +151,9 @@ export default function PhotoShowPage(){
                     <div>
                         {photo.comments.map((id, i)=>
                         <div classname="comment">
-                            <img src={commentUsers[comments.id.author_id]?.profilePicUrl} alt="commenter profile picture" />
+                            <Link to={`/photos/${commentUsers[comments.id.author_id]?.id}`}><img src={commentUsers[comments.id.author_id]?.profilePicUrl} alt="commenter profile picture" className="prof-pic-60-circle" /></Link>
                             <div>
-                                <Link to={`/photos/${commentUsers[comments.id.author_id]?.id}`}></Link>
+                                <Link to={`/photos/${commentUsers[comments.id.author_id]?.id}`}>{commentUsers[comments.id.author_id]?.firstName} {commentUsers[comments.id.author_id]?.lastName}</Link>
                                 <p>{comments.id.body}</p>
                                 
                             </div>
@@ -162,12 +164,27 @@ export default function PhotoShowPage(){
                     {/* input zone for a comment */}
                 </section>
                 <section className="ps-right-column">
-                    {/* stats: views faves comments */}
-                    {/* © all rights reserved */}
+                    <div className="photo-stats">
+                        <div className="photo-stat">
+                            <h3>{photo.views}</h3>
+                            <p>Views</p>
+                        </div>
+                        <div className="photo-stat">
+                            <h3>0</h3>
+                            <p>faves</p>
+                        </div>
+                        <div className="photo-stat">
+                            <h3>{photo.comments.length}</h3>
+                            <p>Comments</p>
+                        </div>
+                    </div>
+                    
+                    <p className="copywright">© all rights reserved</p>
                     
                 </section>
             </section>
         </section>
         </>
     );
+}
 }
