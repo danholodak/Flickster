@@ -1,3 +1,9 @@
+.testimonial-toggle{
+    color: rgb(30, 113, 201);
+}
+.testimonial-toggle:hover{
+    text-decoration: underline;
+}
 div.center-column{
     width: 80%;
     background-color: white;
@@ -15,6 +21,9 @@ div.section-label{
     display: flex;
     padding: 0;
     margin: 30px 0 10px;
+}
+.section-label.with-toggle{
+    justify-content: space-between;
 }
 .section-label h2{
     margin: 0;

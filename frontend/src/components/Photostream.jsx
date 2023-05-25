@@ -6,11 +6,9 @@ import { useDispatch } from "react-redux";
 import { fetchUser, getUser } from "../store/users";
 import { useEffect } from "react";
 import { fetchPhotos, getPhotos } from "../store/photos";
-import { useHistory } from "react-router-dom";
 import './css/Photostream.css'
 
 export default function PhotostreamPage(){
-    const history = useHistory()
     const {userId} = useParams()
     const dispatch = useDispatch()
     useEffect(()=>{
@@ -21,7 +19,7 @@ export default function PhotostreamPage(){
     const photos = useSelector(getPhotos)
     if (!user){
         return null
-    }else if((!photos||user.photoIds.length == 0)){
+    }else if((!photos||user.photoIds.length === 0)){
         return (
             <>
             <Header state="loggedIn"/>

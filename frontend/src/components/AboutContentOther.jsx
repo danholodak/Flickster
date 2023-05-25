@@ -1,12 +1,13 @@
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { getUser, fetchUser } from "../store/users";
+import { getUser, fetchUser} from "../store/users";
 import { getPhotos, fetchPhotos } from "../store/photos";
 import { useEffect } from "react";
 import './css/AboutPage.css'
-import { useState } from "react";
 import { Link } from "react-router-dom";
+import TestimonialSection from "./TestimonialSection";
+import { useState } from "react";
 
 export default function AboutContentOther(){
     const {userId} = useParams()
@@ -15,18 +16,22 @@ export default function AboutContentOther(){
         dispatch(fetchUser(userId))
         dispatch(fetchPhotos())
     }, [userId, dispatch])
-    // user has a list of photo IDs in their showcase
-    // photos are true or false 'showcased'
-    // up to 15 photos showcased
-    // testimonials are like comments, but have author id and subject id both point to users table
-    // most popular photos is based on views
+    const [testimonialClicked, setTestimonialClicked]= useState(false)
     const sessionUser = useSelector(state => state.session?.user);
     const user = useSelector(getUser(userId));
-    const photos = useSelector(getPhotos())
+    const allphotos = useSelector(getPhotos)
+    const photos = Object.values(allphotos).filter((photo)=>photo.userId === userId)
+    let viewcount = 0
+    photos.forEach((photo)=>{
+        viewcount+=photo.views
+    })
+    const showcasePhotos = photos.filter((photo)=>photo.showcase === true)
     const months = ["January","February","March","April","May","June","July","August","September","October","November","Decmber"]
     const joinedYear = new Date(user?.createdAt).getFullYear()
     const joinedMonth = months[new Date(user?.createdAt).getMonth()]
-    const showcasePhotos = []
+    const popularPhotos = photos.sort((a, b)=> a.views-b.views)
+    const MostPopularPhotos = popularPhotos.slice(0,24)
+    const hasTestimonials = user.testimonials?.length>0
     return(
         <>
             <section className="content column">
@@ -80,7 +85,7 @@ export default function AboutContentOther(){
                     </section>
                     <section className="about-stats about-section">
                         <div className="about-stat">
-                            <h2>0</h2>
+                            <h2>{viewcount}</h2>
                             <p>views</p>
                         </div>
                         <div className="about-stat">
@@ -104,16 +109,18 @@ export default function AboutContentOther(){
                 <div className="section-label">
                     <h2>Most popular photos</h2>
                 </div>
-                <div className="section-label">
+                <section className="popular-photos">
+                    <section className="photo-column">
+                        {MostPopularPhotos.map((photo, i)=><Link to={`/photos/${photo?.userId}/${photo.id}`}><img key={i} src={photo?.img} alt={photo?.title}  /></Link>)}
+                    </section>
+                </section>
+                <div className={hasTestimonials&&!testimonialClicked?"section-label with-toggle":"section-label"}>
                     <h2>Testimonials</h2>
+                    {hasTestimonials&&!testimonialClicked&&<h2 className="testimonial-toggle" onClick={()=>setTestimonialClicked(true)}>Write a testimonial</h2>}
                 </div>
                 
                 <div className="center-column labeled">
-                    {user&&(user.testimonials.length !== 0)&&user.testimonials.map((id, i)=>
-                    <div className='testimonial'>
-                        <img src={users[testimonials[id].authorId]} alt={`testimonials`} />
-                    </div>
-                    )}
+                        <TestimonialSection sessionUser={sessionUser} user={user} testimonialClicked={testimonialClicked} setTestimonialClicked={setTestimonialClicked}/>
                 </div>
             </section>
         </>

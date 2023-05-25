@@ -4,19 +4,26 @@ import { useEffect, useState } from 'react'
 import Header from './Header'
 import { useParams} from 'react-router-dom'
 import { fetchPhoto, getPhoto, updatePhoto, deletePhoto } from '../store/photos'
-import { getUser, fetchUser, getUsers } from '../store/users'
+import { getUser, fetchUser} from '../store/users'
 import { useHistory } from 'react-router-dom'
 import { Redirect } from 'react-router-dom'
-import {fetchComments, getComment, getComments, deleteComment } from '../store/comments'
-import { Link } from 'react-router-dom/cjs/react-router-dom.min'
+import CommentSection from './CommentSection'
 
 export default function PhotoShowPage(){
     const history = useHistory();
     const dispatch = useDispatch();
     const {userId, photoId} = useParams();
     const [titleClicked, setTitleClicked] = useState(false);
+    const [descriptionClicked, setDescriptionClicked] = useState(false);
     const [editClicked, setEditClicked] = useState(false);
     const [deleteClicked, setDeleteClicked] = useState(false);
+    const photo = useSelector(getPhoto(photoId));
+    const [title, setTitle] = useState(photo?.title);
+    const [description, setDescription] = useState(photo?.description)
+    const user = useSelector(getUser(userId));
+    const sessionUser = useSelector(state => state.session?.user);
+    const isCurrentUser = (user?.id === sessionUser?.id);
+
     function deleteClick(){
         if(!deleteClicked){
             setDeleteClicked(true);
@@ -29,11 +36,15 @@ export default function PhotoShowPage(){
     useEffect(()=>{
         dispatch(fetchUser(userId));
         dispatch(fetchPhoto(photoId));
-        dispatch(fetchComments(photoId))
     }, [userId, photoId, dispatch])
     function handleTitleClick(){
         if(!titleClicked){
             setTitleClicked(true);
+        }
+    }
+    function handleDescriptionClick(){
+        if(!descriptionClicked){
+            setDescriptionClicked(true);
         }
     }
     function handleEditClick(){
@@ -60,7 +71,19 @@ export default function PhotoShowPage(){
         };
         document.addEventListener('click', closeMenu);
         return () => document.removeEventListener("click", closeMenu);
-    }, [titleClicked]);
+    }, [titleClicked, photo, dispatch, title]);
+    useEffect(() => {
+        if (!descriptionClicked) return;
+        const closeDescription = (e) => {
+            if(e.target.classList.contains('descriptioninput')){
+                return;
+            }
+            setTitleClicked(false);
+            dispatch(updatePhoto({description: description, id: photo.id}));
+        };
+        document.addEventListener('click', closeDescription);
+        return () => document.removeEventListener("click", closeDescription);
+    }, [descriptionClicked, description, dispatch, photo]);
     function forwardClick(){
         if (nextPhoto){
             const nextIndex = user.photoIds.indexOf(photo.id)+1
@@ -75,34 +98,20 @@ export default function PhotoShowPage(){
             history.push(`/photos/${user.id}/${prevPhotoId}`)
         }
     }
-    
-    const photo = useSelector(getPhoto(photoId));
-    const comments = useSelector(getComments)
-    const [title, setTitle] = useState(photo?.title);
-    const user = useSelector(getUser(userId));
-    const sessionUser = useSelector(state => state.session?.user);
-    const isCurrentUser = (user?.id === sessionUser?.id);
-    const commentUsers = useSelector(getUsers)
-    useEffect(()=>{
-        comments.forEach((comment)=>{
-            dispatch(fetchUser(comment.author_id))
-        })
-    }, [comments])
+
     let previousPhoto
     let nextPhoto
     if (user && photo){
         let currentIndex = user.photoIds.indexOf(photo.id)
         if (currentIndex)
         previousPhoto = (currentIndex > 0)
-        nextPhoto = (currentIndex < (user.photoIds.length -1))
+        nextPhoto = (currentIndex < (user.photoIds?.length -1))
     }
     if(!sessionUser){
         return(<Redirect to="/"></Redirect>);
     };
     if (photo&&user)
     {
-
-    
     return(
         <>
         <Header state="loggedIn"/>
@@ -143,25 +152,11 @@ export default function PhotoShowPage(){
                     <div className="info-text">
                     <h1 className="ps-user-name" onClick={()=>history.replace(`/photos/${user.id}`)}>{user?.firstName} {user?.lastName}</h1>
                     {(isCurrentUser && titleClicked)? <input className="titleinput" type="text" value={`${title}`} onChange={(e)=>setTitle(e.target.value)} /> : <h3 className="ps-title" onClick={handleTitleClick}>{title}</h3> }
-                    {/* description under the title */}
+                    {(isCurrentUser && descriptionClicked)? <input className="descriptioninput" type="text" value={`${description}`} onChange={(e)=>setDescription(e.target.value)} /> : <p className="ps-title" onClick={handleDescriptionClick}>{description}</p> }
                     </div>
                     </div>
+                    <CommentSection sessionUser={sessionUser} photo={photo} />
                     
-                    {(photo?.comments.length>0)&&
-                    <div>
-                        {photo.comments.map((id, i)=>
-                        <div classname="comment">
-                            <Link to={`/photos/${commentUsers[comments.id.author_id]?.id}`}><img src={commentUsers[comments.id.author_id]?.profilePicUrl} alt="commenter profile picture" className="prof-pic-60-circle" /></Link>
-                            <div>
-                                <Link to={`/photos/${commentUsers[comments.id.author_id]?.id}`}>{commentUsers[comments.id.author_id]?.firstName} {commentUsers[comments.id.author_id]?.lastName}</Link>
-                                <p>{comments.id.body}</p>
-                                
-                            </div>
-                        </div>
-                        //the comment author's photo to the left of comment body
-                        )}
-                    </div>}
-                    {/* input zone for a comment */}
                 </section>
                 <section className="ps-right-column">
                     <div className="photo-stats">
@@ -174,12 +169,12 @@ export default function PhotoShowPage(){
                             <p>faves</p>
                         </div>
                         <div className="photo-stat">
-                            <h3>{photo.comments.length}</h3>
+                            <h3>{photo.comments?.length}</h3>
                             <p>Comments</p>
                         </div>
                     </div>
                     
-                    <p className="copywright">© all rights reserved</p>
+                    <p className="copywright"><strong>©</strong> All rights reserved</p>
                     
                 </section>
             </section>

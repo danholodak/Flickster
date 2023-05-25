@@ -27,8 +27,8 @@ export const fetchTestimonial = (testimonialId) => async (dispatch) => {
         dispatch(receiveTestimonial(data.testimonial))
     }
 }
-export const fetchTestimonials = (photoId) => async (dispatch) => {
-    const response = await csrfFetch(`/api/testimonials/${photoId}`);
+export const fetchTestimonials = (userId) => async (dispatch) => {
+    const response = await csrfFetch(`/api/testimonials/${userId}`);
     if (response.ok){
         const data = await response.json()
         dispatch(receiveTestimonials(data))

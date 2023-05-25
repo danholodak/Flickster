@@ -17,16 +17,17 @@ const removeComment = (commentId) => ({
     commentId
 })
 export const getComment = (commentId) => state => state.comments?.[commentId]? state.comments[commentId] : null
-export const getComments = state => state.comments? state.comments : {}
+export const getComments = state => {
+    return state.comments? state.comments : {}}
 
 //thunk action creators
-export const fetchComment = (commentId) => async (dispatch) => {
-    const response = await csrfFetch(`/api/comments/${commentId}`);
-    if (response.ok){
-        const data = await response.json()
-        dispatch(receiveComment(data.comment))
-    }
-}
+// export const fetchComment = (commentId) => async (dispatch) => {
+//     const response = await csrfFetch(`/api/comments/${commentId}`);
+//     if (response.ok){
+//         const data = await response.json()
+//         dispatch(receiveComment(data.comment))
+//     }
+// }
 export const fetchComments = (photoId) => async (dispatch) => {
     const response = await csrfFetch(`/api/comments/${photoId}`);
     if (response.ok){
