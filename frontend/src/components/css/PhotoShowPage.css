@@ -1,3 +1,18 @@
+div.photo-stats{
+    display: flex;
+}
+.photo-stat{
+    margin-right: 40px
+}
+.photo-stat h3{
+    font-weight: 500;
+    margin-bottom: 0;
+}
+.photo-stat p{
+    margin-top: 5px;
+    font-size: 15px;
+    color: rgb(104, 104, 104);
+}
 .delete-form{
     height:185px;
     width: 600px;

@@ -32,7 +32,7 @@ export default function CommentSection({sessionUser, photo}){
             :<SelfComment path={`/photos/${userId}/${photoId}`}commentUser={commentUsers[comments[id]?.authorId]} i={i} comment={comments[id]}/>
         
         )}
-        </div>}
             <CommentInputForm sessionUser={sessionUser} photo={photo}/>
+        </div>}
     </>)
 }

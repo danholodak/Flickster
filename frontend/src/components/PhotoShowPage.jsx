@@ -162,7 +162,7 @@ export default function PhotoShowPage(){
                     <div className="photo-stats">
                         <div className="photo-stat">
                             <h3>{photo.views}</h3>
-                            <p>Views</p>
+                            <p>{photo.views===1?"View":"Views"}</p>
                         </div>
                         <div className="photo-stat">
                             <h3>0</h3>
@@ -170,7 +170,7 @@ export default function PhotoShowPage(){
                         </div>
                         <div className="photo-stat">
                             <h3>{photo.comments?.length}</h3>
-                            <p>Comments</p>
+                            <p>{photo.comments?.length===1?"Comment":"Comments"}</p>
                         </div>
                     </div>
                     

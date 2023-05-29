@@ -1,0 +1,70 @@
+.comment-section{
+    display:  flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 60px;
+}
+div.cover-screen{
+    top:0;
+    left:0;
+    position: fixed;
+}
+.prof-pic-40-circle{
+    margin-top: 0px;
+    height:40px;
+    margin-right: 20px;
+    margin-left: 10px;
+    width:40px;
+    border-radius: 100%;
+    object-fit: cover;
+}
+.comment-form, .comment, .comment-header{
+    display: flex;
+    width: 100%;
+}
+.comment-header{
+    width: 100%;
+    justify-content: space-between;
+}
+.comment-header a{
+    color: rgb(30, 113, 201);
+    text-decoration: none;
+}
+.comment-header a:hover{
+    text-decoration: underline;
+}
+.comment-button-section{
+    color: inherit;
+    
+}
+.comment-right{
+    width: calc(100% - 60px);
+    color: transparent;
+}
+.comment-right:hover{
+    color: grey
+}
+.comment-edit-button{
+    color:inherit;
+    border:none;
+    background: transparent;
+
+}
+.comment-edit-button:hover{
+    color: darkgrey;
+    cursor: pointer;
+}
+.comment-right p{
+    color: black
+}
+.comment:hover{
+    background-color: white;
+
+}
+.comment{
+    padding: 10px 0px;
+    margin: 10px 0px;
+}
+.comment-button-section{
+    margin-right: 20px;
+}
