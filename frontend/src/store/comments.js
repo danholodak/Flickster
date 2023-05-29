@@ -73,7 +73,7 @@ export default function commentsReducer(state ={}, action){
             newState[action.comment.id] = action.comment;
             return newState;
         case RECEIVE_COMMENTS:
-            return {...newState, ...action.comments};
+            return {...action.comments};
         case REMOVE_COMMENT:
             delete newState[action.commentId];
             return newState;

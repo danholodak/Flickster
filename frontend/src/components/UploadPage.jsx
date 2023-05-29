@@ -162,7 +162,7 @@ export default function UploadPage(){
         <main className="upload-main">
             <h1>You can upload {1000-user.photoIds.length} more photos and videos.</h1>
             <div className="pink-rectangle">
-                <p>Get automatic photo backup on all your devices with Flickr Pro. <a className= "disabled" href="https://www.flickr.com/account/upgrade/pro?utm_campaign=web&utm_source=desktop&utm_medium=uploadr_upsell&utm_content=upgrade">Upgrade now</a></p>
+                <p>Get automatic photo backup on all your devices with Flickr Pro. <a className= "disabled" href="#">Upgrade now</a></p>
             </div>
             <form action="">
             <label className="choose-upload">

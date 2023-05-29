@@ -4,7 +4,7 @@ import CommentEditForm from "./CommentEditForm";
 import { deleteComment } from "../store/comments";
 import { useDispatch } from "react-redux";
 
-export default function SelfComment({path, commentUser, i, comment}){
+export default function SelfComment({commentUser, i, comment}){
     const [editComment, setEditComment] = useState(false)
     const [deleteModal, setDeleteModal] = useState(false)
     const dispatch = useDispatch()

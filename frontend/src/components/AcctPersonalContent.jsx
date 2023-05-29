@@ -25,7 +25,7 @@ export default function AcctPersonalContent(){
                             <div>
                                 <strong>You have a Flickster Free account.</strong>
                                 <p>You get 1,000 of your favorite full-resolution photos
-                                 and HD videos, shown with ads. <a href='https://flickr.com/account/upgrade/pro'>Upgrade to Flickster Pro</a></p>
+                                 and HD videos, shown with ads. <a className="disabled"href='#'>Upgrade to Flickster Pro</a></p>
                             </div>
                         </div>
                 </div>

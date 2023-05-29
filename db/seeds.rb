@@ -15,6 +15,7 @@
 
 #     
 # end
+require "open-uri"
 
 users = User.create([
     {email: 'demo@user.com',
@@ -41,9 +42,9 @@ users = User.create([
     current_city: "Big Apple, NY",
     airport: "HAI",
     description:"These are some real photos by the real beth!"},
-    {email: 'waterc@email.com',
+    {email: 'walterc@email.com',
     password: 'password12345',
-    first_name: 'Water',
+    first_name: 'Walter',
     last_name: 'Colors',
     age: 50,
     occupation: 'Painter',
@@ -76,11 +77,55 @@ users = User.create([
     airport: "AKA",
     description:"I love taking photos of plants and Animals"}
     ])
-    demo = User.find_by(email: 'demo@user.com')
-    dan = User.find_by(email: 'dan@email.com')
-    beth = User.find_by(email: 'beth@email.com')
-    water = User.find_by(email: 'waterc@email.com')
-    flora = User.find_by(email: 'flora@email.com')
+    user_ids = []
+    users.each do |user|
+        user_ids << user.id
+    end
+    comment_options=[
+        "Love this Photo!",
+        "Oh wow.",
+        "What a great composition.",
+        "Your style is to die for!",
+        "cool shot 😎",
+        "🔥🔥🔥",
+        "Good work, friend!",
+        "Excellent.",
+        "🤯",
+        "The color grading is very nice here!",
+        "Wow how long did it take to get this one?",
+        "New shot. Who dis?",
+        "My new fave photo of all time.",
+        "First"
+    ]
+    testimonial_options=[
+        "You should work with #{user.first_name} as soon and as often as you can!",
+        "Every shoot I've scheduled with #{user.first_name} has been my favorite shoot I've ever done.",
+        "Work with #{user.first_name} if you wand consistent quality work you can count on again and again.",
+        "#{user.first_name} is one of the greats!",
+        "I wish I could work with #{user.first_name} every day! Such awesome style and friendly personality.",
+        "Once you go #{user.first_name} you can't go back.",
+        "I cry every time I look at the images #{user.first_name} captured for me.",
+        "My new favorite photographer.",
+        "#{user.first_name} is a true artist. We're lucky to have them.",
+        "I've been working with #{user.first_name} for years now and have never been disappointed by their work!",
+        "Ever since I came across #{user.first_name} while surfing through flickster my life has changed forever.",
+        "Thank you #{user.first_name} for always producing incredible work!"
+    ]
+    users.each do |user|
+        num_testimonials = rand(5)
+        num_testimonials.times do
+            Testimonial.create(
+                body: testimonial_options[rand(testimonial_options.length-1)],
+                author_id: user_ids[rand(user_ids.length-1)],
+                subject_id: user.id
+            )
+        end
+    end
+    # demo = User.find_by(email: 'demo@user.com')
+    # dan = User.find_by(email: 'dan@email.com')
+    # beth = User.find_by(email: 'beth@email.com')
+    # walter = User.find_by(email: 'walterc@email.com')
+    # flora = User.find_by(email: 'flora@email.com')
     photo_info = {
         "Demo":[
             ["Concerned Hawk", "Taken right after the hawk was asked 'Why did the chicken cross the road?'"],
@@ -121,7 +166,7 @@ users = User.create([
             ["swingin sailors", "three musicians upon a boat in Amsterdam"],
             ["floating blue mountain", "storm clouds roll in over a gigantic iceburg in Alaska"]
         ],
-        "Water":[
+        "Walter":[
             ["Pink Roses", "A quick study of a rose bush"],
             ["Cowch", "A cow rests at home among her art collection"],
             ["Amsterdam Moment", "A study of a section of canal in Amsterdam"],
@@ -151,10 +196,10 @@ users = User.create([
     all_photos = []
     users.each do |user|
         #set 0.jpg as profile picture and set 1.jpg as header image
-        profile_picture = File.open("app/assets/images/#{user.first_name}/0.jpg")
-        user.prof_pic.attach(io: profile_picture, filename: "0.jpg")
-        header_img = File.open("app/assets/images/#{user.first_name}/1.jpg")
-        user.header.attach(io: header_img, filename: "1.jpg" )
+        # profile_picture = File.open("app/assets/images/#{user.first_name}/0.jpg")
+        user.prof_pic.attach(io: URI.open("https://flickster-seeds.s3.amazonaws.com/#{user.first_name}0.jpg"), filename: "#{user.first_name}0.jpg")
+        # header_img = File.open("app/assets/images/#{user.first_name}/1.jpg")
+        user.header.attach(io: URI.open("https://flickster-seeds.s3.amazonaws.com/#{user.first_name}1.jpg"), filename: "#{user.first_name}1.jpg" )
 
         #create photos with 0-10.jpg and info from photo_info
         (0..10).each do |i|
@@ -162,11 +207,22 @@ users = User.create([
             photo_title = photo_info[user.first_name.to_sym][i][0]
             photo_description = photo_info[user.first_name.to_sym][i][1]
             photo = Photo.create(title: photo_title, description: photo_description, user_id: user.id)
-            photo_file = File.open("app/assets/images/#{user.first_name}/#{i}.jpg")
-            photo.img.attach(io: photo_file, filename: "#{i}.jpg")
+            # photo_file = File.open("app/assets/images/#{user.first_name}/#{i}.jpg")
+            photo.img.attach(io: URI.open("https://flickster-seeds.s3.amazonaws.com/#{user.first_name}#{i}.jpg"), filename: "#{user.first_name}#{i}.jpg")
             all_photos << photo
         end
 
     end 
+    all_photos.each do |photo|
+        num_comments = rand(5)
+        num_comments.times do
+            Comment.create(
+                body: comment_options[rand(comment_options.length-1)],
+                author_id: user_ids[rand(user_ids.length-1)],
+                photo_id: photo.id
+            )
+        end
+    end
+
 
 

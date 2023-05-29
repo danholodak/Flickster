@@ -22,15 +22,14 @@ export default function CommentSection({sessionUser, photo}){
     useEffect(()=>{
         dispatch(fetchComments(photoId))
     }, [photoId, dispatch])
-    debugger
     return (
     <>
     
     {comments&&commentUsers&&<div className="comment-section">
         {photo.comments?.map((id, i)=>
-        (comments[id].authorId !== sessionUser.id)?
-            <OtherComment commentUser={commentUsers[comments[id].authorId]} i={i} comment={comments[id]}/>
-            :<SelfComment path={`/photos/${userId}/${photoId}`}commentUser={commentUsers[comments[id].authorId]} i={i} comment={comments[id]}/>
+        (comments[id]?.authorId !== sessionUser.id)?
+            <OtherComment commentUser={commentUsers[comments[id]?.authorId]} i={i} comment={comments[id]}/>
+            :<SelfComment path={`/photos/${userId}/${photoId}`}commentUser={commentUsers[comments[id]?.authorId]} i={i} comment={comments[id]}/>
         
         )}
         </div>}
