@@ -32,7 +32,7 @@ export default function AboutContentSelf(){
                             </section>
                         }
                         {currentUser&&!descriptionEdit
-                        
+                            
                         }
                     <section className="about-showcase about-section">
                         {!showcaseNameEdit&&<h3>Showcase</h3>}

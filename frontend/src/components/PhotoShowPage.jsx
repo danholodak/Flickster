@@ -23,7 +23,9 @@ export default function PhotoShowPage(){
     const user = useSelector(getUser(userId));
     const sessionUser = useSelector(state => state.session?.user);
     const isCurrentUser = (user?.id === sessionUser?.id);
-
+    const uploadDate = new Date(photo?.createdAt).toDateString().split(" ").slice(1).join(" ")
+    const sortedPhotoIds = user?.photoIds.sort(function(a, b){return a-b})
+    
     function deleteClick(){
         if(!deleteClicked){
             setDeleteClicked(true);
@@ -86,15 +88,15 @@ export default function PhotoShowPage(){
     }, [descriptionClicked, description, dispatch, photo]);
     function forwardClick(){
         if (nextPhoto){
-            const nextIndex = user.photoIds.indexOf(photo.id)+1
-            const nextPhotoId = user.photoIds[nextIndex]
+            const nextIndex = sortedPhotoIds.indexOf(photo.id)+1
+            const nextPhotoId = sortedPhotoIds[nextIndex]
             history.push(`/photos/${user.id}/${nextPhotoId}`)
         }
     }
     function backClick(){
         if (previousPhoto){
-            const prevIndex = user.photoIds.indexOf(photo.id)-1
-            const prevPhotoId = user.photoIds[prevIndex]
+            const prevIndex = sortedPhotoIds.indexOf(photo.id)-1
+            const prevPhotoId = sortedPhotoIds[prevIndex]
             history.push(`/photos/${user.id}/${prevPhotoId}`)
         }
     }
@@ -102,10 +104,12 @@ export default function PhotoShowPage(){
     let previousPhoto
     let nextPhoto
     if (user && photo){
-        let currentIndex = user.photoIds.indexOf(photo.id)
-        if (currentIndex)
-        previousPhoto = (currentIndex > 0)
-        nextPhoto = (currentIndex < (user.photoIds?.length -1))
+        let currentIndex = sortedPhotoIds.indexOf(photo.id)
+        if (currentIndex){
+
+            previousPhoto = (currentIndex > 0)
+            nextPhoto = (currentIndex < (sortedPhotoIds.length -1))
+        }
     }
     if(!sessionUser){
         return(<Redirect to="/"></Redirect>);
@@ -171,6 +175,9 @@ export default function PhotoShowPage(){
                         <div className="photo-stat">
                             <h3>{photo.comments?.length}</h3>
                             <p>{photo.comments?.length===1?"Comment":"Comments"}</p>
+                        </div>
+                        <div className="photo-stat">
+                            <h4>Uploaded on {uploadDate}</h4>
                         </div>
                     </div>
                     

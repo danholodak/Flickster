@@ -20,7 +20,7 @@ export default function TestimonialEditForm({setEditTestimonial, sessionUser, te
         }
     }
     return (
-        <form classname="testimonial-form" onSubmit={submitTestimonial}>
+        <form className="testimonial-form" onSubmit={submitTestimonial}>
         <img src={sessionUser?.profilePicUrl} alt={`${sessionUser.displayName} profile`} className="prof-pic-60-circle" />
         <div>
             <textarea className="testimonial-input" cols="30" rows="10" placeholder='Add a testimonial' onChange={(e)=>setCurrentTestimonial(e.target.value)}>{currentTestimonial}</textarea>

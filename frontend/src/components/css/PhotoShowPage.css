@@ -1,12 +1,22 @@
 div.photo-stats{
     display: flex;
+    width: 100%;
 }
+
+
 .photo-stat{
     margin-right: 40px
 }
 .photo-stat h3{
     font-weight: 500;
     margin-bottom: 0;
+}
+.photo-stat h4{
+    font-weight: 300;
+    white-space: nowrap;
+}
+.photo-stat:last-child{
+    margin-right: 0;
 }
 .photo-stat p{
     margin-top: 5px;
@@ -169,8 +179,11 @@ section.photo-show-bottom{
     align-items: flex-start;
 }
 section.ps-left-column, section.ps-right-column{
-    width: 500px;
+    width: calc(50% - 20px);
     margin: 10px 20px 0 0;
+}
+section.ps-right-column{
+    margin-right: 0;
 }
 .photo-background{
     position: relative;

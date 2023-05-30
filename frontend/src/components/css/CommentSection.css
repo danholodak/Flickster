@@ -37,6 +37,21 @@ div.cover-screen{
     color: inherit;
     
 }
+textarea.comment-input{
+    width: 100%;
+    max-height: 100px;
+    resize: none;
+}
+/* textarea.comment-input:focus-visible{
+    border: 1px solid #128fdc;
+
+} */
+div.comment-input-section{
+    width: calc(100% - 70px);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
 .comment-right{
     width: calc(100% - 60px);
     color: transparent;
@@ -67,4 +82,21 @@ div.cover-screen{
 }
 .comment-button-section{
     margin-right: 20px;
+}
+.comment-button{
+    background-color: #128fdc;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    width: fit-content;
+    margin: 10px 0px 20px;
+    font-weight: 600;
+}
+.comment-button:hover{
+    background-color: #24a0ed;
+    cursor: pointer;
+}
+.comment-button:active{
+    background-color: #175699;
 }

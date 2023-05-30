@@ -26,7 +26,7 @@ export default function SelfTestimonial({testimonialUser, i, testimonial}){
             <div className="delete-form-bottom"><button className="cancel" onClick={()=>{setDeleteModal(false)}}>Cancel</button><button className="delete" onClick={confirmDelete}>Delete</button></div>
         </div>
         </div>}
-        <div classname="testimonial" key={i}>
+        <div className="testimonial" key={i}>
             <Link to={`/photos/${testimonialUser.id}`}><img src={testimonialUser.profilePicUrl} alt={`${testimonialUser.displayName} profile`} className="prof-pic-60-circle" /></Link>
             <div className="testimonial-right">
                 <header className="testimonial-header">
