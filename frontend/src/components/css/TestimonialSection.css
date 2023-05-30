@@ -1,0 +1,106 @@
+.testimonial-section{
+    display:  flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 60px;
+}
+div.cover-screen{
+    top:0;
+    left:0;
+    position: fixed;
+}
+.prof-pic-50-circle{
+    margin-top: 0px;
+    height:50px;
+    margin-right: 20px;
+    margin-left: 10px;
+    width:50px;
+    border-radius: 100%;
+    object-fit: cover;
+}
+.testimonial-form, .testimonial, .testimonial-header{
+    display: flex;
+    width: 100%;
+}
+.testimonial-header{
+    width: 100%;
+    justify-content: space-between;
+}
+.testimonial-header p a{
+    color: rgb(30, 113, 201);
+    text-decoration: none;
+}
+.testimonial-header p a:hover{
+    text-decoration: underline;
+}
+.testimonial-button-section{
+    color: inherit;
+    
+}
+textarea.testimonial-input{
+    width: 100%;
+    max-height: 100px;
+    resize: none;
+}
+/* textarea.testimonial-input:focus-visible{
+    border: 1px solid #128fdc;
+
+} */
+div.testimonial-input-section{
+    width: calc(100% - 70px);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.testimonial-right{
+    width: calc(100% - 60px);
+    color: transparent;
+}
+.testimonial-right:hover{
+    color: grey
+}
+.testimonial-edit-button{
+    color:inherit;
+    border:none;
+    background: transparent;
+
+}
+.testimonial-edit-button:hover{
+    color: darkgrey;
+    cursor: pointer;
+}
+.testimonial-right p{
+    color: black
+}
+.testimonial:hover{
+    background-color: white;
+
+}
+.testimonial{
+    padding: 10px 0px;
+    margin: 10px 0px;
+}
+.testimonial-button-section{
+    margin-right: 20px;
+}
+.testimonial-button{
+    background-color: #128fdc;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    width: fit-content;
+    margin: 10px 0px 20px;
+    font-weight: 600;
+}
+.cancel-button{
+    margin-right: 20px;
+    background-color: grey;
+}
+.testimonial-button:hover{
+    background-color: #24a0ed;
+    cursor: pointer;
+}
+.testimonial-button:active{
+    background-color: #175699;
+}

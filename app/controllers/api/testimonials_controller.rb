@@ -45,7 +45,7 @@ class Api::TestimonialsController < ApplicationController
     private
 
     def strong_params
-        params.require(:testimonial).permit(:id, :author_id, :photo_id, :body)
+        params.require(:testimonial).permit(:id, :author_id, :subject_id, :body)
     end
 
 end

@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 export default function SelfTestimonial({testimonialUser, i, testimonial}){
     const [editTestimonial, setEditTestimonial] = useState(false)
     const [deleteModal, setDeleteModal] = useState(false)
+    const [testimonialBody, setTestimonialBody] = useState(testimonial.body)
     const dispatch = useDispatch()
 
     function confirmDelete(){ 
@@ -14,7 +15,7 @@ export default function SelfTestimonial({testimonialUser, i, testimonial}){
     }
     if(editTestimonial){
         return(
-            <TestimonialEditForm  setEditTestimonial={setEditTestimonial} sessionUser={testimonialUser} testimonial={testimonial}/>
+            <TestimonialEditForm  setEditTestimonial={setEditTestimonial} sessionUser={testimonialUser} testimonial={testimonial}setTestimonialBody={setTestimonialBody}/>
         )
     }else
     return (
@@ -27,16 +28,16 @@ export default function SelfTestimonial({testimonialUser, i, testimonial}){
         </div>
         </div>}
         <div className="testimonial" key={i}>
-            <Link to={`/photos/${testimonialUser.id}`}><img src={testimonialUser.profilePicUrl} alt={`${testimonialUser.displayName} profile`} className="prof-pic-60-circle" /></Link>
+            <Link to={`/photos/${testimonialUser.id}`}><img src={testimonialUser.profilePicUrl} alt={`${testimonialUser.displayName} profile`} className="prof-pic-50-circle" /></Link>
             <div className="testimonial-right">
                 <header className="testimonial-header">
                 <p><Link to={`/photos/${testimonialUser.id}`}>{testimonialUser.firstName} {testimonialUser.lastName}</Link> says:</p>
                 <section className="button-section">
-                    <button onClick={()=>setEditTestimonial(true)}><i className="fa-solid fa-pen-to-square"></i></button>
-                    <button onClick={()=>setDeleteModal(true)}><i class="fa-solid fa-trash-can"></i></button>
+                    <button className="testimonial-edit-button" onClick={()=>setEditTestimonial(true)}><i className="fa-solid fa-pen-to-square"></i></button>
+                    <button className="testimonial-edit-button" onClick={()=>setDeleteModal(true)}><i class="fa-solid fa-trash-can"></i></button>
                 </section>
                 </header>
-                <p>{testimonial.body}</p>
+                <p>{testimonialBody}</p>
             </div>
         </div>
         </>

@@ -20,13 +20,13 @@ export const getTestimonial = (testimonialId) => state => state.testimonials?.[t
 export const getTestimonials = state => state.testimonials? state.testimonials : {}
 
 //thunk action creators
-export const fetchTestimonial = (testimonialId) => async (dispatch) => {
-    const response = await csrfFetch(`/api/testimonials/${testimonialId}`);
-    if (response.ok){
-        const data = await response.json()
-        dispatch(receiveTestimonial(data.testimonial))
-    }
-}
+// export const fetchTestimonial = (testimonialId) => async (dispatch) => {
+//     const response = await csrfFetch(`/api/testimonials/${testimonialId}`);
+//     if (response.ok){
+//         const data = await response.json()
+//         dispatch(receiveTestimonial(data.testimonial))
+//     }
+// }
 export const fetchTestimonials = (userId) => async (dispatch) => {
     const response = await csrfFetch(`/api/testimonials/${userId}`);
     if (response.ok){

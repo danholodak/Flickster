@@ -20,7 +20,7 @@ export default function AboutContentOther(){
     const sessionUser = useSelector(state => state.session?.user);
     const user = useSelector(getUser(userId));
     const allphotos = useSelector(getPhotos)
-    const photos = Object.values(allphotos).filter((photo)=>photo.userId === userId)
+    const photos = Object.values(allphotos).filter((photo)=>photo.userId === user.id)
     let viewcount = 0
     photos.forEach((photo)=>{
         viewcount+=photo.views
@@ -32,6 +32,7 @@ export default function AboutContentOther(){
     const popularPhotos = photos.sort((a, b)=> a.views-b.views)
     const MostPopularPhotos = popularPhotos.slice(0,24)
     const hasTestimonials = user.testimonials?.length>0
+    // debugger
     return(
         <>
             <section className="content column">
@@ -42,7 +43,7 @@ export default function AboutContentOther(){
                         </section>
                     }
 
-                    {user.showcase&&
+                    {showcasePhotos&&showcasePhotos.length>0&&
                     <section className="about-showcase about-section">
                         <h3>Showcase</h3>
                         <section className="photo-column">
@@ -120,7 +121,7 @@ export default function AboutContentOther(){
                 </div>
                 
                 <div className="center-column labeled">
-                        <TestimonialSection sessionUser={sessionUser} user={user} testimonialClicked={testimonialClicked} setTestimonialClicked={setTestimonialClicked}/>
+                        <TestimonialSection sessionUser={sessionUser} user={user} testimonialClicked={testimonialClicked} setTestimonialClicked={setTestimonialClicked} hasTestimonials={hasTestimonials}/>
                 </div>
             </section>
         </>

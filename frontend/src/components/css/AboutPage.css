@@ -13,6 +13,9 @@ div.center-column{
     border-radius: 4px;
     margin-top: 20px;
 }
+.popular-photos{
+    width: 80%;
+}
 .center-column.labeled{
     margin-top: 0;
 }

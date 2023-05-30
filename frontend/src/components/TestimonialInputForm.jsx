@@ -13,8 +13,10 @@ export default function TestimonialInputForm({user, sessionUser, setTestimonialC
                 authorId: sessionUser.id,
                 subjectId: user.id}
             }
-            debugger
+            // debugger
             dispatch(createTestimonial(newTestimonial))
+            setCurrentTestimonial("")
+            setTestimonialActive(false)
         }
     }
     useEffect(() => {
@@ -30,12 +32,12 @@ export default function TestimonialInputForm({user, sessionUser, setTestimonialC
     }, [testimonialActive]);
     return (
         <form className="testimonial-form" onSubmit={submitTestimonial}>
-        <img src={sessionUser?.profilePicUrl} alt={`${sessionUser.displayName} profile`} className="prof-pic-60-circle" />
+        <img src={sessionUser?.profilePicUrl} alt={`${sessionUser.displayName} profile`} className="prof-pic-50-circle" />
         <div className="testimonial-input-section">           
             <textarea className={testimonialActive?"testimonial-input active":"testimonial-input"} cols="30" rows="10" placeholder='Add a testimonial' onChange={(e)=>setCurrentTestimonial(e.target.value)} onClick={()=>setTestimonialActive(true)}>{currentTestimonial}</textarea>
             <section>
-                <button className="cancel-button" onClick={()=>setTestimonialClicked(false)}>Cancel</button>
-                <input className="testimonial-input button" type="submit" value="Post"/>
+                <button className="cancel-button testimonial-button" onClick={()=>setTestimonialClicked(false)}>Cancel</button>
+                <input className="testimonial-input testimonial-button" type="submit" value="Post"/>
             </section>
         </div>
     </form>
