@@ -112,7 +112,7 @@ export default function AboutContentOther(){
                 </div>
                 <section className="popular-photos">
                     <section className="photo-column">
-                        {MostPopularPhotos.map((photo, i)=><Link to={`/photos/${photo?.userId}/${photo.id}`}><img key={i} src={photo?.img} alt={photo?.title}  /></Link>)}
+                        {MostPopularPhotos.map((photo, i)=><Link className={"popular-photo"} to={`/photos/${photo?.userId}/${photo.id}`}><img key={i} src={photo?.img} alt={photo?.title}  /></Link>)}
                     </section>
                 </section>
                 <div className={hasTestimonials&&!testimonialClicked?"section-label with-toggle":"section-label"}>

@@ -97,22 +97,22 @@ users = User.create([
         "My new fave photo of all time.",
         "First"
     ]
-    testimonial_options=[
-        "You should work with #{user.first_name} as soon and as often as you can!",
-        "Every shoot I've scheduled with #{user.first_name} has been my favorite shoot I've ever done.",
-        "Work with #{user.first_name} if you wand consistent quality work you can count on again and again.",
-        "#{user.first_name} is one of the greats!",
-        "I wish I could work with #{user.first_name} every day! Such awesome style and friendly personality.",
-        "Once you go #{user.first_name} you can't go back.",
-        "I cry every time I look at the images #{user.first_name} captured for me.",
-        "My new favorite photographer.",
-        "#{user.first_name} is a true artist. We're lucky to have them.",
-        "I've been working with #{user.first_name} for years now and have never been disappointed by their work!",
-        "Ever since I came across #{user.first_name} while surfing through flickster my life has changed forever.",
-        "Thank you #{user.first_name} for always producing incredible work!"
-    ]
     users.each do |user|
         num_testimonials = rand(5)
+        testimonial_options=[
+            "You should work with #{user.first_name} as soon and as often as you can!",
+            "Every shoot I've scheduled with #{user.first_name} has been my favorite shoot I've ever done.",
+            "Work with #{user.first_name} if you wand consistent quality work you can count on again and again.",
+            "#{user.first_name} is one of the greats!",
+            "I wish I could work with #{user.first_name} every day! Such awesome style and friendly personality.",
+            "Once you go #{user.first_name} you can't go back.",
+            "I cry every time I look at the images #{user.first_name} captured for me.",
+            "My new favorite photographer.",
+            "#{user.first_name} is a true artist. We're lucky to have them.",
+            "I've been working with #{user.first_name} for years now and have never been disappointed by their work!",
+            "Ever since I came across #{user.first_name} while surfing through flickster my life has changed forever.",
+            "Thank you #{user.first_name} for always producing incredible work!"
+        ]
         num_testimonials.times do
             Testimonial.create(
                 body: testimonial_options[rand(testimonial_options.length-1)],

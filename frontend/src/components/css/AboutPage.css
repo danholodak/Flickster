@@ -13,8 +13,20 @@ div.center-column{
     border-radius: 4px;
     margin-top: 20px;
 }
-.popular-photos{
+.popular-photos, .about-showcase{
     width: 80%;
+}
+.photo-column{
+ width: 100%;
+}
+.about-showcase .photo-column{
+    width: 80%
+}
+.photo-column .popular-photo{
+    max-width: calc(50% - 5px);
+}
+.popular-photo img{
+    width: 100%;
 }
 .center-column.labeled{
     margin-top: 0;

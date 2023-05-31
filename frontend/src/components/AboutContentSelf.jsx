@@ -17,6 +17,7 @@ export default function AboutContentSelf(){
     }, [userId, dispatch])
     const sessionUser = useSelector(state => state.session?.user);
     const user = useSelector(getUser(userId));
+    const [currentDescription, setCurrentDescription] = useState(user?.description)
     const currentUser = (user?.id == sessionUser?.id)
     const months = ["January","February","March","April","May","June","July","August","September","October","November","Decmber"]
     const joinedYear = new Date(user?.createdAt).getFullYear()
@@ -26,14 +27,15 @@ export default function AboutContentSelf(){
         <>
         <section className="content column">
                     <div className="center-column">
-                        {!currentUser&&user.description&&
+                        {!currentUser&&currentDescription&&!descriptionEdit&&
                             <section className="about-description about-section">
-                                <p className="description">{user.description}</p>
+                                <p className="description">{currentDescription}</p>
                             </section>
                         }
-                        {currentUser&&!descriptionEdit
-                            
+                        {currentUser&&descriptionEdit&&
+                            <textarea onChange={(e)=>setCurrentDescription(e.target.value)}>{currentDescription}</textarea>
                         }
+                        
                     <section className="about-showcase about-section">
                         {!showcaseNameEdit&&<h3>Showcase</h3>}
 
@@ -87,7 +89,7 @@ export default function AboutContentSelf(){
                     <div className="center-column labeled">
                         <p></p>
                     </div>
-                </section>
+        </section>
         </>
     )
 }
