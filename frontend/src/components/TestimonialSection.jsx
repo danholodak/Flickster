@@ -9,7 +9,7 @@ import { getUsers, fetchUser } from "../store/users";
 import './css/TestimonialSection.css'
 import { fetchTestimonials, getTestimonials } from "../store/testimonials";
 
-export default function TestimonialSection({sessionUser, user, testimonialClicked, setTestimonialClicked, hasTestimonials}){
+export default function TestimonialSection({sessionUser, user, currentUser, testimonialClicked, setTestimonialClicked, hasTestimonials}){
     const dispatch = useDispatch()
     const testimonialUsers = useSelector(getUsers)
     const testimonials = useSelector(getTestimonials)
@@ -29,6 +29,15 @@ export default function TestimonialSection({sessionUser, user, testimonialClicke
     }, [user, dispatch])
     if (user&&sessionUser&&testimonialUsers&&testimonials){
         // debugger
+        if(currentUser===true){
+            return (
+            <div className="about-section">
+                {user.testimonials.map((id, i)=>
+                <OtherTestimonial testimonialUser={testimonialUsers[testimonials[id]?.authorId]} i={i} testimonial={testimonials[id]}/>
+                )}
+            </div>
+            )
+        }
     return (
     <>
     <div className="about-section">

@@ -64,7 +64,7 @@ export default function AboutContentOther(){
                         {user&&user.occupation&&<p>{user.occupation}</p>}
                         {user&&user.hometown&&<p>{user.hometown}</p>}
                         {user&&user.currentCity&&<p>{user.currentCity}</p>}
-                        {user&&user.country&&<p>{user.contry}</p>}
+                        {user&&user.country&&<p>{user.country}</p>}
                         {user&&user.email&&<a href={`mailto:${user.email}`}>{user.email}</a>}
                         </div>
                         <div className="about-info-labels">
@@ -73,21 +73,21 @@ export default function AboutContentOther(){
                         {user&&user.twitter&&<p>Twitter</p>}
                         {user&&user.instagram&&<p>Instagram</p>}
                         {user&&user.pinterest&&<p>Pinterest</p>}
-                        {user&&user.tumblr&&<p>tumblr</p>}
+                        {user&&user.tumblr&&<p>Tumblr</p>}
                         </div>
                         <div className="about-info-data">
-                        {user&&user.website&&<a href={user.website}>{user.website}</a>}
-                        {user&&user.facebook&&<a href={user.facebook}>{user.facbook}</a>}
-                        {user&&user.twitter&&<a href={user.twitter}>{user.twitter}</a>}
-                        {user&&user.instagram&&<a href={user.instagram}>{user.instagram}</a>}
-                        {user&&user.pinterest&&<a href={user.pinterest}>{user.pinterest}</a>}
-                        {user&&user.tumblr&&<a href={user.tumblr}>{user.tumblr}</a>}
+                        {user&&user.website&&<p><a href={user.website}>{user.website}</a></p>}
+                        {user&&user.facebook&&<p><a href={user.facebook}>{user.facbook}</a></p>}
+                        {user&&user.twitter&&<p><a href={user.twitter}>{user.twitter}</a></p>}
+                        {user&&user.instagram&&<p><a href={user.instagram}>{user.instagram}</a></p>}
+                        {user&&user.pinterest&&<p><a href={user.pinterest}>{user.pinterest}</a></p>}
+                        {user&&user.tumblr&&<p><a href={user.tumblr}>{user.tumblr}</a></p>}
                         </div>
                     </section>
                     <section className="about-stats about-section">
                         <div className="about-stat">
                             <h2>{viewcount}</h2>
-                            <p>views</p>
+                            <p>{viewcount==1?"view":"views"}</p>
                         </div>
                         <div className="about-stat">
                             <h2>0</h2>
