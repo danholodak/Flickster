@@ -55,6 +55,6 @@ class Api::UsersController < ApplicationController
   private 
 
   def strong_params
-    params.require(:user).permit(:id, :display_name, :email, :age, :first_name, :last_name, :password, :description, :website, :website_name, :occupation, :hometown, :current_city, :country, :airport, :facebook, :twitter, :instagram, :pinterest, :tumblr)
+    params.require(:user).permit(:id, :display_name, :email, :age, :first_name, :last_name, :password, :description, :website, :website_name, :occupation, :hometown, :current_city, :country, :airport, :facebook, :twitter, :instagram, :pinterest, :tumblr, :header, :prof_pic)
   end
 end

@@ -8,6 +8,7 @@ import { useState } from "react";
 import TestimonialSection from "./TestimonialSection";
 import { getPhotos, fetchPhotos } from "../store/photos";
 import { Link } from "react-router-dom";
+import PhotoSelectionModal from "./PhotoSelectionModal";
 
 export default function AboutContentSelf(){
     const {userId} = useParams()
@@ -25,6 +26,7 @@ export default function AboutContentSelf(){
     const [currentPinterest, setCurrentPinterest] = useState(user?.pinterest)
     const [descriptionEdit, setDescriptionEdit] = useState(false)
     const [showcaseNameEdit, setShowcaseNameEdit] = useState(false)
+    const [showcaseModal, setShowcaseModal] = useState(false)
     const [infoEdit, setInfoEdit] = useState(false)
     const allphotos = useSelector(getPhotos)
     const photos = Object.values(allphotos).filter((photo)=>photo.userId === user.id)
@@ -100,12 +102,9 @@ export default function AboutContentSelf(){
         setCurrentDescription(user?.description)
         setDescriptionEdit(false)
     }
-    function showcaseGetStarted(){
-        //pop up modal that lets user select up to 25 showcased photos
-    }
-    // debugger
     return(
         <>
+        {showcaseModal&&<PhotoSelectionModal user={user} photos={photos} modalType={"showcase"} setShowcaseModal={setShowcaseModal}/>}
         <section className="content column">
                     <div className="center-column">
                         {currentDescription&&currentDescription.length>0&&!descriptionEdit&&
@@ -130,13 +129,13 @@ export default function AboutContentSelf(){
                         }
                         
                     <section className="about-showcase about-section">
-                    <button className="edit-user-info-button" onClick={()=>setDescriptionEdit(true)}><i class="fa-solid fa-plus"></i></button>
+                    <button className="edit-user-info-button" onClick={()=>setShowcaseModal(true)}><i class="fa-solid fa-plus"></i></button>
                         {!showcaseNameEdit&&<h3>Showcase</h3>}
                         {showcasePhotos.length==0&&
                         <div className="center-text">
                         <p>This is your showcase. <br />
                         Show off up to 25 of your photos.</p>
-                        <p className="showcase-get-started" onClick={showcaseGetStarted}>Get started</p>
+                        <p className="showcase-get-started" onClick={()=>setShowcaseModal(true)}>Get started</p>
                         </div>
                         }
 
