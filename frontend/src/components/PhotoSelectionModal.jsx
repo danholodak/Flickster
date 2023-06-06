@@ -111,7 +111,7 @@ export default function PhotoSelectionModal({user, photos, modalType, setShowcas
     function bgClick(e){
         // debugger
         if (Object.values(e.target.classList).includes("cover-screen")){
-            console.log("true")
+            debugger
             setShowcaseModal(false)
         }
     }
@@ -124,7 +124,7 @@ export default function PhotoSelectionModal({user, photos, modalType, setShowcas
                 <button className={albumsActive? "active" : ""} onClick={albumsClick}>Albums</button>
                 {modalType==="showcase"&&<button className={selectedActive? "active" : ""} onClick={selectedClick}>Selected</button>}
                 {modalType!=="showcase"&&<button className={uploadActive? "active" : ""} onClick={uploadClick}>Upload</button>}
-                <button className="modal-close-out" onClick={()=>setShowcaseModal(false)}><i class="fa-regular fa-xmark"></i></button>
+                <button className="modal-close-out" onClick={()=>setShowcaseModal(false)}><i className="fa-regular fa-xmark"></i></button>
             </section>
             <section className="modal-main">
                 {photostreamActive&&
@@ -138,11 +138,11 @@ export default function PhotoSelectionModal({user, photos, modalType, setShowcas
                     </div>)
                 })
                 }
-                {albumsActive&& <h1>{user.displayName} has no albums yet</h1>}
+                {albumsActive&& <div className="no-albums"><h1 >{user.displayName} has no albums yet</h1></div>}
                 {selectedActive&&selectedPhotos.map((id, i)=>{
                     return(
                     <div key={i} className="square-photo-container">
-                        <button className="square-photo-close-out" onClick={()=>deselectPhoto(id)}><i class="fa-regular fa-xmark"></i></button>
+                        <button className="square-photo-close-out" onClick={()=>deselectPhoto(id)}><i className="fa-regular fa-xmark"></i></button>
                         
                         <p className="square-photo-title">{photos[id].title}</p>
                         <p className="square-photo-user">by {user.firstName} {user.lastName}</p>

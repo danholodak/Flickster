@@ -34,7 +34,7 @@ export default function SelfTestimonial({testimonialUser, i, testimonial}){
                 <p><Link to={`/photos/${testimonialUser.id}`}>{testimonialUser.firstName} {testimonialUser.lastName}</Link> says:</p>
                 <section className="button-section">
                     <button className="testimonial-edit-button" onClick={()=>setEditTestimonial(true)}><i className="fa-solid fa-pen-to-square"></i></button>
-                    <button className="testimonial-edit-button" onClick={()=>setDeleteModal(true)}><i class="fa-solid fa-trash-can"></i></button>
+                    <button className="testimonial-edit-button" onClick={()=>setDeleteModal(true)}><i className="fa-solid fa-trash-can"></i></button>
                 </section>
                 </header>
                 <p>{testimonialBody}</p>

@@ -110,11 +110,11 @@ export default function AboutContentSelf(){
                         {currentDescription&&currentDescription.length>0&&!descriptionEdit&&
                             <section className="about-description about-section space-btwn">
                                 <p className="about-description">{currentDescription}</p>
-                                <button className="edit-user-info-button" onClick={()=>setDescriptionEdit(true)}><i class="fa-solid fa-pencil"></i></button> 
+                                <button className="edit-user-info-button" onClick={()=>setDescriptionEdit(true)}><i className="fa-solid fa-pencil"></i></button> 
                             </section>
                         }
                         {!currentDescription&&!descriptionEdit&&
-                            <div className="space-btwn"><p onClick={()=>setDescriptionEdit(true)}>Write a little about yourself</p> <button className="edit-user-info-button" onClick={()=>setDescriptionEdit(true)}><i class="fa-solid fa-pencil"></i></button></div>
+                            <div className="space-btwn"><p onClick={()=>setDescriptionEdit(true)}>Write a little about yourself</p> <button className="edit-user-info-button" onClick={()=>setDescriptionEdit(true)}><i className="fa-solid fa-pencil"></i></button></div>
                         }
                         {descriptionEdit&&
                         <section className="about-section">
@@ -129,7 +129,7 @@ export default function AboutContentSelf(){
                         }
                         
                     <section className="about-showcase about-section">
-                    <button className="edit-user-info-button" onClick={()=>setShowcaseModal(true)}><i class="fa-solid fa-plus"></i></button>
+                    <button className="edit-user-info-button" onClick={()=>setShowcaseModal(true)}><i className="fa-solid fa-plus"></i></button>
                         {!showcaseNameEdit&&<h3>Showcase</h3>}
                         {showcasePhotos.length==0&&
                         <div className="center-text">
@@ -141,7 +141,7 @@ export default function AboutContentSelf(){
 
                     </section>
                     {!infoEdit&&<section className="about-info about-section">
-                    <button className="edit-user-info-button" onClick={()=>setInfoEdit(true)}><i class="fa-solid fa-pencil"></i></button>
+                    <button className="edit-user-info-button" onClick={()=>setInfoEdit(true)}><i className="fa-solid fa-pencil"></i></button>
                         <div className="side-by-side">
                             <div className="about-info-labels">
                                 {user&& <p>Joined</p>}
@@ -253,7 +253,7 @@ export default function AboutContentSelf(){
                     </div>
                     <section className="popular-photos">
                     <section className="photo-column">
-                        {MostPopularPhotos.map((photo, i)=><Link className={"popular-photo"} to={`/photos/${photo?.userId}/${photo.id}`}><img key={i} src={photo?.img} alt={photo?.title}  /></Link>)}
+                        {MostPopularPhotos.map((photo, i)=><Link key={i} className={"popular-photo"} to={`/photos/${photo?.userId}/${photo.id}`}><img  src={photo?.img} alt={photo?.title}  /></Link>)}
                     </section>
                 </section>
                     <div className="section-label">

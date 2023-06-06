@@ -6,12 +6,17 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 # ApplicationRecord.transaction do
-#     puts "Destroying tables..."
-#     Photo.destroy_all
-#     User.destroy_all
+    puts "Destroying tables..."
+    Comment.destroy_all
+    Photo.destroy_all
+    Testimonial.destroy_all
+    User.destroy_all
 
-#     puts "Resetting primary keys..."
-#     ApplicationRecord.connection.reset_pk_sequence!('users')
+    puts "Resetting primary keys..."
+    ApplicationRecord.connection.reset_pk_sequence!('users')
+    ApplicationRecord.connection.reset_pk_sequence!('photos')
+    ApplicationRecord.connection.reset_pk_sequence!('testimonials')
+    ApplicationRecord.connection.reset_pk_sequence!('comments')
 
 #     
 # end
