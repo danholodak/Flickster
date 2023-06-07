@@ -119,9 +119,13 @@ users = User.create([
             "Thank you #{user.first_name} for always producing incredible work!"
         ]
         num_testimonials.times do
+            author = rand(user_ids.length-1)
+            while user_ids[author] == user.id
+                author = rand(user_ids.length-1)
+            end
             Testimonial.create(
                 body: testimonial_options[rand(testimonial_options.length-1)],
-                author_id: user_ids[rand(user_ids.length-1)],
+                author_id: user_ids[author],
                 subject_id: user.id
             )
         end
@@ -221,9 +225,13 @@ users = User.create([
     all_photos.each do |photo|
         num_comments = rand(5)
         num_comments.times do
+            author = rand(user_ids.length-1)
+            while user_ids[author] == photo.user_id
+                author = rand(user_ids.length-1)
+            end
             Comment.create(
                 body: comment_options[rand(comment_options.length-1)],
-                author_id: user_ids[rand(user_ids.length-1)],
+                author_id: user_ids[author],
                 photo_id: photo.id
             )
         end

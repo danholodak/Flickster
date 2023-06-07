@@ -51,7 +51,7 @@ class Api::PhotosController < ApplicationController
     private
 
     def strong_params
-        params.require(:photo).permit(:id, :title, :user_id, :img, :description)
+        params.require(:photo).permit(:id, :title, :user_id, :img, :description, :showcase)
     end
 
 end

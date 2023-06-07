@@ -138,6 +138,9 @@ export default function AboutContentSelf(){
                         <p className="showcase-get-started" onClick={()=>setShowcaseModal(true)}>Get started</p>
                         </div>
                         }
+                        {showcasePhotos.length>0&&<div className="photo-column">
+                            {showcasePhotos.map((photo, i)=><Link key={i} className={"showcase-photo"} to={`/photos/${photo?.userId}/${photo.id}`}><img className="showcase"  src={photo?.img} alt={photo?.title}  /></Link>)}
+                            </div>}
 
                     </section>
                     {!infoEdit&&<section className="about-info about-section">

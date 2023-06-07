@@ -83,7 +83,9 @@ div.center-column{
  width: 100%;
 }
 .about-showcase .photo-column{
-    width: 80%
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
 }
 .photo-column .popular-photo{
     max-width: calc(50% - 5px);
@@ -177,4 +179,12 @@ div.section-label{
 .about-stat:hover{
     text-decoration: underline;
     cursor: not-allowed;
+}
+.showcase-photo{
+    max-width: calc(50% - 5px);
+    margin: 2px;
+}
+img.showcase{
+    max-height: 100%;
+    max-width: 100%;
 }
