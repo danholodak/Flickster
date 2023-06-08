@@ -83,6 +83,8 @@ div.center-column{
  width: 100%;
 }
 .about-showcase .photo-column{
+    margin-right: 0;
+    margin-left: 0;
     width: 80%;
     display: flex;
     flex-wrap: wrap;

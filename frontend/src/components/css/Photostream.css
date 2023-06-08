@@ -1,6 +1,8 @@
 .photo-column{
     display:flex;
-    width: 1050px;
+    width: 80%;
+    margin-right: 10%;
+    margin-left: 10%;
     flex-wrap: wrap;
 }
 .photo-column img{
