@@ -51,8 +51,11 @@ export default function AboutContentSelf(){
     let testimonialClicked
     let setTestimonialClicked
     function submitDescription(){
-        if(currentDescription!==""){
-            const updatedDescriptionUser = {user:{id: user.id, description: currentDescription}}
+        if (user.email == "demo@user.com"){
+            alert("Please don't try to change demo user. He's just right. (create a new account to test update functionality)")
+            return
+        }else if(currentDescription!==""){
+            const updatedDescriptionUser = {id: user.id, description: currentDescription}
             dispatch(updateUser(updatedDescriptionUser))
             setDescriptionEdit(false)
         }else{
@@ -63,36 +66,40 @@ export default function AboutContentSelf(){
 
     }
     function submitInfo(){
-        const updatedInfoUser={user:{id: user.id}}
+        const updatedInfoUser={id: user.id}
+        if (user.email == "demo@user.com"){
+            alert("Please don't try to change demo user. He's just right. (create a new account to test update functionality)")
+            return
+        }else 
         if(currentOccupation&&currentOccupation!==""&&currentOccupation!==user.occupation){
-            updatedInfoUser.user.occupation = currentOccupation
+            updatedInfoUser.occupation = currentOccupation
         }
         if(currentHometown&&currentHometown!==""&&currentHometown!==user.hometown){
-            updatedInfoUser.user.hometown = currentHometown
+            updatedInfoUser.hometown = currentHometown
         }
         if(currentCurrentCity&&currentCurrentCity!==""&&currentCurrentCity!==user.currentCity){
-            updatedInfoUser.user.currentCity = currentCurrentCity
+            updatedInfoUser.currentCity = currentCurrentCity
         }
         if(currentCountry&&currentCountry!==""&&currentCountry!==user.country){
-            updatedInfoUser.user.country = currentCountry
+            updatedInfoUser.country = currentCountry
         }
         if(currentWebsite&&currentWebsite!==""&&currentWebsite!==user.website){
-            updatedInfoUser.user.website = currentWebsite
+            updatedInfoUser.website = currentWebsite
         }
         if(currentFacebook&&currentFacebook!==""&&currentFacebook!==user.facebook){
-            updatedInfoUser.user.facebook = currentFacebook
+            updatedInfoUser.facebook = currentFacebook
         }
         if(currentTwitter&&currentTwitter!==""&&currentTwitter!==user.twitter){
-            updatedInfoUser.user.twitter = currentTwitter
+            updatedInfoUser.twitter = currentTwitter
         }
         if(currentInstagram&&currentInstagram!==""&&currentInstagram!==user.instagram){
-            updatedInfoUser.user.instagram = currentInstagram
+            updatedInfoUser.instagram = currentInstagram
         }
         if(currentTumblr&&currentTumblr!==""&&currentTumblr!==user.tumblr){
-            updatedInfoUser.user.tumblr = currentTumblr
+            updatedInfoUser.tumblr = currentTumblr
         }
         if(currentPinterest&&currentPinterest!==""&&currentPinterest!==user.pinterest){
-            updatedInfoUser.user.pinterest = currentPinterest
+            updatedInfoUser.pinterest = currentPinterest
         }
         dispatch(updateUser(updatedInfoUser))
             setInfoEdit(false)

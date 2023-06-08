@@ -32,8 +32,12 @@ export default function PhotoShowPage(){
         }
     }
     function confirmDelete(){
+        if (user.email == "demo@user.com"){
+            alert("Please don't try to delete demo user's photos. He needs to show more people those. (create an account and upload a photo to test photo delete functionality)")
+        }else {
         history.push('/');
         dispatch(deletePhoto(photo.id))
+        }
     }
     useEffect(()=>{
         dispatch(fetchUser(userId));

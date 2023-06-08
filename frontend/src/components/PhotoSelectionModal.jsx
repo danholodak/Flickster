@@ -80,6 +80,7 @@ export default  function PhotoSelectionModal({user, photos, modalType, setShowca
             newSelections[photo.id] = photo
             return newSelections
         })
+        document.querySelector(".square-photo-container.selected").classList.remove("selected")
         e.target.parentElement.classList.add("selected")
 
     }

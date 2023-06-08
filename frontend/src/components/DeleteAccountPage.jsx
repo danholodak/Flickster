@@ -10,7 +10,9 @@ export default function DeleteAccountPage(){
     const sessionUser = useSelector(state => state.session.user)
     function deleteClick(e){
         e.preventDefault()
-        if (sessionUser && !(sessionUser.email ==="demo@user.com")){
+        if (sessionUser.email == "demo@user.com"){
+            alert("Please don't try to delete demo user. He has so much to live for. (create an account to test delete functionality)")
+        }else if (sessionUser && !(sessionUser.email ==="demo@user.com")){
             dispatch(deleteUser(sessionUser.id));
             dispatch(logout());
         };
