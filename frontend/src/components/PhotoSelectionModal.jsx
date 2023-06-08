@@ -35,24 +35,19 @@ export default  function PhotoSelectionModal({user, photos, modalType, setShowca
         }
     }, [])
 
-    let photosLeft = limit - Object.keys(selectedPhotos).length;
-    console.log(`photos left: ${photosLeft}`);
-
-    let bottomText = `Choose up to ${photosLeft} more photos`;
-   /* if (photosLeft === 1) {
-        bottomText = "One photo to go, choose well!"
-    } else if(photosLeft === 0) {
-        bottomText = "Your showcase is full! Change photos";
-    }*/
-    
-    useEffect(()=>{
-        photosLeft = limit-Object.keys(selectedPhotos).length
+    let photosLeft 
+    let bottomText
+    function getBottomText(){
+        photosLeft = limit - Object.keys(selectedPhotos).length
         bottomText = `Choose up to ${photosLeft} more photos`;
         if (photosLeft === 1) {
             bottomText = "One photo to go, choose well!"
         } else if(photosLeft === 0) {
-            bottomText = "Your showcase is full! Change photos";
-        }
+            bottomText = "Your showcase is full! Change photos";}
+    }
+    getBottomText()
+    useEffect(()=>{
+        getBottomText()
     }, [selectedPhotos])
 
     function deselectPhoto(e, id){
