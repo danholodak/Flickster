@@ -13,14 +13,15 @@ export default function UploadPage(){
     const sessionUser = useSelector(state=> state.session.user)
     const [title, setTitle] = useState ("");
     const [description, setDescription] = useState ("");
-    const [photoFile, setPhotoFile] = useState (null);
     const [titleEdit, setTitleEdit] = useState(false);
     const [descriptionEdit, setDescriptionEdit] = useState(false);
     const [titleEdit2, setTitleEdit2] = useState(false);
     const [descriptionEdit2, setDescriptionEdit2] = useState(false);
     const [uploadComplete, setUploadComplete] = useState(false);
     const [uploadingModal, setUploadingModal] = useState(false);
+    const [photoFile, setPhotoFile] = useState (null);
     const [photoUrl, setPhotoUrl] = useState(null);
+    const [photoSelected, setPhotoSelected] = useState(true)
     const handleFile = ({ currentTarget }) => {
         const file = currentTarget.files[0];
         setTitle(currentTarget.value.split("\\")[2].split('.')[0])
@@ -47,7 +48,6 @@ export default function UploadPage(){
             setPhotoSelected(true)
         }
     }
-    const [photoSelected, setPhotoSelected] = useState(true)
     useEffect(()=>{
         if (!photoSelected) return;
         const deselectPhoto = (e) => {
@@ -61,11 +61,11 @@ export default function UploadPage(){
     useEffect(()=>{
         if (!titleEdit) return;
         const deselectTitle = (e) => {
-          if(e.target.classList?.contains("title")){
-            console.log("title class")
-            return;
-          }
-          console.log(e.target.classList)
+        //   if(e.target.classList?.contains("title")){
+        //     console.log("title class")
+        //     return;
+        //   }
+        //   console.log(e.target.classList)
           setTitleEdit(false);
         };
         document.addEventListener('click', deselectTitle);

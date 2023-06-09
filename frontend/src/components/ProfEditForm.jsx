@@ -32,7 +32,7 @@ export default function ProfEditForm(){
     function saveIt(e){
         e.preventDefault() 
         const user = {id: sessionUser.id, firstName, lastName, displayName, description, website, websiteName, occupation, hometown, currentCity, country, airport }
-        if (sessionUser.email == "demo@user.com"){
+        if (sessionUser.email === "demo@user.com"){
             alert("Please don't try to change demo user. He's just right. (create a new account to test update functionality)")
             return
         }else {

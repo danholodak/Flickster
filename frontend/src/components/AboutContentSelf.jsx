@@ -51,7 +51,7 @@ export default function AboutContentSelf(){
     let testimonialClicked
     let setTestimonialClicked
     function submitDescription(){
-        if (user.email == "demo@user.com"){
+        if (user.email === "demo@user.com"){
             alert("Please don't try to change demo user. He's just right. (create a new account to test update functionality)")
             return
         }else if(currentDescription!==""){
@@ -67,7 +67,7 @@ export default function AboutContentSelf(){
     }
     function submitInfo(){
         const updatedInfoUser={id: user.id}
-        if (user.email == "demo@user.com"){
+        if (user.email === "demo@user.com"){
             alert("Please don't try to change demo user. He's just right. (create a new account to test update functionality)")
             return
         }else 
@@ -111,7 +111,7 @@ export default function AboutContentSelf(){
     }
     return(
         <>
-        {showcaseModal&&<PhotoSelectionModal user={user} photos={photos} modalType={"showcase"} setShowcaseModal={setShowcaseModal}/>}
+        {showcaseModal&&<PhotoSelectionModal user={user} photos={photos} modalType={"showcase"} setThisModal={setShowcaseModal}/>}
         <section className="content column">
                     <div className="center-column">
                         {currentDescription&&currentDescription.length>0&&!descriptionEdit&&
@@ -138,7 +138,7 @@ export default function AboutContentSelf(){
                     <section className="about-showcase about-section">
                     <button className="edit-user-info-button" onClick={()=>setShowcaseModal(true)}><i className="fa-solid fa-plus"></i></button>
                         {!showcaseNameEdit&&<h3>Showcase</h3>}
-                        {showcasePhotos.length==0&&
+                        {showcasePhotos.length===0&&
                         <div className="center-text">
                         <p>This is your showcase. <br />
                         Show off up to 25 of your photos.</p>
@@ -238,7 +238,7 @@ export default function AboutContentSelf(){
                         
                         <div className="about-stat">
                             <h2>{viewcount}</h2>
-                            <p>{viewcount==1?"view":"views"}</p>
+                            <p>{viewcount===1?"view":"views"}</p>
                         </div>
                         <div className="about-stat">
                             <h2>0</h2>

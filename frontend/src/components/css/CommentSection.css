@@ -83,7 +83,7 @@ div.comment-input-section{
 .comment-button-section{
     margin-right: 20px;
 }
-.comment-button{
+.comment-button, .modal-button{
     background-color: #128fdc;
     padding: 10px 20px;
     border: none;
@@ -93,10 +93,13 @@ div.comment-input-section{
     margin: 10px 0px 20px;
     font-weight: 600;
 }
-.comment-button:hover{
+.comment-button:hover, .modal-button:hover{
     background-color: #24a0ed;
     cursor: pointer;
 }
-.comment-button:active{
+.comment-button:active, .modal-button:active{
     background-color: #175699;
+}
+.modal-button{
+    margin: 0;
 }

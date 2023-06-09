@@ -4,10 +4,12 @@ import { useDispatch } from "react-redux"
 import { useEffect, useState } from "react"
 import { updateUser } from "../store/users"
 import './css/PhotoSelectionModal.css'
-
+import csrfFetch from "../store/csrf"
+import { useHistory } from "react-router-dom"
 
 export default  function PhotoSelectionModal({user, photos, modalType, setThisModal}){
     const dispatch = useDispatch()
+    const history = useHistory()
     let limit = 1
     if (modalType === "showcase"){
         limit = 25
@@ -18,6 +20,41 @@ export default  function PhotoSelectionModal({user, photos, modalType, setThisMo
     const [albumsActive, setAlbumsActive] = useState(false)
     const [selectedActive, setSelectedActive] = useState(false)
     const [uploadActive, setUploadActive] = useState(false)
+    const [photoFile, setPhotoFile] = useState (null);
+    const [photoUrl, setPhotoUrl] = useState(null);
+    const [uploadingModal, setUploadingModal] = useState(false);
+    function handleFile({ currentTarget }){
+        const file = currentTarget.files[0];
+        setPhotoFile(file);
+        if (file) {
+            const fileReader = new FileReader();
+            fileReader.readAsDataURL(file);
+            fileReader.onload = () => setPhotoUrl(fileReader.result);
+            }else{ setPhotoUrl(null) } 
+    }
+    async function handleUploadSubmit(e){
+        e.preventDefault();
+        setUploadingModal(true);
+        const formData = new FormData();
+        formData.append('user[id]', user.id);
+        if (photoFile&&modalType==="header") {
+            formData.append('user[header]', photoFile);
+        }
+        if(photoFile&&modalType==="profile"){
+            formData.append('user[prof_pic]', photoFile);
+        }
+        const response = await csrfFetch(`/api/users/${user.id}`, {
+            method: 'PATCH',
+            body: formData
+        });
+        if (response.ok) {
+            setUploadingModal(false);
+            setThisModal(false);
+            history.go(0)
+        }else{
+            setUploadingModal(false);
+        }
+    }
 
     useEffect(() => {
         if (photos && modalType === "showcase") {
@@ -31,7 +68,6 @@ export default  function PhotoSelectionModal({user, photos, modalType, setThisMo
             console.log(showcaseObj);
         }
     }, [])
-
     let photosLeft 
     let bottomText
     function getBottomText(){
@@ -54,7 +90,6 @@ export default  function PhotoSelectionModal({user, photos, modalType, setThisMo
             return newSelections
         })
         e.target.parentElement.classList.remove("selected")
-        // console.log("deselected")
         photosLeft = limit-Object.keys(selectedPhotos).length
         //if photo is in the previously showcased, mark for deselect update, otherwise remove from mark for select update 
     }
@@ -67,6 +102,9 @@ export default  function PhotoSelectionModal({user, photos, modalType, setThisMo
         // console.log(selectedPhotos)
     }
     function switchSelection(e, photo){
+        if (selectedPhotos[photo.id]){
+            deselectPhoto(e, photo.id)
+        }else{
         setSelectedPhotos((prev)=>{
             let newSelections={}
             newSelections[photo.id] = photo
@@ -74,15 +112,14 @@ export default  function PhotoSelectionModal({user, photos, modalType, setThisMo
         })
         document.querySelector(".square-photo-container.selected")?.classList.remove("selected")
         e.target.parentElement.classList.add("selected")
-
     }
 
+    }
     function clickPhoto(e, photo){
         if (modalType === "profile"||modalType === "header"){
             switchSelection(e, photo)
             return
         }
-        // debugger
         if (selectedPhotos[photo.id]){
             deselectPhoto(e, photo.id)
         }else if (photosLeft>0){
@@ -91,16 +128,14 @@ export default  function PhotoSelectionModal({user, photos, modalType, setThisMo
                 newSelections[photo.id] = photo
                 return newSelections
             })
-            // console.log("selected")
             e.target.parentElement.classList.add("selected")
             photosLeft = limit-Object.keys(selectedPhotos).length
-            // debugger           
         }
         //if limit reached only deselect available
         //if already selected deselect
     }
     function submitShowcaseSelection(){
-       Object.keys(showcasePhotos).forEach((photoId)=>{
+        Object.keys(showcasePhotos).forEach((photoId)=>{
             if (showcasePhotos[photoId]&&!selectedPhotos[photoId]){
                 dispatch(updatePhoto({id: photoId, showcase: false}))
             }
@@ -114,58 +149,46 @@ export default  function PhotoSelectionModal({user, photos, modalType, setThisMo
         // remove newly unselected, add newly selected, then close modal
         setThisModal(false)
     }
-
     function submitSelection(){
         if (modalType==="showcase"){
             submitShowcaseSelection()
         }else if(modalType==="header"){
-            dispatch(updateUser({user:{id:user.id, header: photos[selectedPhotos[0]].img}}))
+            // setPhotoFile(Object.values(selectedPhotos)[0].img)
+            // debugger
+            // handleUploadSubmit()
+            let userUpdate = {id: user.id, headerUrl: Object.values(selectedPhotos)[0].img}
+            // debugger
+            dispatch(updateUser(userUpdate))
         } else if(modalType==="profile"){
-            dispatch(updateUser({user:{id:user.id, header: photos[selectedPhotos[0]].img}}))
+            let userUpdate = {id: user.id, profPicUrl: Object.values(selectedPhotos)[0].img}
+            dispatch(updateUser(userUpdate))
         }
     }
     function photostreamClick(){
-        if (!photostreamActive){
-            setPhotostreamActive(true)
-            setAlbumsActive(false)
-            setUploadActive(false)
-            setSelectedActive(false)
-        }
+        if (!photostreamActive){ setPhotostreamActive(true); setAlbumsActive(false); setUploadActive(false);setSelectedActive(false) }
     }
     function albumsClick(){
-        if (!albumsActive){
-            setAlbumsActive(true)
-            setPhotostreamActive(false)
-            setUploadActive(false)
-            setSelectedActive(false)
-        }
+        if (!albumsActive){ setAlbumsActive(true); setPhotostreamActive(false); setUploadActive(false); setSelectedActive(false) }
     }
     function uploadClick(){
-        if (!uploadActive){
-            setUploadActive(true)
-            setPhotostreamActive(false)
-            setAlbumsActive(false)
-            setSelectedActive(false)
-        }
+        if (!uploadActive){ setUploadActive(true); setPhotostreamActive(false); setAlbumsActive(false); setSelectedActive(false) }
     }
     function selectedClick(){
-        if (!selectedActive){
-            setSelectedActive(true)
-            setUploadActive(false)
-            setPhotostreamActive(false)
-            setAlbumsActive(false)
-        }
+        if (!selectedActive){ setSelectedActive(true); setUploadActive(false); setPhotostreamActive(false); setAlbumsActive(false) }
     }
     function bgClick(e){
-        // debugger
-        if (Object.values(e.target.classList).includes("cover-screen")){
-            // debugger
-            setThisModal(false)
-        }
+        if (Object.values(e.target.classList).includes("cover-screen")){ setThisModal(false) }
     }
-    if (photos){
+    if (photos&&user){
         return(
         <div className="cover-screen" onClick={bgClick}>
+                {uploadingModal&& 
+                <div className="screencover">
+                    <div className="uploading-modal-box">
+                        <p>Uploading...</p>
+                    </div>
+                </div>
+            } 
             <div className="selection-modal">
             <section className="acct-tabs on-modal">
                 <button className={photostreamActive? "active" : ""} onClick={photostreamClick}>Photostream</button>
@@ -186,6 +209,7 @@ export default  function PhotoSelectionModal({user, photos, modalType, setThisMo
                     </div>)
                 })
                 }
+                {photostreamActive&&photos.length === 0&&<div className="no-albums"><h1>No photos available in Photostream</h1><p>Use upload to add photos.</p></div>}
                 {albumsActive&& <div className="no-albums"><h1 >{user.displayName} has no albums yet</h1></div>}
                 {selectedActive&&Object.keys(selectedPhotos).map((id, i)=>{
                     return(
@@ -197,18 +221,32 @@ export default  function PhotoSelectionModal({user, photos, modalType, setThisMo
                         <img src={selectedPhotos[id].img} alt={selectedPhotos[id].title}  className="square-photo"/>
                     </div>)
                 })}
-                {selectedActive&&Object.keys(selectedPhotos).length == 0&&<div className="no-albums"><h1>No photos are selected</h1></div>}
-                {uploadActive&& 
-                <form>
+                {selectedActive&&Object.keys(selectedPhotos).length === 0&&<div className="no-albums"><h1>No photos are selected</h1></div>}
+                {uploadActive&&!photoFile&& 
+                <form className="center-stuff">
+                    <label className="choose-upload">
+                <input className="fileupload" type="file" onChange={handleFile} accept="image/gif, image/jpeg, image/png"/>
+                Choose photos to upload</label>
                 </form>}
+                {uploadActive&&photoFile&& 
+                <div className="square-photo-container selected">
+                    <p className="select-check">✔</p>
+                    <img src={photoUrl} alt="uploaded file" className="square-photo"/>
+                </div>
+                }
             </section>
             <section className="modal-bottom">
                 <div>
                 {modalType ==="showcase"&&<p>{bottomText}</p>}
                 </div>
-                <form onSubmit={submitSelection}>
-                    <input type="submit" value={Object.keys(selectedPhotos).length===1?"Select photo":"Select photos"} />
-                </form>
+                    {uploadActive&&
+                <form onSubmit={handleUploadSubmit}>
+                    <input  className="modal-button"type="submit" value={"Upload photo"}/> 
+                </form>}
+                    {!uploadActive&&
+                <form onSubmit={submitSelection}>    
+                    <input  className="modal-button"type="submit" value={Object.keys(selectedPhotos).length===1?"Select photo":"Select photos"} />
+                </form>}
             </section>
 
             </div>

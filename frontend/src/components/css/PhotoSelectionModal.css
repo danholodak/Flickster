@@ -5,12 +5,19 @@ div.selection-modal{
 
 
 }
+form.center-stuff{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(80vh - 120px);
+    width: 100%;
+}
 section.modal-bottom{
     height: 30px;
     width: calc(100% - 40px);
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: center;    
     padding: 20px;
     border-top: 1px solid lightgray;
     background-color: white;

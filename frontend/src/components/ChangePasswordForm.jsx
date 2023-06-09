@@ -16,7 +16,7 @@ export default function ChangePasswordForm(){
     const[errors, setErrors] = useState([])
     const[forgotClicked, setForgotClicked] = useState(false)
     function handleSubmit(e){
-        if (sessionUser.email == "demo@user.com"){
+        if (sessionUser.email === "demo@user.com"){
             alert("Please don't try to change demo user. He's just right. (create a new account to test update functionality)")
             return
         }

@@ -120,7 +120,7 @@ users = User.create([
         ]
         num_testimonials.times do
             author = rand(user_ids.length-1)
-            while user_ids[author] == user.id
+            while user_ids[author] === user.id
                 author = rand(user_ids.length-1)
             end
             Testimonial.create(
@@ -226,7 +226,7 @@ users = User.create([
         num_comments = rand(5)
         num_comments.times do
             author = rand(user_ids.length-1)
-            while user_ids[author] == photo.user_id
+            while user_ids[author] === photo.user_id
                 author = rand(user_ids.length-1)
             end
             Comment.create(
