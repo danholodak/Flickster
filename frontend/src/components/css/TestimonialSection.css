@@ -8,6 +8,7 @@ div.cover-screen{
     top:0;
     left:0;
     position: fixed;
+    z-index: 4;
 }
 .prof-pic-50-circle{
     margin-top: 0px;

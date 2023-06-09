@@ -6,17 +6,21 @@ import { useEffect } from "react";
 import './css/SubHeader.css'
 import { useDispatch } from "react-redux";
 import { fetchUser, getUser } from "../store/users";
+import { fetchPhotos, getPhotos } from "../store/photos";
+import PhotoSelectionModal from "./PhotoSelectionModal";
 
 export default function SubHeader({selection}){
     // need to grab info: first name, last name, display name, how many photos, current city, country, year from created_at
     const {userId} = useParams()
     const dispatch = useDispatch()
-    useEffect(()=>{
-        dispatch(fetchUser(userId))
-    }, [userId, dispatch])
+    
     const user = useSelector(getUser(userId));
+    const allphotos = useSelector(getPhotos)
+    const photos = Object.values(allphotos).filter((photo)=>photo.userId === user.id)
     const sessionUser = useSelector(state => state.session.user)
     const [dotsClicked, setDotsClicked] = useState(false)
+    const [profModal, setProfModal] = useState(false)
+    const [headerModal, setHeaderModal] = useState(false)
     const isCurrentUser = (userId === sessionUser?.id.toString())
     const aboutActive = (selection==="about")
     const photostreamActive = (selection==="photostream")
@@ -27,6 +31,21 @@ export default function SubHeader({selection}){
             setDotsClicked(true);
         }
     }
+    function profilePicClick(){
+        if(!isCurrentUser){
+            return
+        }else{
+            setProfModal(true)
+        }
+    }
+    function changeHeader(){
+        setHeaderModal(true)
+    }
+    
+    useEffect(()=>{
+        dispatch(fetchUser(userId))
+        dispatch(fetchPhotos())
+    }, [userId, dispatch])
     useEffect(() => {
         if (!dotsClicked) return;
         const closeMenu = () => {
@@ -35,11 +54,17 @@ export default function SubHeader({selection}){
         document.addEventListener('click', closeMenu);
         return () => document.removeEventListener("click", closeMenu);
       }, [dotsClicked]);
+
     return (
         <>
+        {profModal&&<PhotoSelectionModal user={user} photos={photos} modalType="profile" setThisModal={setProfModal}/>}
+        {headerModal&&<PhotoSelectionModal user={user} photos={photos} modalType="header" setThisModal={setHeaderModal}/>}
         <div className="banner-pic" style={user?.headerPhotoUrl ? {backgroundImage: `url(${user.headerPhotoUrl})`} : {backgroundImage: `url(https://live.staticflickr.com/65535/51968874805_9ed9ef93bf_h.jpg)`, backgroundPosition: 'center top'}}>
             <section className="left-subheader">
-                <img className="prof-pic" src={user?.profilePicUrl ? user.profilePicUrl : "https://live.staticflickr.com/65535/52405649690_9f0a22c374_b.jpg"} alt="Profile pic" />
+                <div className="prof-pic-holder" onClick={profilePicClick}>
+                    {isCurrentUser&&<p className="edit-pencil"><i className="fa-solid fa-pencil"></i></p>}
+                    <img className="prof-pic" src={user?.profilePicUrl ? user.profilePicUrl : "https://live.staticflickr.com/65535/52405649690_9f0a22c374_b.jpg"} alt="Profile pic" />
+                </div>
                 <section className="l-sh-text">
                     <div className="l-sh-text-top">
                         <h1 className="subheader-name">{user?.firstName} {user?.lastName}</h1>
@@ -48,7 +73,7 @@ export default function SubHeader({selection}){
                         <nav className="triple-dots">
                             <div className="point"></div>
                             <div className="top-button-list">
-                                <div className="list-button"><Link to='/'>Change cover photo</Link></div>
+                                <div className="list-button"><p onClick={changeHeader}>Change cover photo</p></div>
                                 <div className="list-button"><Link to='/account'>Edit username</Link></div>
                                 <div className="list-button"><Link to='/account'>Edit real name</Link></div>
                             </div></nav>}

@@ -38,7 +38,7 @@ export default function PhotostreamPage(){
                 <SubHeader selection="photostream"/>
                 <section className="content photostream">
                     <section className="photo-column">
-                        {user.photoIds.map((id, i)=><Link to={`/photos/${photos[id]?.userId}/${id}`}><img key={i} src={photos[id]?.img} alt={photos[id]?.title}  /></Link>)}
+                        {user.photoIds.map((id, i)=><Link to={`/photos/${photos[id]?.userId}/${id}`} key={i}><img src={photos[id]?.img} alt={photos[id]?.title}  /></Link>)}
                     </section>
                 </section>
             </>

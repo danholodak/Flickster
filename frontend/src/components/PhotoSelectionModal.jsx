@@ -6,15 +6,12 @@ import { updateUser } from "../store/users"
 import './css/PhotoSelectionModal.css'
 
 
-export default  function PhotoSelectionModal({user, photos, modalType, setShowcaseModal}){
+export default  function PhotoSelectionModal({user, photos, modalType, setThisModal}){
     const dispatch = useDispatch()
-    let photosObject = {}
     let limit = 1
     if (modalType === "showcase"){
         limit = 25
     }
-
-    const [beth, setBeth] = useState("hi beth");
     const [showcasePhotos, setShowcasePhotos] = useState({})
     const [selectedPhotos, setSelectedPhotos] = useState({})
     const [photostreamActive, setPhotostreamActive] = useState(true)
@@ -75,7 +72,7 @@ export default  function PhotoSelectionModal({user, photos, modalType, setShowca
             newSelections[photo.id] = photo
             return newSelections
         })
-        document.querySelector(".square-photo-container.selected").classList.remove("selected")
+        document.querySelector(".square-photo-container.selected")?.classList.remove("selected")
         e.target.parentElement.classList.add("selected")
 
     }
@@ -115,7 +112,7 @@ export default  function PhotoSelectionModal({user, photos, modalType, setShowca
         })
         // compare previously showcased collection with newly selected collection, 
         // remove newly unselected, add newly selected, then close modal
-        setShowcaseModal(false)
+        setThisModal(false)
     }
 
     function submitSelection(){
@@ -162,8 +159,8 @@ export default  function PhotoSelectionModal({user, photos, modalType, setShowca
     function bgClick(e){
         // debugger
         if (Object.values(e.target.classList).includes("cover-screen")){
-            debugger
-            setShowcaseModal(false)
+            // debugger
+            setThisModal(false)
         }
     }
     if (photos){
@@ -175,7 +172,7 @@ export default  function PhotoSelectionModal({user, photos, modalType, setShowca
                 <button className={albumsActive? "active" : ""} onClick={albumsClick}>Albums</button>
                 {modalType==="showcase"&&<button className={selectedActive? "active" : ""} onClick={selectedClick}>Selected</button>}
                 {modalType!=="showcase"&&<button className={uploadActive? "active" : ""} onClick={uploadClick}>Upload</button>}
-                <button className="modal-close-out" onClick={()=>setShowcaseModal(false)}><i className="fa-regular fa-x"></i></button>
+                <button className="modal-close-out" onClick={()=>setThisModal(false)}><i className="fa-regular fa-x"></i></button>
             </section>
             <section className="modal-main">
                 {photostreamActive&&

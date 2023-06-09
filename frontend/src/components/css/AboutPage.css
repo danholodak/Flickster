@@ -79,6 +79,11 @@ div.center-column{
 .popular-photos, .about-showcase{
     width: 80%;
 }
+.popular-photos .photo-column{
+    margin-right: 0;
+    margin-left: 0;
+    width: 100%;
+}
 .photo-column{
  width: 100%;
 }
