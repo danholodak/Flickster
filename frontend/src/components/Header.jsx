@@ -73,15 +73,17 @@ export default function Header({state}){
                 </div>
                 </div>
                 <div className="right-header">
-                    <button className="magnifier rh-button disabled">
+                    <button><a href="https://www.linkedin.com/in/danholodak/"><i className="fa-brands fa-linkedin"></i></a></button>
+                    <button><a href="https://github.com/danholodak"><i className="fa-brands fa-square-github"></i></a></button>
+                    {/* <button className="magnifier rh-button disabled">
                         <i className="fa-sharp fa-solid fa-magnifying-glass"></i>
-                    </button>
+                    </button> */}
                     <button onClick={()=>history.replace('/photos/upload')} className="upload rh-button">
                         <i className="fa-solid fa-cloud-arrow-up"></i>
                     </button>
-                    <button className="notification rh-button disabled">
+                    {/* <button className="notification rh-button disabled">
                         <i className="fa-solid fa-bell"></i>
-                    </button>
+                    </button> */}
                     
                     {(user?.profilePicUrl) ?  <button className="profile rh-button with-image" onClick={profileDropdown}><img className="header-profile-image" src={`${user?.profilePicUrl}`} alt="user profile pic" /></button> : <button className="profile rh-button" onClick={profileDropdown}><i className="fa-solid fa-user"></i></button>}
                     
