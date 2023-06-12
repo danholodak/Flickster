@@ -84,7 +84,7 @@ export default function PhotoShowPage(){
             if(e.target.classList.contains('descriptioninput')){
                 return;
             }
-            setTitleClicked(false);
+            setDescriptionClicked(false);
             dispatch(updatePhoto({description: description, id: photo.id}));
         };
         document.addEventListener('click', closeDescription);
