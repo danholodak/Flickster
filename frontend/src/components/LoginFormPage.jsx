@@ -5,6 +5,7 @@ import { Link, Redirect } from "react-router-dom"
 import Header from "./Header"
 import { useSelector } from "react-redux"
 import './css/LoginSignup.css'
+import { useEffect } from "react"
 
 
 export default function LoginFormPage(){
@@ -13,6 +14,7 @@ export default function LoginFormPage(){
     const[password, setPassword] = useState("")
     const[errors, setErrors] = useState([])
     const[forgotClicked, setForgotClicked] = useState(false)
+    const[clueVisible, setClueVisible] = useState(false)
     function handleSubmit(e){
         e.preventDefault()
         const user = {email, password}
@@ -36,11 +38,26 @@ export default function LoginFormPage(){
         }
     }
     const sessionUser = useSelector(state => state.session.user);
-    if(sessionUser){
-        return(<Redirect to='/'/>)
-    }
     function loginDemo(){
         dispatch(login({email: 'demo@user.com', password: 'password12345'}))
+    }
+    function showClue(){
+        setClueVisible(true)
+    }
+    function hideClue(){
+        setClueVisible(false)
+    }
+    useEffect(()=>{
+        let formElement = document.querySelector(".login-form")
+        formElement.addEventListener("mouseover", showClue)
+        formElement.addEventListener("mouseout", hideClue)
+        return ()=>{
+            formElement.removeEventListener("mouseover", showClue)
+            formElement.addEventListener("mouseout", hideClue)
+        }
+    }, [])
+    if(sessionUser){
+        return(<Redirect to='/'/>)
     }
     return (
             <>
@@ -58,8 +75,9 @@ export default function LoginFormPage(){
                     <button className="submit-button" type="submit">Sign in</button>
                     <p className="forgot" onClick={forgotClick}>Forgot password?</p>
                     <p className="member">Not a Flickr member? <Link to='/sign-up'>Sign up here.</Link></p>
+                    <div className={clueVisible?"hidden-clue":"hidden"}><p>Or log in as the demo user⤴</p></div>
                 </form>
-                <div className="below-form"><div><p>English ⌵</p></div><div><Link onClick={loginDemo}to='/'>Demo</Link><Link to='/'>Privacy</Link><Link to='/'>Terms</Link></div></div>
+                <div className="below-form"><div><p className="disabled">English ⌵</p></div><div><Link onClick={loginDemo}to='/'>Demo</Link><Link className="disabled" to='/'>Privacy</Link><Link className="disabled" to='/'>Terms</Link></div></div>
             </div>
             </>
     )
