@@ -57,7 +57,7 @@ export default function Header({state}){
                 onMouseLeave={()=>{if(showYou2){setShowYou2(false)}}} >You</button>
                 {(showYou || showYou2) && <RightDropdown kind="You" />}
                 </div>
-                <div className="button-dropdown" onMouseEnter={()=>{if(!showExplore){setShowExplore(true)}}} 
+                {/* <div className="button-dropdown" onMouseEnter={()=>{if(!showExplore){setShowExplore(true)}}} 
                 onMouseLeave={()=>{if(showExplore){setShowExplore(false)}}}>
                 <button onMouseEnter={()=>{if(!showExplore2){setShowExplore2(true)}}} 
                 onMouseLeave={()=>{if(showExplore2){setShowExplore2(false)}}}>Explore</button>
@@ -67,6 +67,12 @@ export default function Header({state}){
                 onMouseLeave={() => setShowPrints(false)}>
                 <button onMouseEnter={() => setShowPrints2(true)} onMouseLeave={() => setShowPrints2(false)}>Prints</button>
                 {(showPrints || showPrints2) && <RightDropdown kind="Prints"/>}
+                </div> */}
+                <div className="button-dropdown">
+                <button className="disabled">Explore</button>
+                </div>
+                <div className="button-dropdown">
+                <button className="disabled">Prints</button>
                 </div>
                 <div className="button-dropdown">
                 <button className="disabled">Get Pro</button>

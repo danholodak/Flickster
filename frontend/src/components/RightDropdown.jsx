@@ -21,7 +21,8 @@ export default function RightDropdown({kind, onMouseEnter, onMouseLeave}){
         history.push(`/photos/${id}/favorites`)
     }
     const sessionUser = useSelector(state => state.session.user);
-    const You = [[["About", aboutRedirect], ["Photostream", photostreamRedirect],["Albums", albumsRedirect],["Faves", favesRedirect], ["Galleries", doNothing], ["Groups", doNothing], ["Camera Roll", doNothing] ],[["People", doNothing], ["Organize", doNothing]]]
+    const You = [[["About", aboutRedirect], ["Photostream", photostreamRedirect],["Albums", albumsRedirect],["Faves", favesRedirect]]]
+    // future You content: [[["Galleries", doNothing], ["Groups", doNothing], ["Camera Roll", doNothing] ],[["People", doNothing], ["Organize", doNothing]]]
     const Explore = [[["Recent Photos", doNothing], ["Trending", doNothing], ["Events", doNothing], ["The Commons", doNothing], ["Flickster Galleries", doNothing], ["World Map", doNothing], ["Camera Finder", doNothing], ["Flickster Blog", doNothing]]]
     const Prints = [[["The Print Shop", doNothing],["Prints & Wall Art", doNothing],["Photo Books", doNothing]],[["View Cart", doNothing]]]
     let array;

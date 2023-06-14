@@ -208,7 +208,7 @@ export default function UploadPage(){
                 {titleEdit2? <input className="title pib sidebar-title" type="text" value={title} onChange={(e=> setTitle(e.target.value))}/>:<h2 className="title pib" onClick={()=>setTitleEdit2(true)}>{title}</h2>}
                 {descriptionEdit2?<textarea className="description pib sidebar-text-area" value={description} onChange={(e=> setDescription(e.target.value))} >{description||"Add a description"}</textarea>:<p className="description pib" onClick={()=>setDescriptionEdit2(true)}>{description||"Add a description"}</p>}
             </div>
-            <div className="disabled sidebar-div">
+            {/* <div className="disabled sidebar-div">
                     <p>Add tags</p>
             </div>
             <div className="disabled sidebar-div">
@@ -222,7 +222,7 @@ export default function UploadPage(){
             </div>
             <div className="disabled sidebar-div">
                     <p>Owner settings</p>
-            </div>
+            </div> */}
             </>
             :<h3 className="select-photos">Select photos to edit...</h3>}
 
