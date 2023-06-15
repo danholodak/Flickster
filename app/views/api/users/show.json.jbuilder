@@ -28,5 +28,6 @@ json.user do
     json.headerPhotoUrl @user.header.attached? ? @user.header.url : nil
     json.photo_ids @user.photo_ids
     json.testimonials @user.testimonial_ids
+    json.faves @user.favorite_photo_ids
   end
 

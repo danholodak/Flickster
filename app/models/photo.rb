@@ -14,7 +14,19 @@ class Photo < ApplicationRecord
     has_one_attached :img
     belongs_to :user
 
-    has_many :comments
+    has_many :comments,
+    dependent: :destroy
+
+    has_many :favorites,
+    primary_key: :id,
+    foreign_key: :photo_id,
+    inverse_of: :photo,
+    class_name: :Favorite,
+    dependent: :destroy
+
+    has_many :favoriters,
+    through: :favorites,
+    source: :user
 
     
 end

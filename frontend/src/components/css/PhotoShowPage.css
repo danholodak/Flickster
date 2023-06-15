@@ -128,16 +128,21 @@ div.user-info{
     display:flex;
     flex-direction:row;
 }
-.edit-button{
+.under-button{
     position:absolute;
     bottom: 15px;
     right: 9%;
+    
+    display:flex;
+    gap: 20px;
+}
+.edit-button, .fave-button{
     background-color: transparent;
     border: none;
     color: white;
     font-size: 18px;
 }
-.edit-button:hover{
+.edit-button:hover, .fave-button:hover{
     cursor: pointer;
 }
 div.info-text{

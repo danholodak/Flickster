@@ -10,7 +10,6 @@ import { fetchPhotos, getPhotos } from "../store/photos";
 import PhotoSelectionModal from "./PhotoSelectionModal";
 
 export default function SubHeader({selection}){
-    // need to grab info: first name, last name, display name, how many photos, current city, country, year from created_at
     const {userId} = useParams()
     const dispatch = useDispatch()
     

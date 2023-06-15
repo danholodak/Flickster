@@ -8,6 +8,7 @@ import { getUser, fetchUser} from '../store/users'
 import { useHistory } from 'react-router-dom'
 import { Redirect } from 'react-router-dom'
 import CommentSection from './CommentSection'
+import csrfFetch from '../store/csrf'
 
 export default function PhotoShowPage(){
     const history = useHistory();
@@ -25,7 +26,11 @@ export default function PhotoShowPage(){
     const isCurrentUser = (user?.id === sessionUser?.id);
     const uploadDate = new Date(photo?.createdAt).toDateString().split(" ").slice(1).join(" ")
     const sortedPhotoIds = user?.photoIds.sort(function(a, b){return a-b})
-    
+    const [faved, setFaved] = useState(photo?.faves?.includes(sessionUser?.id))
+    const [faveNumber, setFaveNumber] = useState(photo?.faves?.length||0)
+    // if (photo&&sessionUser&& photo.faves.includes(sessionUser.id)){
+    //     setFaved(true)
+    // }
     function deleteClick(){
         if(!deleteClicked){
             setDeleteClicked(true);
@@ -104,6 +109,53 @@ export default function PhotoShowPage(){
             history.push(`/photos/${user.id}/${prevPhotoId}`)
         }
     }
+    async function faveToggle(){
+        if (photo.faves.includes(sessionUser.id)){
+            //unfave
+            console.log("unfave")
+            setFaved(false)
+            
+            let faveToDelete = {userId: sessionUser.id, photoId: photo.id}
+            const response = await csrfFetch('/api/favorites', {
+                method: 'DELETE',
+                body: JSON.stringify({favorite: faveToDelete})
+            });
+            if (response.ok){
+                let index = photo.faves.indexOf(sessionUser.id)
+                photo.faves.splice(index, 1)
+                console.log(photo.faves)
+                setFaveNumber((prev)=>prev-1)
+            }else{
+                alert("Not able to process fave :(")
+                setFaved(true)
+            }
+            
+        }else{
+            //fave
+            console.log("fave")
+            setFaved(true)
+            let faveToCreate = {userId: sessionUser.id, photoId: photo.id}
+            const response = await csrfFetch('/api/favorites', {
+                method: 'POST',
+                body: JSON.stringify({favorite: faveToCreate})
+            });
+            if(response.ok){
+                if (!photo.faves.includes(sessionUser.id)){
+                    photo.faves.push(sessionUser.id)
+                    console.log(photo.faves)
+                    setFaveNumber((prev)=>prev+1)
+                }
+                
+                // debugger
+            }else{
+                alert("Not able to process fave :(")
+                setFaved(false)
+            }
+            
+        }
+
+
+    }
 
     let previousPhoto
     let nextPhoto
@@ -136,11 +188,15 @@ export default function PhotoShowPage(){
                 <button className={previousPhoto?"previous-button":"previous-button disabled"} onClick={backClick}><i className="fa-sharp fa-solid fa-chevron-left"></i></button>
                 <img className="hero-image" src={`${photo?.img}`} alt={`${photo?.title}`} />
                 <button className={nextPhoto?"next-button":"next-button disabled"} onClick={forwardClick}><i className="fa-sharp fa-solid fa-chevron-right"></i></button>
+                <div className="under-button">
+                    <button className="fave-button" onClick={faveToggle}>
+                        {faved?<i className="fa-solid fa-star"></i>:<i className="fa-regular fa-star"></i>}
+                    </button>
                 {isCurrentUser && 
                 <button className="edit-button" onClick={handleEditClick}>
                     <i className="fa-solid fa-pen-to-square"></i>
                     </button>
-                }
+                } </div>
                 {editClicked && 
                 <nav className="edit-popup">
                     <div className="point-down">
@@ -173,8 +229,8 @@ export default function PhotoShowPage(){
                             <p>{photo.views===1?"View":"Views"}</p>
                         </div>
                         <div className="photo-stat">
-                            <h3>0</h3>
-                            <p>faves</p>
+                            <h3>{faveNumber}</h3>
+                            <p>{faveNumber===1?"Fave":"Faves"}</p>
                         </div>
                         <div className="photo-stat">
                             <h3>{photo.comments?.length}</h3>

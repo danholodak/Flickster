@@ -29,6 +29,18 @@ class User < ApplicationRecord
     has_many :photos,
     dependent: :destroy
 
+    has_many :favorites,
+    primary_key: :id,
+    foreign_key: :user_id,
+    inverse_of: :user,
+    class_name: :Favorite,
+    dependent: :destroy
+
+    has_many :favorite_photos,
+    through: :favorites,
+    source: :photo
+
+
     has_many :comments,
     primary_key: :id,
     foreign_key: :author_id,

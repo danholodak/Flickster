@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-  post 'api/test', to: 'application#test'
+  # post 'api/test', to: 'application#test'
 
   namespace :api, defaults: { format: :json } do
     resources :users, only: [:create, :show, :update, :destroy, :index]
@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     resources :photos, only: [:create, :show, :update, :destroy, :index]
     resources :comments, only: [:create, :update, :destroy]
     resources :testimonials, only: [:create, :update, :destroy]
+    resources :favorites, only: [:create]
+    delete 'favorites/', to: 'favorites#destroy'
     get 'comments/:photo_id', to: 'comments#index'
     get 'testimonials/:subject_id', to: 'testimonials#index'
   end

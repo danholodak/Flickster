@@ -61,11 +61,6 @@ export default function UploadPage(){
     useEffect(()=>{
         if (!titleEdit) return;
         const deselectTitle = (e) => {
-        //   if(e.target.classList?.contains("title")){
-        //     console.log("title class")
-        //     return;
-        //   }
-        //   console.log(e.target.classList)
           setTitleEdit(false);
         };
         document.addEventListener('click', deselectTitle);
