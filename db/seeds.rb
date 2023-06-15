@@ -237,10 +237,14 @@ users = User.create([
         end
         num_faves = rand(5)
         favoriterIDs = []
-        num_faves.times do |i|
-            currentFaver = user_ids[i]
+        num_faves.times do
+            currentFaver = user_ids[rand(4)]
+            while (favoriterIds.include?(currentFaver))
+                currentFaver = user_ids[rand(4)]
+            end
+            favoriterIDs.push(currentFaver)
             Favorite.create(
-                user_id: user_ids[i],
+                user_id: currentFaver,
                 photo_id: photo.id
             )
         end
