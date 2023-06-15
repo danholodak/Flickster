@@ -235,6 +235,16 @@ users = User.create([
                 photo_id: photo.id
             )
         end
+        num_faves = rand(5)
+        favoriterIDs = []
+        num_faves.times do |i|
+            currentFaver = user_ids[i]
+            Favorite.create(
+                user_id: user_ids[i],
+                photo_id: photo.id
+            )
+        end
+
     end
 
 
