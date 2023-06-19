@@ -7,6 +7,9 @@
 #   Character.create(name: "Luke", movie: movies.first)
 # ApplicationRecord.transaction do
     puts "Destroying tables..."
+    Album_Entry.destroy_all
+    Album.destroy_all
+    Favorite.destroy_all
     Comment.destroy_all
     Photo.destroy_all
     Testimonial.destroy_all
@@ -17,6 +20,10 @@
     ApplicationRecord.connection.reset_pk_sequence!('photos')
     ApplicationRecord.connection.reset_pk_sequence!('testimonials')
     ApplicationRecord.connection.reset_pk_sequence!('comments')
+    ApplicationRecord.connection.reset_pk_sequence!('favorites')
+    ApplicationRecord.connection.reset_pk_sequence!('albums')
+    ApplicationRecord.connection.reset_pk_sequence!('album_entries')
+
 
 #     
 # end
@@ -239,7 +246,7 @@ users = User.create([
         favoriterIDs = []
         num_faves.times do
             currentFaver = user_ids[rand(4)]
-            while (favoriterIds.include?(currentFaver))
+            while (favoriterIDs.include?(currentFaver))
                 currentFaver = user_ids[rand(4)]
             end
             favoriterIDs.push(currentFaver)

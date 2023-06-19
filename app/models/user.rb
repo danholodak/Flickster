@@ -57,8 +57,9 @@ class User < ApplicationRecord
     foreign_key: :author_id,
     class_name: :Testimonial,
     dependent: :destroy
-    
 
+    has_many :albums
+    
     has_one_attached :prof_pic
     has_one_attached :header
 

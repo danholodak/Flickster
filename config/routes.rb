@@ -12,6 +12,9 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :update, :destroy]
     resources :testimonials, only: [:create, :update, :destroy]
     resources :favorites, only: [:create]
+    resources :albums, only: [:create, :show, :update, :destroy, :index]
+    resources :album_entries, only: [:create]
+    delete 'album_entries/', to: 'album_entries#destroy'
     delete 'favorites/', to: 'favorites#destroy'
     get 'comments/:photo_id', to: 'comments#index'
     get 'testimonials/:subject_id', to: 'testimonials#index'
