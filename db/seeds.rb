@@ -7,7 +7,7 @@
 #   Character.create(name: "Luke", movie: movies.first)
 # ApplicationRecord.transaction do
     puts "Destroying tables..."
-    Album_Entry.destroy_all
+    AlbumEntry.destroy_all
     Album.destroy_all
     Favorite.destroy_all
     Comment.destroy_all
