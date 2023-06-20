@@ -29,5 +29,6 @@ json.user do
     json.photo_ids @user.photo_ids
     json.testimonials @user.testimonial_ids
     json.faves @user.favorite_photo_ids
+    json.albums @user.album_ids
   end
 

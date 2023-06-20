@@ -18,7 +18,9 @@ class Api::AlbumsController < ApplicationController
 
     def index
         @albums = Album.where(user_id: params[:user_id])
-        render :index
+        if @albums
+            render :index
+        end
     end
 
     def update

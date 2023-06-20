@@ -5,13 +5,15 @@ import sessionReducer from './session';
 import usersReducer from './users';
 import commentsReducer from './comments';
 import testimonialsReducer from './testimonials';
+import albumsReducer from './albums';
 
 export const rootReducer = combineReducers({
   session: sessionReducer,
   users: usersReducer, 
   photos: photosReducer,
   comments: commentsReducer,
-  testimonials: testimonialsReducer
+  testimonials: testimonialsReducer, 
+  albums: albumsReducer
 })
 
 let enhancer;
