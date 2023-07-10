@@ -189,7 +189,7 @@ users = User.create([
             ["Music Corner"," the rare non-watercolor. line art of a corner with musical instruments"],
             ["New York Brutalism", "A study of a brutalist rooftop in Manhattan"],
             ["Buskers Under Bridge", "A study of three buskers performing under a bridge in Galway"],
-            ["Centra Park Gem", "Study of a beautiful roof at the north end of Central Park"],
+            ["Central Park Gem", "Study of a beautiful roof at the north end of Central Park"],
             ["Bistro Seating", "A woman glancing down at a menu at a Parisian cafe"],
             ["Overgrown Gazebo", "Quick study of a gazebo covered in moss and plants in the forest"],
             ["Green Courtyard", "A watercolor and pen ink study of a grassy courtyard"],

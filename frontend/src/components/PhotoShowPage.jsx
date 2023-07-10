@@ -145,16 +145,11 @@ export default function PhotoShowPage(){
                     console.log(photo.faves)
                     setFaveNumber((prev)=>prev+1)
                 }
-                
-                // debugger
             }else{
                 alert("Not able to process fave :(")
                 setFaved(false)
             }
-            
         }
-
-
     }
 
     let previousPhoto

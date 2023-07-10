@@ -13,7 +13,7 @@ export default function AlbumListSelf({user}){
     useEffect(()=>{
         dispatch(fetchAlbums(user.id))
         dispatch(fetchPhotos)
-    }, [user])
+    }, [user, dispatch])
 
     function clickAlbum(id){
         history.push(`/albums/${id}`)
@@ -21,11 +21,11 @@ export default function AlbumListSelf({user}){
     return (
         <>
         {user.albums.map((album, i)=>
-                    {<div key={i} className="square-photo-container">
+                    {return(<div key={i} className="square-photo-container">
                         <p className="square-photo-title">{albums[album].title}</p>
                         <p className="square-photo-user">by {user.firstName} {user.lastName}</p>
                         <img src={photos[albums[album].header].img} alt={`${album[album].title} header`} className="square-photo" onClick={(e)=>clickAlbum(album)}/>
-                     </div>}
+                     </div>)}
         )}
         </>
     )

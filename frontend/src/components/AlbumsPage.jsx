@@ -18,17 +18,13 @@ export default function AlbumsPage(){
     const sessionUser = useSelector(state => state.session.user);
     const currentUser = user?.id === sessionUser?.id
     if (user && sessionUser){
-        
+
         return(
         <>
             <Header state="loggedIn"/>
             <SubHeader selection="albums"/>
             <section className="content">
-                {!currentUser&&user.albums.length===0&&
-                <h1>
-                    {user?.displayName} doesn't have any albums yet. 😢
-                </h1>}
-                {currentUser&&user.albums.length===0&&
+                {user.albums.length===0&&
                 <h1>
                     {user?.displayName} doesn't have any albums yet. 😢
                 </h1>}
