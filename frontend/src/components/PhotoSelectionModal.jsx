@@ -14,6 +14,9 @@ export default  function PhotoSelectionModal({user, photos, modalType, setThisMo
     if (modalType === "showcase"){
         limit = 25
     }
+    if (modalType === "album"){
+        limit = 1000
+    }
     const [showcasePhotos, setShowcasePhotos] = useState({})
     const [selectedPhotos, setSelectedPhotos] = useState({})
     const [photostreamActive, setPhotostreamActive] = useState(true)
