@@ -207,7 +207,7 @@ export default function PhotoShowPage(){
             <section className="photo-show-bottom">
                 <section className="ps-left-column">
                     <div className="user-info">
-                    <img className="prof-pic-60-circle" src={user?.profilePicUrl?`${user?.profilePicUrl}`:"https://live.staticflickr.com/65535/52405649690_9f0a22c374_b.jpg"} alt={`${user?.displayName}'s profile pic`} />
+                    <img className="prof-pic-60-circle" src={user?.profilePicUrl?`${user?.profilePicUrl}`:"https://flickster-default-pics.s3.us-east-2.amazonaws.com/cow.jpg"} alt={`${user?.displayName}'s profile pic`} />
                     <div className="info-text">
                     <h1 className="ps-user-name" onClick={()=>history.replace(`/photos/${user.id}`)}>{user?.firstName} {user?.lastName}</h1>
                     {(isCurrentUser && titleClicked)? <input className="titleinput" type="text" value={`${title}`} onChange={(e)=>setTitle(e.target.value)} /> : <h3 className="ps-title" onClick={handleTitleClick}>{title}</h3> }

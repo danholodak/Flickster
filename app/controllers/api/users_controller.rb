@@ -4,13 +4,11 @@ class Api::UsersController < ApplicationController
   
   def create
     @user = User.create(strong_params)
-    # cow profile: https://live.staticflickr.com/65535/52405649690_9f0a22c374_b.jpg
-    # plants header: https://live.staticflickr.com/65535/51968874805_9ed9ef93bf_h.jpg
     unless @user.prof_pic.attached?
-      @user.prof_pic.attach(io: URI.open("https://live.staticflickr.com/65535/52405649690_9f0a22c374_b.jpg"), filename: "default_prof.jpg")
+      @user.prof_pic.attach(io: URI.open("https://flickster-default-pics.s3.us-east-2.amazonaws.com/cow.jpg"), filename: "default_prof.jpg")
     end
     unless @user.header.attached?
-      @user.header.attach(io: URI.open("https://live.staticflickr.com/65535/51968874805_9ed9ef93bf_h.jpg"), filename: "default_header.jpg")
+      @user.header.attach(io: URI.open("https://flickster-default-pics.s3.us-east-2.amazonaws.com/orange-leaves.jpg","), filename: "default_header.jpg")
     end
     if @user.save
       login!(@user)
