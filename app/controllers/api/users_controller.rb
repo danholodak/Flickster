@@ -8,7 +8,7 @@ class Api::UsersController < ApplicationController
       @user.prof_pic.attach(io: URI.open("https://flickster-default-pics.s3.us-east-2.amazonaws.com/cow.jpg"), filename: "default_prof.jpg")
     end
     unless @user.header.attached?
-      @user.header.attach(io: URI.open("https://flickster-default-pics.s3.us-east-2.amazonaws.com/orange-leaves.jpg","), filename: "default_header.jpg")
+      @user.header.attach(io: URI.open("https://flickster-default-pics.s3.us-east-2.amazonaws.com/orange-leaves.jpg"), filename: "default_header.jpg")
     end
     if @user.save
       login!(@user)
